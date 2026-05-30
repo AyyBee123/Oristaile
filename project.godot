@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="Solitaire Game"
+run/main_scene="uid://c7u2v2cos0fp0"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=500
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [physics]
 
@@ -20,6 +27,8 @@ config/icon="res://icon.svg"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.13200676, 0.30243662, 0.1666562, 1)
