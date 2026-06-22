@@ -7,6 +7,7 @@ var suit: int = -1 # 0 = clubs, 1 = diamonds, 2 = hearts, 3 = spades
 
 
 func _ready() -> void:
+	# will remove this once there is actual data to read
 	if number == 0:
 		number = randi_range(1, 13)
 	if suit == -1:
