@@ -1,6 +1,59 @@
 [gd_scene format=3 uid="uid://c7u2v2cos0fp0"]
 
 [ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/encounter.gd" id="1_wwxys"]
+[ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="4_gitas"]
 
-[node name="Encounter" type="Node2D" unique_id=1096829293]
+[node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
+
+[node name="SlotContainer" type="HBoxContainer" parent="." unique_id=364460085]
+anchors_preset = -1
+anchor_top = 0.044000003
+anchor_right = 1.0
+anchor_bottom = 0.31100002
+offset_top = 0.1599989
+offset_bottom = 0.039993286
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Slot1" type="TextureRect" parent="SlotContainer" unique_id=1208314387]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot2" type="TextureRect" parent="SlotContainer" unique_id=746882202]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot3" type="TextureRect" parent="SlotContainer" unique_id=1502629995]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot4" type="TextureRect" parent="SlotContainer" unique_id=717224683]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot5" type="TextureRect" parent="SlotContainer" unique_id=1389021164]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot6" type="TextureRect" parent="SlotContainer" unique_id=1075255459]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
+
+[node name="Slot7" type="TextureRect" parent="SlotContainer" unique_id=1912463594]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_gitas")
+stretch_mode = 2
