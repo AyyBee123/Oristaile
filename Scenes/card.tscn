@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b7vbqnm071427"]
+
+[ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="1_0qqmn"]
+[ext_resource type="Script" uid="uid://cu4ufrp0m35ml" path="res://Scripts/Game/card.gd" id="2_brehn"]
+[ext_resource type="Texture2D" uid="uid://b26c0etw3n2t2" path="res://Assets/Sprites/Cards/Spades/Ace Spades.png" id="2_wf8id"]
+
+[node name="Card" type="TextureRect" unique_id=176863048]
+texture = ExtResource("1_0qqmn")
+stretch_mode = 2
+script = ExtResource("2_brehn")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=1059074450]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wf8id")

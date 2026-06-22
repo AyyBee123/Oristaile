@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c7u2v2cos0fp0"]
 
-[ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/encounter.gd" id="1_wwxys"]
-[ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="2_fbya5"]
+[ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/Game/encounter.gd" id="1_wwxys"]
 [ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
+[ext_resource type="PackedScene" uid="uid://b7vbqnm071427" path="res://Scenes/card.tscn" id="4_bd0u2"]
 [ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="4_gitas"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
@@ -10,7 +10,7 @@ script = ExtResource("1_wwxys")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1556827759]
 z_index = -1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -108,12 +108,11 @@ grow_vertical = 0
 theme_override_constants/separation = -32
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="DeckContainer" unique_id=870047374]
+[node name="Card" parent="DeckContainer" unique_id=176863048 instance=ExtResource("4_bd0u2")]
 layout_mode = 2
-texture = ExtResource("2_fbya5")
-stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="DeckContainer" unique_id=1610300506]
+[node name="Card2" parent="DeckContainer" unique_id=528424024 instance=ExtResource("4_bd0u2")]
 layout_mode = 2
-texture = ExtResource("2_fbya5")
-stretch_mode = 2
+
+[node name="Card3" parent="DeckContainer" unique_id=1373068541 instance=ExtResource("4_bd0u2")]
+layout_mode = 2

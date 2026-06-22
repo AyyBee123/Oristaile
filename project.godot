@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=500
 config/icon="res://icon.svg"
 
+[autoload]
+
+CardData="*uid://iusw0xktf8om"
+
 [display]
 
 window/size/viewport_width=640
