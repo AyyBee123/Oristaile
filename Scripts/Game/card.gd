@@ -13,4 +13,4 @@ func _ready() -> void:
 	if suit == -1:
 		suit = randi_range(0, 3)
 	
-	card_texture.texture = CardData.get_card_texture(suit, number - 1)
+	card_texture.texture = CardData.get_card_texture(suit, number)

@@ -17,4 +17,4 @@ func _init() -> void:
 			card_textures[suit].append(load("res://" + path + filename))
 
 func get_card_texture(suit: int, index: int) -> Texture2D:
-	return card_textures[str(suit)][index]
+	return card_textures[str(suit)][index - 1]
