@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/encounter.gd" id="1_wwxys"]
 [ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="2_fbya5"]
+[ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
 [ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="4_gitas"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
@@ -74,22 +75,45 @@ layout_mode = 2
 texture = ExtResource("4_gitas")
 stretch_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=840513885]
+[node name="CardDeck" type="NinePatchRect" parent="." unique_id=1978679625]
 anchors_preset = -1
-anchor_top = 0.569
-anchor_right = 1.0
+anchor_left = 0.012
+anchor_top = 0.503
+anchor_right = 0.98700005
 anchor_bottom = 0.836
-offset_top = 0.16000366
+offset_left = 0.3199997
+offset_top = -0.08000183
+offset_right = 0.3199463
 offset_bottom = 0.039978027
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_right = 24
+texture = ExtResource("3_gitas")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=577069602]
-layout_mode = 2
+[node name="DeckContainer" type="HBoxContainer" parent="." unique_id=577069602]
+anchors_preset = -1
+anchor_left = 0.034
+anchor_top = 0.536
+anchor_right = 0.966
+anchor_bottom = 0.80300003
+offset_left = 0.23999786
+offset_top = 0.039993286
+offset_right = -0.23999023
+offset_bottom = -0.08001709
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -32
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=870047374]
+[node name="TextureRect" type="TextureRect" parent="DeckContainer" unique_id=870047374]
 layout_mode = 2
 texture = ExtResource("2_fbya5")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="DeckContainer" unique_id=1610300506]
+layout_mode = 2
+texture = ExtResource("2_fbya5")
+stretch_mode = 2
