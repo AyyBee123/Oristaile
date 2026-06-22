@@ -26,10 +26,14 @@ color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 
 [node name="SlotContainer" type="HBoxContainer" parent="." unique_id=364460085]
 anchors_preset = -1
-anchor_top = 0.133
-anchor_right = 1.0
-anchor_bottom = 0.4
-offset_top = 0.11999893
+anchor_left = 0.5
+anchor_top = 0.26700002
+anchor_right = 0.5
+anchor_bottom = 0.26700002
+offset_left = -320.0
+offset_top = -48.12001
+offset_right = 320.0
+offset_bottom = 47.87999
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -77,14 +81,14 @@ stretch_mode = 2
 
 [node name="CardDeck" type="NinePatchRect" parent="." unique_id=1978679625]
 anchors_preset = -1
-anchor_left = 0.012
-anchor_top = 0.503
-anchor_right = 0.98700005
-anchor_bottom = 0.836
-offset_left = 0.3199997
-offset_top = -0.08000183
-offset_right = 0.3199463
-offset_bottom = 0.039978027
+anchor_left = 0.5
+anchor_top = 0.669
+anchor_right = 0.5
+anchor_bottom = 0.669
+offset_left = -312.0
+offset_top = -59.84001
+offset_right = 312.0
+offset_bottom = 60.15999
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("3_gitas")
@@ -95,14 +99,14 @@ patch_margin_bottom = 4
 
 [node name="DeckContainer" type="HBoxContainer" parent="." unique_id=577069602]
 anchors_preset = -1
-anchor_left = 0.034
-anchor_top = 0.536
-anchor_right = 0.966
-anchor_bottom = 0.80300003
-offset_left = 0.23999786
-offset_top = 0.039993286
-offset_right = -0.23999023
-offset_bottom = -0.08001709
+anchor_left = 0.5
+anchor_top = 0.669
+anchor_right = 0.5
+anchor_bottom = 0.669
+offset_left = -298.0
+offset_top = -47.84001
+offset_right = 298.0
+offset_bottom = 48.15999
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = -32
