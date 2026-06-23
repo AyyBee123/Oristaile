@@ -14,3 +14,7 @@ func _ready() -> void:
 		suit = randi_range(0, 3)
 	
 	card_texture.texture = CardData.get_card_texture(suit, number)
+
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	return

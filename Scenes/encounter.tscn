@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
 [ext_resource type="PackedScene" uid="uid://b7vbqnm071427" path="res://Scenes/card.tscn" id="4_bd0u2"]
 [ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="4_gitas"]
+[ext_resource type="Texture2D" uid="uid://dnjtcfdo2yon6" path="res://Assets/Sprites/Cards/Back/Red Back.png" id="5_bd0u2"]
+[ext_resource type="BitMap" uid="uid://cooi0qnm23wrf" path="res://Assets/Sprites/Cards/Misc/Back Mask.png" id="5_hoo3l"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
@@ -27,13 +29,13 @@ color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 [node name="SlotContainer" type="HBoxContainer" parent="." unique_id=364460085]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.26700002
+anchor_top = 0.31100002
 anchor_right = 0.5
-anchor_bottom = 0.26700002
+anchor_bottom = 0.31100002
 offset_left = -320.0
-offset_top = -48.12001
+offset_top = -47.960007
 offset_right = 320.0
-offset_bottom = 47.87999
+offset_bottom = 48.039993
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -79,44 +81,109 @@ layout_mode = 2
 texture = ExtResource("4_gitas")
 stretch_mode = 2
 
-[node name="CardDeck" type="NinePatchRect" parent="." unique_id=1978679625]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=452443490]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.669
+anchor_top = 0.67800003
 anchor_right = 0.5
-anchor_bottom = 0.669
-offset_left = -312.0
-offset_top = -59.84001
-offset_right = 312.0
-offset_bottom = 60.15999
+anchor_bottom = 0.67800003
+offset_left = -320.0
+offset_top = -60.080017
+offset_right = 320.0
+offset_bottom = 59.919983
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="DeckPanel" type="TextureButton" parent="HBoxContainer" unique_id=1822099152]
+custom_maximum_size = Vector2(72, 104)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_click_mask = ExtResource("5_hoo3l")
+
+[node name="BackCard" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=1690466075]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -43.823997
+offset_right = 36.0
+offset_bottom = 52.176003
+mouse_filter = 2
+texture = ExtResource("5_bd0u2")
+stretch_mode = 2
+
+[node name="BackCard2" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=644308585]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -48.000008
+offset_right = 36.0
+offset_bottom = 47.999992
+mouse_filter = 2
+texture = ExtResource("5_bd0u2")
+stretch_mode = 2
+
+[node name="BackCard3" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=347491752]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.48900002
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -50.856
+offset_right = 36.0
+offset_bottom = 44.0
+mouse_filter = 2
+texture = ExtResource("5_bd0u2")
+stretch_mode = 2
+
+[node name="CardDeck" type="NinePatchRect" parent="HBoxContainer" unique_id=1978679625]
+custom_minimum_size = Vector2(512, 120)
+layout_mode = 2
 texture = ExtResource("3_gitas")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="DeckContainer" type="HBoxContainer" parent="." unique_id=577069602]
+[node name="DeckContainer" type="HBoxContainer" parent="HBoxContainer/CardDeck" unique_id=577069602]
+custom_minimum_size = Vector2(486, 96)
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.669
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.669
-offset_left = -298.0
-offset_top = -47.84001
-offset_right = 298.0
-offset_bottom = 48.15999
+anchor_bottom = 0.5
+offset_left = -243.5
+offset_top = -48.0
+offset_right = 242.5
+offset_bottom = 48.000008
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = -32
 alignment = 1
 
-[node name="Card" parent="DeckContainer" unique_id=176863048 instance=ExtResource("4_bd0u2")]
+[node name="Card" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=176863048 instance=ExtResource("4_bd0u2")]
 layout_mode = 2
 
-[node name="Card2" parent="DeckContainer" unique_id=528424024 instance=ExtResource("4_bd0u2")]
+[node name="Card2" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=528424024 instance=ExtResource("4_bd0u2")]
 layout_mode = 2
 
-[node name="Card3" parent="DeckContainer" unique_id=1373068541 instance=ExtResource("4_bd0u2")]
+[node name="Card3" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=1373068541 instance=ExtResource("4_bd0u2")]
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/DeckPanel" to="." method="_on_deck_panel_pressed"]
