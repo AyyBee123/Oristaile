@@ -15,5 +15,5 @@ func drop_card(card: Card) -> void:
 	card.queue_free()
 
 
-func set_card_texture(suit: int, number: int) -> void:
+func set_card_texture() -> void:
 	card_template.set_card_texture(suit, number)

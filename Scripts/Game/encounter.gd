@@ -51,9 +51,9 @@ func set_card_slot(slot: Slot) -> void:
 	card_res.number = number
 	
 	slots.append(card_res)
-	slot.set_card_texture(suit, number)
 	slot.suit = suit
 	slot.number = number
+	slot.set_card_texture()
 
 
 func draw_card() -> void:
