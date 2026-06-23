@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cyla6va0jap7f"]
+
+[ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="1_2yd5i"]
+[ext_resource type="Script" uid="uid://bpx82fq8sgsc1" path="res://Scripts/Game/card_slot.gd" id="2_dd0t8"]
+[ext_resource type="PackedScene" uid="uid://b6qwjhd8kh2k6" path="res://Scenes/card_template.tscn" id="3_nfi2q"]
+
+[node name="CardSlot" type="TextureRect" unique_id=20047532]
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_2yd5i")
+stretch_mode = 2
+script = ExtResource("2_dd0t8")
+
+[node name="CardTemplate" parent="." unique_id=1334675029 instance=ExtResource("3_nfi2q")]
+unique_name_in_owner = true
+layout_mode = 0

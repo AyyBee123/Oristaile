@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://c7u2v2cos0fp0"]
 
 [ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/Game/encounter.gd" id="1_wwxys"]
+[ext_resource type="PackedScene" uid="uid://cyla6va0jap7f" path="res://Scenes/card_slot.tscn" id="2_hoo3l"]
 [ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
-[ext_resource type="PackedScene" uid="uid://b7vbqnm071427" path="res://Scenes/card.tscn" id="4_bd0u2"]
-[ext_resource type="Texture2D" uid="uid://mtf6w4qdoxsb" path="res://Assets/Sprites/Cards/Card Slot.png" id="4_gitas"]
 [ext_resource type="Texture2D" uid="uid://dnjtcfdo2yon6" path="res://Assets/Sprites/Cards/Back/Red Back.png" id="5_bd0u2"]
 [ext_resource type="BitMap" uid="uid://cooi0qnm23wrf" path="res://Assets/Sprites/Cards/Misc/Back Mask.png" id="5_hoo3l"]
 
@@ -27,6 +26,7 @@ mouse_filter = 2
 color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 
 [node name="SlotContainer" type="HBoxContainer" parent="." unique_id=364460085]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.31100002
@@ -39,47 +39,33 @@ offset_bottom = 48.039993
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Slot1" type="TextureRect" parent="SlotContainer" unique_id=1208314387]
+[node name="Slot1" parent="SlotContainer" unique_id=20047532 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot2" type="TextureRect" parent="SlotContainer" unique_id=746882202]
+[node name="Slot2" parent="SlotContainer" unique_id=373718794 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot3" type="TextureRect" parent="SlotContainer" unique_id=1502629995]
+[node name="Slot3" parent="SlotContainer" unique_id=788161391 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot4" type="TextureRect" parent="SlotContainer" unique_id=717224683]
+[node name="Slot4" parent="SlotContainer" unique_id=1357480021 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot5" type="TextureRect" parent="SlotContainer" unique_id=1389021164]
+[node name="Slot5" parent="SlotContainer" unique_id=64855102 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot6" type="TextureRect" parent="SlotContainer" unique_id=1075255459]
+[node name="Slot6" parent="SlotContainer" unique_id=1198186010 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
-[node name="Slot7" type="TextureRect" parent="SlotContainer" unique_id=1912463594]
+[node name="Slot7" parent="SlotContainer" unique_id=957078855 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_gitas")
-stretch_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=452443490]
 anchors_preset = -1
@@ -163,6 +149,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="DeckContainer" type="HBoxContainer" parent="HBoxContainer/CardDeck" unique_id=577069602]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(486, 96)
 layout_mode = 1
 anchors_preset = -1
@@ -178,14 +165,5 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = -32
 alignment = 1
-
-[node name="Card" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=176863048 instance=ExtResource("4_bd0u2")]
-layout_mode = 2
-
-[node name="Card2" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=528424024 instance=ExtResource("4_bd0u2")]
-layout_mode = 2
-
-[node name="Card3" parent="HBoxContainer/CardDeck/DeckContainer" unique_id=1373068541 instance=ExtResource("4_bd0u2")]
-layout_mode = 2
 
 [connection signal="pressed" from="HBoxContainer/DeckPanel" to="." method="_on_deck_panel_pressed"]

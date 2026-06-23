@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b26c0etw3n2t2" path="res://Assets/Sprites/Cards/Spades/Ace Spades.png" id="2_wf8id"]
 
 [node name="Card" type="TextureRect" unique_id=176863048]
+custom_minimum_size = Vector2(72, 96)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("1_0qqmn")
 stretch_mode = 2
 script = ExtResource("2_brehn")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b6qwjhd8kh2k6"]
+
+[ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="1_5hjqm"]
+[ext_resource type="Texture2D" uid="uid://b26c0etw3n2t2" path="res://Assets/Sprites/Cards/Spades/Ace Spades.png" id="2_84j6k"]
+[ext_resource type="Script" uid="uid://mogj05c2g21d" path="res://Scripts/Misc/card_template.gd" id="2_n4r8k"]
+
+[node name="Card" type="TextureRect" unique_id=1334675029]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5hjqm")
+script = ExtResource("2_n4r8k")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=1448491103]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_84j6k")
