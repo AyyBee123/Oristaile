@@ -154,6 +154,8 @@ stretch_mode = 2
 [node name="CardDeck" type="NinePatchRect" parent="HBoxContainer" unique_id=1978679625]
 custom_minimum_size = Vector2(512, 120)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("3_gitas")
 patch_margin_left = 4
 patch_margin_top = 4
