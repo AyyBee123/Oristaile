@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
+@onready var deck_panel: TextureButton = %DeckPanel
 
 const CARD_SPACING: float = 36.0
 
@@ -13,7 +14,8 @@ var held_card: Card = null
 
 
 func _ready() -> void:
-	current_deck = RunData.deck.duplicate()
+	for card in RunData.deck:
+		current_deck.append(card.duplicate())
 	
 	for slot: Slot in slot_container.get_children():
 		set_card_slot(slot)
@@ -33,15 +35,21 @@ func _on_deck_panel_pressed() -> void:
 
 
 func set_card_slot(slot: Slot) -> void:
-	var suit: int = RunData.rng.randi_range(0, 3)
-	var number: int = RunData.rng.randi_range(1, 13)
+	var full_deck = current_deck.duplicate()
+	full_deck.append_array(current_hand)
+	var random_index: int = RunData.rng.randi_range(0, full_deck.size() - 1)
+	var random_card: CardResource = full_deck[random_index]
+	
+	var suit: int = random_card.suit
+	var number: int = (random_card.number % 13) + 1
 	
 	var exists: bool = false
 	
-	for card in slots:
-		if card.suit == suit and card.number == number:
-			exists = true
-			break
+	if slot_container.get_child_count() <= full_deck.size():
+		for card in slots:
+			if (suit == card.suit and number == card.number):
+				exists = true
+				break
 	
 	if exists:
 		set_card_slot(slot)
@@ -52,8 +60,7 @@ func set_card_slot(slot: Slot) -> void:
 	card_res.number = number
 	
 	slots.append(card_res)
-	slot.suit = suit
-	slot.number = number
+	slot.card_res = card_res
 	slot.set_card_texture()
 
 
@@ -74,13 +81,17 @@ func draw_card() -> void:
 	current_hand.append(card_res)
 	hand.add_child(card)
 	
-	card.global_position = %DeckPanel.global_position
+	card.global_position = deck_panel.global_position
 	
 	calculate_hand()
 
 
 func grab_card(card: Card) -> void:
 	held_card = card
+	
+	if card.tween: # kill the animation tween to prevent jitters when spam clicking the card
+		card.tween.kill()
+		card.tween = null
 	
 	if card.get_parent():
 		var preserved_pos: Vector2 = card.global_position
@@ -96,12 +107,7 @@ func release_card(card: Card) -> void:
 	var slot_target: Slot = get_card_slot()
 	
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
-		slot_target.drop_card(card)
-		slot_target.remove_card()
-		current_hand.erase(card.card_res)
-		set_card_slot(slot_target)
-		draw_card()
-		current_deck.append(card.card_res)
+		change_card_slot(slot_target, card)
 		return
 	
 	var preserved_pos: Vector2 = card.global_position
@@ -117,6 +123,16 @@ func release_card(card: Card) -> void:
 	held_card = null
 
 
+func change_card_slot(slot: Slot, card: Card) -> void:
+	slot.drop_card(card)
+	slot.remove_card()
+	slots.erase(slot.card_res)
+	current_hand.erase(card.card_res)
+	set_card_slot(slot)
+	draw_card()
+	current_deck.append(card.card_res)
+
+
 func calculate_hand(animated: bool = true) -> void:
 	var count: int = hand.get_child_count()
 	var spacing: float = min(CARD_SPACING, hand.size.x / max(count, 1))
@@ -128,10 +144,13 @@ func calculate_hand(animated: bool = true) -> void:
 		var pos: Vector2 = Vector2(start + i * spacing, 0)
 		
 		if animated:
-			var tween = card.create_tween()
-			tween.set_ease(Tween.EASE_OUT)
-			tween.set_trans(Tween.TRANS_CUBIC)
-			tween.tween_property(card, "position", pos, 0.333)
+			if card.tween: # kill the tween to prevent animation glitches from older tweens
+				card.tween.kill()
+				card.tween = null
+			card.tween = card.create_tween()
+			card.tween.set_ease(Tween.EASE_OUT)
+			card.tween.set_trans(Tween.TRANS_CUBIC)
+			card.tween.tween_property(card, "position", pos, 0.333)
 		else:
 			card.position = pos
 

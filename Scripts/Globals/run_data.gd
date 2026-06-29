@@ -1,6 +1,6 @@
 extends Node
 
-var starting_deck: DeckResource = Preloads.STANDARD_DECK
+var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
 var deck: Array[CardResource]
 var cards_to_draw_at_start: int
 var cards_to_draw: int

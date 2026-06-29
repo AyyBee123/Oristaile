@@ -7,6 +7,7 @@ signal released()
 @onready var card_texture: TextureRect = %Texture
 
 var card_res: CardResource
+var tween: Tween
 
 var suit: int = -1 # 0 = clubs, 1 = diamonds, 2 = hearts, 3 = spades
 var number: int = 0 # 1 = ace, 2 to 10 = respective numbers, 11 = jack, 12 = queen, 13 = king
