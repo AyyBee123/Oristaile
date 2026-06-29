@@ -88,6 +88,7 @@ func draw_card() -> void:
 
 func grab_card(card: Card) -> void:
 	held_card = card
+	held_card.z_index = 4
 	
 	if card.tween: # kill the animation tween to prevent jitters when spam clicking the card
 		card.tween.kill()
@@ -120,6 +121,8 @@ func release_card(card: Card) -> void:
 	card.global_position = preserved_pos
 	
 	calculate_hand()
+	
+	held_card.z_index = held_card.original_z_index
 	held_card = null
 
 

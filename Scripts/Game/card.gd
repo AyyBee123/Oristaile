@@ -8,6 +8,7 @@ signal released()
 
 var card_res: CardResource
 var tween: Tween
+var original_z_index: int
 
 var suit: int = -1 # 0 = clubs, 1 = diamonds, 2 = hearts, 3 = spades
 var number: int = 0 # 1 = ace, 2 to 10 = respective numbers, 11 = jack, 12 = queen, 13 = king
@@ -18,6 +19,7 @@ var preview: Card
 
 
 func _ready() -> void:
+	original_z_index = z_index
 	card_texture.texture = CardData.get_card_texture(suit, number)
 
 
