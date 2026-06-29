@@ -1,7 +1,9 @@
 extends CanvasLayer
 
 @onready var slot_container: HBoxContainer = %SlotContainer
-@onready var deck_container: HBoxContainer = %DeckContainer
+@onready var hand: Control = %Hand
+
+const CARD_SPACING: float = 36.0
 
 var slots: Array[CardResource]
 var current_deck: Array[CardResource]
@@ -18,11 +20,12 @@ func _ready() -> void:
 	
 	for i in RunData.cards_to_draw_at_start:
 		draw_card()
+		await get_tree().create_timer(0.1).timeout
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if held_card:
-		held_card.global_position = get_viewport().get_mouse_position() - held_card.size / 2.0
+		held_card.global_position = held_card.global_position.lerp(get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 20)
 
 
 func _on_deck_panel_pressed() -> void:
@@ -57,7 +60,6 @@ func set_card_slot(slot: Slot) -> void:
 func draw_card() -> void:
 	var index = RunData.rng.randi_range(0, current_deck.size() - 1)
 	var card_res: CardResource = current_deck.pop_at(index)
-	
 	var card: Card = Preloads.CARD.instantiate()
 	
 	card.held.connect(grab_card.bind(card))
@@ -69,38 +71,68 @@ func draw_card() -> void:
 	
 	card.z_index = 2
 	
-	deck_container.add_child(card)
+	current_hand.append(card_res)
+	hand.add_child(card)
+	
+	card.global_position = %DeckPanel.global_position
+	
+	calculate_hand()
 
 
-func grab_card(at_position: Vector2, card: Card) -> void:
+func grab_card(card: Card) -> void:
 	held_card = card
 	
 	if card.get_parent():
+		var preserved_pos: Vector2 = card.global_position
 		card.deck_index = card.get_index()
 		card.get_parent().remove_child(card)
+		card.global_position = preserved_pos
 	add_child(card)
-
-
-func release_card(at_position: Vector2, card: Card) -> void:
 	
+	calculate_hand()
+
+
+func release_card(card: Card) -> void:
 	var slot_target: Slot = get_card_slot()
 	
-	if slot_target and slot_target.can_drop_card(card):
+	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
 		slot_target.drop_card(card)
 		slot_target.remove_card()
+		current_hand.erase(card.card_res)
 		set_card_slot(slot_target)
+		draw_card()
 		return
+	
+	var preserved_pos: Vector2 = card.global_position
 	
 	if card.get_parent():
 		held_card.get_parent().remove_child(card)
+	hand.add_child(card)
+	hand.move_child(card, card.deck_index)
 	
-	deck_container.add_child(card)
-	deck_container.move_child(card, card.deck_index)
+	card.global_position = preserved_pos
 	
-	
-	#var tween: Tween = create_tween()
-	#tween.tween_property(card, "global_position", )
+	calculate_hand()
 	held_card = null
+
+
+func calculate_hand(animated: bool = true) -> void:
+	var count: int = hand.get_child_count()
+	var spacing: float = min(CARD_SPACING, hand.size.x / max(count, 1))
+	var total_width: float = (count + 1) * spacing
+	var start: float = (hand.size.x / 2.0) - (total_width / 2.0)
+	
+	for i in range(count):
+		var card: Card = hand.get_child(i)
+		var pos: Vector2 = Vector2(start + i * spacing, 0)
+		
+		if animated:
+			var tween = card.create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_CUBIC)
+			tween.tween_property(card, "position", pos, 0.333)
+		else:
+			card.position = pos
 
 
 func get_card_slot() -> Slot:

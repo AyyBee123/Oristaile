@@ -67,7 +67,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=452443490]
+[node name="DeckContainer" type="HBoxContainer" parent="." unique_id=452443490]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.67800003
@@ -82,14 +82,16 @@ grow_vertical = 0
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="DeckPanel" type="TextureButton" parent="HBoxContainer" unique_id=1822099152]
+[node name="DeckPanel" type="TextureButton" parent="DeckContainer" unique_id=1822099152]
+unique_name_in_owner = true
+z_index = 3
 custom_maximum_size = Vector2(72, 104)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_click_mask = ExtResource("5_hoo3l")
 
-[node name="BackCard" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=1690466075]
+[node name="BackCard" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=1690466075]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -105,7 +107,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="BackCard2" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=644308585]
+[node name="BackCard2" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=644308585]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -121,7 +123,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="BackCard3" type="TextureRect" parent="HBoxContainer/DeckPanel" unique_id=347491752]
+[node name="BackCard3" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=347491752]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -137,7 +139,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="CardDeck" type="NinePatchRect" parent="HBoxContainer" unique_id=1978679625]
+[node name="CardHandTexture" type="NinePatchRect" parent="DeckContainer" unique_id=1978679625]
 custom_minimum_size = Vector2(512, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -148,11 +150,10 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="DeckContainer" type="HBoxContainer" parent="HBoxContainer/CardDeck" unique_id=577069602]
+[node name="Hand" type="Control" parent="DeckContainer/CardHandTexture" unique_id=840949233]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(486, 96)
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -163,7 +164,6 @@ offset_right = 242.5
 offset_bottom = 48.000008
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = -32
-alignment = 1
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[connection signal="pressed" from="HBoxContainer/DeckPanel" to="." method="_on_deck_panel_pressed"]
+[connection signal="pressed" from="DeckContainer/DeckPanel" to="." method="_on_deck_panel_pressed"]
