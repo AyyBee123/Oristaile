@@ -1,5 +1,6 @@
 extends Node
 
+var starting_deck: DeckResource = Preloads.STANDARD_DECK
 var deck: Array[CardResource]
 var cards_to_draw_at_start: int
 var cards_to_draw: int
@@ -19,10 +20,6 @@ func reset() -> void:
 
 
 func create_deck() -> void:
-	# create a new deck with each of the standard deck of cards
-	for suit in range(0, 4):
-		for number in range(1, 14):
-			var card: CardResource = CardResource.new()
-			card.suit = suit
-			card.number = number
-			deck.append(card)
+	# create a new deck with each of the cards in the selected deck
+	for card: CardResource in starting_deck.cards:
+		deck.append(card)

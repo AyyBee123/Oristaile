@@ -101,6 +101,7 @@ func release_card(card: Card) -> void:
 		current_hand.erase(card.card_res)
 		set_card_slot(slot_target)
 		draw_card()
+		current_deck.append(card.card_res)
 		return
 	
 	var preserved_pos: Vector2 = card.global_position
