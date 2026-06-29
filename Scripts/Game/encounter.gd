@@ -3,8 +3,6 @@ extends CanvasLayer
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var deck_container: HBoxContainer = %DeckContainer
 
-const CARD = preload("uid://b7vbqnm071427")
-
 var slots: Array[CardResource]
 var current_deck: Array[CardResource]
 var current_hand: Array[CardResource]
@@ -22,7 +20,7 @@ func _ready() -> void:
 		draw_card()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if held_card:
 		held_card.global_position = get_viewport().get_mouse_position() - held_card.size / 2.0
 
@@ -60,7 +58,7 @@ func draw_card() -> void:
 	var index = RunData.rng.randi_range(0, current_deck.size() - 1)
 	var card_res: CardResource = current_deck.pop_at(index)
 	
-	var card: Card = CARD.instantiate()
+	var card: Card = Preloads.CARD.instantiate()
 	
 	card.held.connect(grab_card.bind(card))
 	card.released.connect(release_card.bind(card))
@@ -68,6 +66,8 @@ func draw_card() -> void:
 	card.card_res = card_res
 	card.suit = card_res.suit
 	card.number = card_res.number
+	
+	card.z_index = 2
 	
 	deck_container.add_child(card)
 
@@ -87,6 +87,8 @@ func release_card(at_position: Vector2, card: Card) -> void:
 	
 	if slot_target and slot_target.can_drop_card(card):
 		slot_target.drop_card(card)
+		slot_target.remove_card()
+		set_card_slot(slot_target)
 		return
 	
 	if card.get_parent():
