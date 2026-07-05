@@ -10,6 +10,10 @@ func can_drop_card(card: Card) -> bool:
 	return card_res.number == (card.number % 13) + 1
 
 
+func is_matching_suit(card: Card) -> bool:
+	return card_res.suit == card.suit
+
+
 func drop_card(card: Card) -> void:
 	card.queue_free()
 

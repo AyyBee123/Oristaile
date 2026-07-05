@@ -4,7 +4,11 @@ var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
 var deck: Array[CardResource]
 var cards_to_draw_at_start: int
 var cards_to_draw: int
+var number_of_draws: int
 var rng: RandomNumberGenerator
+
+var base_points_per_card: float = 100.0
+var matching_suit_points_multiplier: float = 3.0
 
 
 func _init() -> void:
@@ -17,6 +21,7 @@ func reset() -> void:
 	create_deck()
 	cards_to_draw = 3
 	cards_to_draw_at_start = 8
+	number_of_draws = 3
 
 
 func create_deck() -> void:

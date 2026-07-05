@@ -3,8 +3,11 @@ extends CanvasLayer
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
 @onready var deck_panel: TextureButton = %DeckPanel
+@onready var points_progress_bar: TextureProgressBar = %PointsProgressBar
+@onready var current_points_label: Label = %CurrentPointsLabel
 
 const CARD_SPACING: float = 36.0
+const DRAW_BUFFER: float = 0.1
 
 var slots: Array[CardResource]
 var current_deck: Array[CardResource]
@@ -12,8 +15,13 @@ var current_hand: Array[CardResource]
 
 var held_card: Card = null
 
+var points_to_win: int = 500
+var current_points: float = 0.0
+
 
 func _ready() -> void:
+	points_progress_bar.max_value = points_to_win
+	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
 	
@@ -22,7 +30,8 @@ func _ready() -> void:
 	
 	for i in RunData.cards_to_draw_at_start:
 		draw_card()
-		await get_tree().create_timer(0.1).timeout
+		if i < RunData.cards_to_draw_at_start - 1:
+			await get_tree().create_timer(DRAW_BUFFER).timeout
 
 
 func _process(delta: float) -> void:
@@ -31,7 +40,10 @@ func _process(delta: float) -> void:
 
 
 func _on_deck_panel_pressed() -> void:
-	print("hi")
+	for i in RunData.cards_to_draw:
+		draw_card()
+		if i < RunData.cards_to_draw - 1:
+			await get_tree().create_timer(DRAW_BUFFER).timeout
 
 
 func set_card_slot(slot: Slot) -> void:
@@ -65,6 +77,8 @@ func set_card_slot(slot: Slot) -> void:
 
 
 func draw_card() -> void:
+	if current_deck.is_empty(): return
+	
 	var index = RunData.rng.randi_range(0, current_deck.size() - 1)
 	var card_res: CardResource = current_deck.pop_at(index)
 	var card: Card = Preloads.CARD.instantiate()
@@ -129,6 +143,7 @@ func release_card(card: Card) -> void:
 func change_card_slot(slot: Slot, card: Card) -> void:
 	slot.drop_card(card)
 	slot.remove_card()
+	give_points(slot, card)
 	slots.erase(slot.card_res)
 	current_hand.erase(card.card_res)
 	set_card_slot(slot)
@@ -137,10 +152,13 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 
 
 func calculate_hand(animated: bool = true) -> void:
+	# calculate each card's position in the hand box container
+	var card_size: float = 72.0
+	var hand_width: float = hand.size.x
 	var count: int = hand.get_child_count()
-	var spacing: float = min(CARD_SPACING, hand.size.x / max(count, 1))
-	var total_width: float = (count + 1) * spacing
-	var start: float = (hand.size.x / 2.0) - (total_width / 2.0)
+	var spacing: float = min(CARD_SPACING, (hand_width - card_size) / max(count - 1, 1))
+	var total_width: float = (count - 1) * spacing + card_size
+	var start: float = (hand_width - total_width) / 2.0
 	
 	for i in range(count):
 		var card: Card = hand.get_child(i)
@@ -163,3 +181,21 @@ func get_card_slot() -> Slot:
 		if Rect2(slot.global_position, slot.size).has_point(get_viewport().get_mouse_position()):
 			return slot
 	return null
+
+
+func give_points(slot: Slot, card: Card) -> void:
+	if slot.is_matching_suit(card):
+		current_points += RunData.base_points_per_card * RunData.matching_suit_points_multiplier
+	else:
+		current_points += RunData.base_points_per_card
+	
+	var tween: Tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_method(func(v: float):
+		points_progress_bar.value = v
+		current_points_label.text = "%d / %d" % [int(v), points_to_win], points_progress_bar.value, current_points, 0.2
+	)
+	
+	if current_points >= points_to_win:
+		print("Hooray!")
