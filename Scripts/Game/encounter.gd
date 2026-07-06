@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 
 func _on_deck_panel_pressed() -> void:
-	#if current_draws <= 0: return
+	if current_draws <= 0: return
 	
 	for i in RunData.cards_to_draw:
 		draw_card()
