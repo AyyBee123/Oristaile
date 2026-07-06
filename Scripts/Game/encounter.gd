@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var deck_panel: TextureButton = %DeckPanel
 @onready var points_progress_bar: TextureProgressBar = %PointsProgressBar
 @onready var current_points_label: Label = %CurrentPointsLabel
+@onready var draws_label: Label = %DrawsLabel
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -17,10 +18,13 @@ var held_card: Card = null
 
 var points_to_win: int = 500
 var current_points: float = 0.0
+var current_draws: int
 
 
 func _ready() -> void:
+	current_draws = RunData.cards_to_draw
 	points_progress_bar.max_value = points_to_win
+	
 	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
@@ -40,10 +44,15 @@ func _process(delta: float) -> void:
 
 
 func _on_deck_panel_pressed() -> void:
+	#if current_draws <= 0: return
+	
 	for i in RunData.cards_to_draw:
 		draw_card()
 		if i < RunData.cards_to_draw - 1:
 			await get_tree().create_timer(DRAW_BUFFER).timeout
+	
+	current_draws -= 1
+	draws_label.text = "%d / %d" % [current_draws, RunData.cards_to_draw]
 
 
 func set_card_slot(slot: Slot) -> void:

@@ -5,6 +5,7 @@ var deck: Array[CardResource]
 var cards_to_draw_at_start: int
 var cards_to_draw: int
 var number_of_draws: int
+var draws_per_round: int
 var rng: RandomNumberGenerator
 
 var base_points_per_card: float = 100.0
@@ -22,6 +23,7 @@ func reset() -> void:
 	cards_to_draw = 3
 	cards_to_draw_at_start = 8
 	number_of_draws = 3
+	draws_per_round = 3
 
 
 func create_deck() -> void:

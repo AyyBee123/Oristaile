@@ -142,6 +142,25 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
+[node name="DrawsLabel" type="Label" parent="DeckContainer/DeckPanel" unique_id=1351457287]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 102.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 12
+text = "3 / 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CardHandTexture" type="NinePatchRect" parent="DeckContainer" unique_id=1978679625]
 custom_minimum_size = Vector2(512, 120)
 layout_mode = 2
