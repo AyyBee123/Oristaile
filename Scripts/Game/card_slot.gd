@@ -33,6 +33,7 @@ func remove_card() -> void:
 	var random_x: float = randf_range(32, 64)
 	random_x = -random_x if randf() < 0.5 else random_x
 	
+	# launch slot card
 	var tween: Tween = create_tween().bind_node(control)
 	tween.tween_property(control, "global_position", Vector2(random_x, -64), 0.2).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(control, "global_position", Vector2(random_x * 2.0, 640), 0.55).as_relative().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)

@@ -131,7 +131,7 @@ func release_card(card: Card) -> void:
 	var slot_target: Slot = get_card_slot()
 	
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
-		change_card_slot(slot_target, card)
+		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
 		return
 	
 	var preserved_pos: Vector2 = card.global_position
@@ -162,11 +162,11 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 
 func calculate_hand(animated: bool = true) -> void:
 	# calculate each card's position in the hand box container
-	var card_size: float = 72.0
+	var card_width: float = 72.0
 	var hand_width: float = hand.size.x
 	var count: int = hand.get_child_count()
-	var spacing: float = min(CARD_SPACING, (hand_width - card_size) / max(count - 1, 1))
-	var total_width: float = (count - 1) * spacing + card_size
+	var spacing: float = min(CARD_SPACING, (hand_width - card_width) / max(count - 1, 1))
+	var total_width: float = (count - 1) * spacing + card_width
 	var start: float = (hand_width - total_width) / 2.0
 	
 	for i in range(count):
