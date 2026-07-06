@@ -39,7 +39,7 @@ func remove_card() -> void:
 	tween.finished.connect(control.queue_free)
 	
 	var scale_tween: Tween = create_tween().bind_node(control)
-	scale_tween.tween_property(card, "scale", Vector2.ONE * 0.5, 1.0)
+	scale_tween.tween_property(card, "scale", Vector2.ONE * 0.8, 1.0)
 	
 	var spin_tween: Tween = create_tween().bind_node(control)
 	spin_tween.tween_property(card, "rotation", PI * sign(random_x), 0.5).as_relative()
