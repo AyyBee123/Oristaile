@@ -194,7 +194,7 @@ func give_points(slot: Slot, card: Card) -> void:
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_method(func(v: float):
 		points_progress_bar.value = v
-		current_points_label.text = "%d / %d" % [int(v), points_to_win], points_progress_bar.value, current_points, 0.2
+		current_points_label.text = " %d / %d" % [int(v), points_to_win], points_progress_bar.value, current_points, 0.2
 	)
 	
 	if current_points >= points_to_win:
