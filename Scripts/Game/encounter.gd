@@ -16,6 +16,7 @@ var current_hand: Array[CardResource]
 
 var hovered_card: Card = null
 var held_card: Card = null
+var draw_is_on_cooldown: bool
 
 var points_to_win: int = 500
 var current_points: float = 0.0
@@ -45,12 +46,16 @@ func _process(delta: float) -> void:
 
 
 func _on_deck_panel_pressed() -> void:
-	if current_draws <= 0: return
+	if current_draws <= 0 or draw_is_on_cooldown: return
+	
+	draw_is_on_cooldown = true
 	
 	for i in RunData.cards_to_draw:
 		draw_card()
 		if i < RunData.cards_to_draw - 1:
 			await get_tree().create_timer(DRAW_BUFFER).timeout
+	
+	draw_is_on_cooldown = false
 	
 	current_draws -= 1
 	draws_label.text = "%d / %d" % [current_draws, RunData.cards_to_draw]
