@@ -14,6 +14,7 @@ var slots: Array[CardResource]
 var current_deck: Array[CardResource]
 var current_hand: Array[CardResource]
 
+var hovered_card: Card = null
 var held_card: Card = null
 
 var points_to_win: int = 500
@@ -92,6 +93,8 @@ func draw_card() -> void:
 	var card_res: CardResource = current_deck.pop_at(index)
 	var card: Card = Preloads.CARD.instantiate()
 	
+	card.is_playing_card = true
+	
 	card.held.connect(grab_card.bind(card))
 	card.released.connect(release_card.bind(card))
 	
@@ -142,6 +145,7 @@ func release_card(card: Card) -> void:
 	hand.move_child(card, card.deck_index)
 	
 	card.global_position = preserved_pos
+	card.unfocus()
 	
 	calculate_hand()
 	

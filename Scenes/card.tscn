@@ -3,21 +3,47 @@
 [ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="1_0qqmn"]
 [ext_resource type="Script" uid="uid://cu4ufrp0m35ml" path="res://Scripts/Game/card.gd" id="2_brehn"]
 [ext_resource type="Texture2D" uid="uid://b26c0etw3n2t2" path="res://Assets/Sprites/Cards/Spades/Ace Spades.png" id="2_wf8id"]
+[ext_resource type="Texture2D" uid="uid://cvb1jl1ae5jkk" path="res://Assets/Sprites/Cards/Misc/Card Focus.png" id="4_eumee"]
 
-[node name="Card" type="TextureRect" unique_id=176863048]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkeji"]
+
+[node name="Card" type="Panel" unique_id=2086377053]
 custom_minimum_size = Vector2(72, 96)
+offset_right = 72.0
+offset_bottom = 96.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("1_0qqmn")
-stretch_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tkeji")
 script = ExtResource("2_brehn")
 
-[node name="Texture" type="TextureRect" parent="." unique_id=1059074450]
+[node name="CardTextures" type="Control" parent="." unique_id=156786336]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+
+[node name="BlankCard" type="TextureRect" parent="CardTextures" unique_id=685032555]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("1_0qqmn")
+
+[node name="Texture" type="TextureRect" parent="CardTextures" unique_id=1059074450]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 96.0
 mouse_filter = 2
 texture = ExtResource("2_wf8id")
+
+[node name="FocusOutline" type="TextureRect" parent="CardTextures" unique_id=1629436395]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("4_eumee")
