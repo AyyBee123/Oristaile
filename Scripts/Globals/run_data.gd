@@ -2,9 +2,9 @@ extends Node
 
 var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
 var deck: Array[CardResource]
-var cards_to_draw_at_start: int
-var cards_to_draw: int
-var draws_per_round: int
+var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
+var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
+var draws_per_round: int # number of times the deck panel can be clicked in one round
 var rng: RandomNumberGenerator
 
 var base_points_per_card: float = 100.0
