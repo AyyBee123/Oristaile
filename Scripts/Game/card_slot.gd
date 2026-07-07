@@ -25,6 +25,10 @@ func set_card_texture() -> void:
 func remove_card() -> void:
 	var control: Control = Control.new()
 	var card: CardTemplate = Preloads.CARD_TEMPLATE.instantiate()
+	
+	control.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	card.set_card_texture(card_res.suit, card_res.number)
 	get_tree().current_scene.add_child(control)
 	control.add_child(card)
