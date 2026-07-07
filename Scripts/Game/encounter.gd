@@ -162,7 +162,7 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 
 func calculate_hand(animated: bool = true) -> void:
 	# calculate each card's position in the hand box container
-	var card_width: float = 72.0
+	var card_width: float = Preloads.BLANK_CARD.get_width()
 	var hand_width: float = hand.size.x
 	var count: int = hand.get_child_count()
 	var spacing: float = min(CARD_SPACING, (hand_width - card_width) / max(count - 1, 1))

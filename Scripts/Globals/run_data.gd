@@ -27,6 +27,6 @@ func reset() -> void:
 
 
 func create_deck() -> void:
-	# create a new deck with each of the cards in the selected deck
-	for card: CardResource in starting_deck.cards:
+	deck.clear() # clear the deck to remove previous deck of cards
+	for card: CardResource in starting_deck.cards: # create a new deck with each of the cards in the selected deck
 		deck.append(card)
