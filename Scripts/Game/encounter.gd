@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var points_progress_bar: TextureProgressBar = %PointsProgressBar
 @onready var current_points_label: Label = %CurrentPointsLabel
 @onready var draws_label: Label = %DrawsLabel
+@onready var money_label: Label = %MoneyLabel
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -21,12 +22,20 @@ var draw_is_on_cooldown: bool
 var points_to_win: int = 500
 var current_points: float = 0.0
 var current_draws: int
+var current_money: float
 
 
 func _ready() -> void:
 	current_draws = RunData.cards_to_draw
 	points_progress_bar.max_value = points_to_win
 	
+	current_money = RunData.money
+	RunData.money_value_changed.connect(func(v: int):
+		var money_tween: Tween = create_tween()
+		money_tween.set_trans(Tween.TRANS_QUAD)
+		money_tween.set_ease(Tween.EASE_OUT)
+		money_tween.tween_property(self, "current_money", float(v), 0.4)
+	)
 	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
@@ -45,6 +54,7 @@ func _process(delta: float) -> void:
 		held_card.global_position = held_card.global_position.lerp(
 			get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 20
 		)
+	money_label.text = "$%d" % int(current_money)
 
 
 func _on_deck_panel_pressed() -> void:

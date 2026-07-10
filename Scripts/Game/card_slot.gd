@@ -34,8 +34,8 @@ func remove_card() -> void:
 	control.add_child(card)
 	control.global_position = global_position
 	
-	var random_x: float = randf_range(32, 64)
-	random_x = -random_x if randf() < 0.5 else random_x
+	var random_x: float = RunData.rng.randf_range(32, 64)
+	random_x = -random_x if RunData.rng.randf() < 0.5 else random_x
 	
 	# launch slot card
 	var tween: Tween = create_tween().bind_node(control)
