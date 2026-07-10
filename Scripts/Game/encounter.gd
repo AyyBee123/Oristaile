@@ -26,7 +26,7 @@ var current_money: float
 
 
 func _ready() -> void:
-	current_draws = RunData.cards_to_draw
+	current_draws = RunData.draws_per_round
 	points_progress_bar.max_value = points_to_win
 	
 	current_money = RunData.money
@@ -36,6 +36,8 @@ func _ready() -> void:
 		money_tween.set_ease(Tween.EASE_OUT)
 		money_tween.tween_property(self, "current_money", float(v), 0.4)
 	)
+	
+	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
@@ -70,7 +72,7 @@ func _on_deck_panel_pressed() -> void:
 	draw_is_on_cooldown = false
 	
 	current_draws -= 1
-	draws_label.text = "%d / %d" % [current_draws, RunData.cards_to_draw]
+	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 
 
 func set_card_slot(slot: Slot) -> void:
@@ -177,7 +179,6 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 	slots.erase(slot.card_res)
 	current_hand.erase(card.card_res)
 	set_card_slot(slot)
-	draw_card()
 	current_deck.append(card.card_res)
 
 
