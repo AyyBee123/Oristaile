@@ -88,7 +88,7 @@ func set_card_slot(slot: Slot) -> void:
 	
 	if slot_container.get_child_count() <= full_deck.size():
 		for card in slots:
-			if (suit == card.suit and number == card.number):
+			if suit == card.suit and number == card.number:
 				exists = true
 				break
 	
