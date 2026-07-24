@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name Encounter
 
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
@@ -17,7 +18,8 @@ var current_hand: Array[CardResource]
 
 var hovered_card: Card = null
 var held_card: Card = null
-var draw_is_on_cooldown: bool
+var draw_is_on_cooldown: bool = false
+var has_won: bool = false
 
 var points_to_win: int = 500
 var current_points: float = 0.0
@@ -60,7 +62,11 @@ func _process(delta: float) -> void:
 
 
 func _on_deck_panel_pressed() -> void:
+	if has_won: return
 	if current_draws <= 0 or draw_is_on_cooldown: return
+	
+	current_draws -= 1
+	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	
 	draw_is_on_cooldown = true
 	
@@ -70,9 +76,6 @@ func _on_deck_panel_pressed() -> void:
 			await get_tree().create_timer(DRAW_BUFFER).timeout
 	
 	draw_is_on_cooldown = false
-	
-	current_draws -= 1
-	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 
 
 func set_card_slot(slot: Slot) -> void:
@@ -106,6 +109,7 @@ func set_card_slot(slot: Slot) -> void:
 
 
 func draw_card() -> void:
+	if has_won: return
 	if current_deck.is_empty(): return
 	
 	var index = RunData.rng.randi_range(0, current_deck.size() - 1)
@@ -122,6 +126,9 @@ func draw_card() -> void:
 	card.number = card_res.number
 	
 	card.z_index = 2
+	
+	if has_won:
+		card.disable_input()
 	
 	current_hand.append(card_res)
 	hand.add_child(card)
@@ -150,13 +157,15 @@ func grab_card(card: Card) -> void:
 
 
 func release_card(card: Card) -> void:
+	if held_card == null: return
+	
+	var preserved_pos: Vector2 = card.global_position
 	var slot_target: Slot = get_card_slot()
 	
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
 		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
 		return
 	
-	var preserved_pos: Vector2 = card.global_position
 	
 	if card.get_parent():
 		held_card.get_parent().remove_child(card)
@@ -229,4 +238,8 @@ func give_points(slot: Slot, card: Card) -> void:
 	)
 	
 	if current_points >= points_to_win:
-		print("Hooray!")
+		if held_card:
+			release_card(held_card)
+		for c: Card in hand.get_children():
+			c.unfocus()
+		has_won = true

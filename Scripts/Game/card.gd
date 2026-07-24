@@ -8,6 +8,7 @@ signal released
 @onready var blank_card: TextureRect = %BlankCard
 @onready var card_texture: TextureRect = %Texture
 @onready var focus_outline: TextureRect = %FocusOutline
+@onready var encounter: Encounter = get_tree().current_scene
 
 var card_res: CardResource
 var tween: Tween
@@ -27,6 +28,7 @@ var is_playing_card: bool = false # checks if the card is a playing card in the 
 var base_y_pos: float = 0.0
 
 var focus_tween: Tween
+var input_disabled: bool = false
 
 
 func _process(_delta: float) -> void:
@@ -44,6 +46,7 @@ func _ready() -> void:
 
 
 func focus() -> void:
+	if encounter.has_won: return
 	if not is_dragged and not is_focused:
 		is_focused = true
 		if focus_tween:
@@ -65,12 +68,14 @@ func unfocus() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+	if encounter.has_won: return
 	if event.is_action_pressed("grab"):
 		held.emit()
 		is_dragged = true
 
 
 func _input(event: InputEvent) -> void:
+	if encounter.has_won: return
 	if event.is_action_released("grab") and is_dragged:
 		released.emit()
 		is_dragged = false

@@ -28,7 +28,7 @@ func reset() -> void:
 	create_deck()
 	cards_to_draw_at_start = 8
 	cards_to_draw = 3
-	draws_per_round = 4
+	draws_per_round = 3
 	money = 10
 
 
