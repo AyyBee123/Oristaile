@@ -184,6 +184,7 @@ func release_card(card: Card) -> void:
 func change_card_slot(slot: Slot, card: Card) -> void:
 	slot.drop_card(card)
 	slot.remove_card()
+	held_card = null
 	give_points(slot, card)
 	slots.erase(slot.card_res)
 	current_hand.erase(card.card_res)
@@ -238,8 +239,6 @@ func give_points(slot: Slot, card: Card) -> void:
 	)
 	
 	if current_points >= points_to_win:
-		if held_card:
-			release_card(held_card)
 		for c: Card in hand.get_children():
 			c.unfocus()
 		has_won = true
