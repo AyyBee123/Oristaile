@@ -3,7 +3,7 @@ class_name Encounter
 
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
-@onready var deck_panel: TextureButton = %DeckPanel
+@onready var deck_panel: DeckPanel = %DeckPanel
 @onready var points_progress_bar: TextureProgressBar = %PointsProgressBar
 @onready var current_points_label: Label = %CurrentPointsLabel
 @onready var draws_label: Label = %DrawsLabel
@@ -39,6 +39,8 @@ func _ready() -> void:
 		money_tween.tween_property(self, "current_money", float(v), 0.4)
 	)
 	
+	deck_panel.pressed.connect(_on_deck_panel_pressed)
+	
 	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	
 	for card in RunData.deck:
@@ -65,7 +67,12 @@ func _on_deck_panel_pressed() -> void:
 	if has_won: return
 	if current_draws <= 0 or draw_is_on_cooldown: return
 	
+	deck_panel.draws_left = current_draws
+	
 	current_draws -= 1
+	
+	deck_panel.highlight(current_draws >= 0)
+	
 	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	
 	draw_is_on_cooldown = true

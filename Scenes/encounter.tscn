@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/Game/encounter.gd" id="1_wwxys"]
 [ext_resource type="PackedScene" uid="uid://cyla6va0jap7f" path="res://Scenes/card_slot.tscn" id="2_hoo3l"]
 [ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
+[ext_resource type="Script" uid="uid://bi31mce6k4sr7" path="res://Scripts/Game/deck_panel.gd" id="4_42tis"]
 [ext_resource type="Texture2D" uid="uid://dnjtcfdo2yon6" path="res://Assets/Sprites/Cards/Back/Red Back.png" id="5_bd0u2"]
 [ext_resource type="BitMap" uid="uid://cooi0qnm23wrf" path="res://Assets/Sprites/Cards/Misc/Back Mask.png" id="5_hoo3l"]
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="6_askxb"]
+[ext_resource type="Texture2D" uid="uid://8s4q061hfurn" path="res://Assets/Sprites/Cards/Back/Back Highlight.png" id="6_pswyi"]
 [ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
 [ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
 
@@ -93,6 +95,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_click_mask = ExtResource("5_hoo3l")
+script = ExtResource("4_42tis")
 
 [node name="BackCard" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=1690466075]
 unique_name_in_owner = true
@@ -142,6 +145,23 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
+[node name="BackHighlight" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=192215201]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -52.0
+offset_right = 36.0
+offset_bottom = 52.0
+mouse_filter = 2
+texture = ExtResource("6_pswyi")
+stretch_mode = 2
+
 [node name="DrawsLabel" type="Label" parent="DeckContainer/DeckPanel" unique_id=1351457287]
 unique_name_in_owner = true
 layout_mode = 1
@@ -186,7 +206,7 @@ offset_top = -48.0
 offset_right = 242.5
 offset_bottom = 48.000008
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=617092277]
@@ -256,4 +276,5 @@ theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "$0"
 
-[connection signal="pressed" from="DeckContainer/DeckPanel" to="." method="_on_deck_panel_pressed"]
+[connection signal="mouse_entered" from="DeckContainer/DeckPanel" to="DeckContainer/DeckPanel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="DeckContainer/DeckPanel" to="DeckContainer/DeckPanel" method="_on_mouse_exited"]
