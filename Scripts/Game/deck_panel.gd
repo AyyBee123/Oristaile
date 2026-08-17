@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func highlight(value: bool) -> void:
-	if draws_left <= 0:
+	if draws_left <= 0 or encounter.has_won:
 		back_highlight.visible = false
 		return
 	back_highlight.visible = value
