@@ -8,6 +8,7 @@ class_name Encounter
 @onready var current_points_label: Label = %CurrentPointsLabel
 @onready var draws_label: Label = %DrawsLabel
 @onready var money_label: Label = %MoneyLabel
+@onready var coins_earned_container: VBoxContainer = %CoinsEarnedContainer
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -246,6 +247,14 @@ func give_points(slot: Slot, card: Card) -> void:
 	)
 	
 	if current_points >= points_to_win:
-		for c: Card in hand.get_children():
-			c.unfocus()
-		has_won = true
+		win()
+
+
+func win() -> void:
+	for c: Card in hand.get_children():
+		c.unfocus()
+	has_won = true
+	
+	var win_tween: Tween = create_tween()
+	win_tween.tween_interval(2.0)
+	win_tween.tween_property(self, "offset:y", -360, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

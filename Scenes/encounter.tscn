@@ -14,8 +14,22 @@
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1556827759]
+[node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="EncounterControl" unique_id=1556827759]
 z_index = -1
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,8 +44,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 
-[node name="SlotContainer" type="HBoxContainer" parent="." unique_id=364460085]
+[node name="SlotContainer" type="HBoxContainer" parent="EncounterControl" unique_id=364460085]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.31100002
@@ -40,39 +55,40 @@ anchor_bottom = 0.31100002
 offset_left = -320.0
 offset_top = -47.960007
 offset_right = 320.0
-offset_bottom = 48.039993
+offset_bottom = 48.04001
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Slot1" parent="SlotContainer" unique_id=20047532 instance=ExtResource("2_hoo3l")]
+[node name="Slot1" parent="EncounterControl/SlotContainer" unique_id=20047532 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot2" parent="SlotContainer" unique_id=373718794 instance=ExtResource("2_hoo3l")]
+[node name="Slot2" parent="EncounterControl/SlotContainer" unique_id=373718794 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot3" parent="SlotContainer" unique_id=788161391 instance=ExtResource("2_hoo3l")]
+[node name="Slot3" parent="EncounterControl/SlotContainer" unique_id=788161391 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot4" parent="SlotContainer" unique_id=1357480021 instance=ExtResource("2_hoo3l")]
+[node name="Slot4" parent="EncounterControl/SlotContainer" unique_id=1357480021 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot5" parent="SlotContainer" unique_id=64855102 instance=ExtResource("2_hoo3l")]
+[node name="Slot5" parent="EncounterControl/SlotContainer" unique_id=64855102 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot6" parent="SlotContainer" unique_id=1198186010 instance=ExtResource("2_hoo3l")]
+[node name="Slot6" parent="EncounterControl/SlotContainer" unique_id=1198186010 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot7" parent="SlotContainer" unique_id=957078855 instance=ExtResource("2_hoo3l")]
+[node name="Slot7" parent="EncounterControl/SlotContainer" unique_id=957078855 instance=ExtResource("2_hoo3l")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DeckContainer" type="HBoxContainer" parent="." unique_id=452443490]
+[node name="DeckContainer" type="HBoxContainer" parent="EncounterControl" unique_id=452443490]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.67800003
@@ -87,7 +103,7 @@ grow_vertical = 0
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="DeckPanel" type="TextureButton" parent="DeckContainer" unique_id=1822099152]
+[node name="DeckPanel" type="TextureButton" parent="EncounterControl/DeckContainer" unique_id=1822099152]
 unique_name_in_owner = true
 z_index = 3
 custom_maximum_size = Vector2(72, 104)
@@ -97,7 +113,7 @@ size_flags_vertical = 4
 texture_click_mask = ExtResource("5_hoo3l")
 script = ExtResource("4_42tis")
 
-[node name="BackCard" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=1690466075]
+[node name="BackCard" type="TextureRect" parent="EncounterControl/DeckContainer/DeckPanel" unique_id=1690466075]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -113,7 +129,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="BackCard2" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=644308585]
+[node name="BackCard2" type="TextureRect" parent="EncounterControl/DeckContainer/DeckPanel" unique_id=644308585]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -129,7 +145,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="BackCard3" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=347491752]
+[node name="BackCard3" type="TextureRect" parent="EncounterControl/DeckContainer/DeckPanel" unique_id=347491752]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -145,7 +161,7 @@ mouse_filter = 2
 texture = ExtResource("5_bd0u2")
 stretch_mode = 2
 
-[node name="BackHighlight" type="TextureRect" parent="DeckContainer/DeckPanel" unique_id=192215201]
+[node name="BackHighlight" type="TextureRect" parent="EncounterControl/DeckContainer/DeckPanel" unique_id=192215201]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -162,7 +178,7 @@ mouse_filter = 2
 texture = ExtResource("6_pswyi")
 stretch_mode = 2
 
-[node name="DrawsLabel" type="Label" parent="DeckContainer/DeckPanel" unique_id=1351457287]
+[node name="DrawsLabel" type="Label" parent="EncounterControl/DeckContainer/DeckPanel" unique_id=1351457287]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +197,7 @@ text = "3 / 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardHandTexture" type="NinePatchRect" parent="DeckContainer" unique_id=1978679625]
+[node name="CardHandTexture" type="NinePatchRect" parent="EncounterControl/DeckContainer" unique_id=1978679625]
 custom_minimum_size = Vector2(512, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -192,7 +208,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Hand" type="Control" parent="DeckContainer/CardHandTexture" unique_id=840949233]
+[node name="Hand" type="Control" parent="EncounterControl/DeckContainer/CardHandTexture" unique_id=840949233]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(486, 96)
 layout_mode = 1
@@ -209,7 +225,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=617092277]
+[node name="HBoxContainer" type="HBoxContainer" parent="EncounterControl" unique_id=617092277]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.05
@@ -217,10 +234,10 @@ anchor_right = 0.5
 anchor_bottom = 0.05
 offset_left = -312.0
 offset_top = -10.0
-offset_right = -204.0
+offset_right = -110.0
 offset_bottom = 10.0
 
-[node name="PointsLabel" type="Label" parent="HBoxContainer" unique_id=661612287]
+[node name="PointsLabel" type="Label" parent="EncounterControl/HBoxContainer" unique_id=661612287]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
@@ -229,7 +246,7 @@ theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "Score:"
 
-[node name="PointsProgressBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=856574861]
+[node name="PointsProgressBar" type="TextureProgressBar" parent="EncounterControl/HBoxContainer" unique_id=856574861]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -242,7 +259,7 @@ texture_under = ExtResource("7_42tis")
 texture_progress = ExtResource("8_pswyi")
 texture_progress_offset = Vector2(2, 2)
 
-[node name="CurrentPointsLabel" type="Label" parent="HBoxContainer/PointsProgressBar" unique_id=537086783]
+[node name="CurrentPointsLabel" type="Label" parent="EncounterControl/HBoxContainer/PointsProgressBar" unique_id=537086783]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -259,13 +276,13 @@ text = " 0 / 500"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmptySpace" type="ColorRect" parent="HBoxContainer" unique_id=488629292]
+[node name="EmptySpace" type="ColorRect" parent="EncounterControl/HBoxContainer" unique_id=488629292]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="MoneyLabel" type="Label" parent="HBoxContainer" unique_id=1278159343]
+[node name="MoneyLabel" type="Label" parent="EncounterControl/HBoxContainer" unique_id=1278159343]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
@@ -276,5 +293,193 @@ theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "$0"
 
-[connection signal="mouse_entered" from="DeckContainer/DeckPanel" to="DeckContainer/DeckPanel" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="DeckContainer/DeckPanel" to="DeckContainer/DeckPanel" method="_on_mouse_exited"]
+[node name="WinControl" type="Control" parent="." unique_id=1694297612]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 1.5000001
+anchor_right = 0.5
+anchor_bottom = 1.5000001
+offset_left = -320.0
+offset_top = -180.00006
+offset_right = 320.0
+offset_bottom = 179.99994
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinBackground" type="ColorRect" parent="WinControl" unique_id=1301604349]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.13333334, 0.3019608, 0.16470589, 1)
+
+[node name="WinLabel" type="Label" parent="WinControl" unique_id=1056969706]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.093
+anchor_right = 0.5
+anchor_bottom = 0.093
+offset_left = -304.0
+offset_top = -17.48
+offset_right = 4.0
+offset_bottom = 17.52
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 40
+text = "Round Win Results"
+
+[node name="CoinsEarnedContainer" type="VBoxContainer" parent="WinControl" unique_id=323018673]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.56700003
+anchor_right = 0.5
+anchor_bottom = 0.56700003
+offset_left = -304.0
+offset_top = -126.12001
+offset_right = 304.0
+offset_bottom = 75.87999
+theme_override_constants/separation = 8
+
+[node name="WinContainer" type="HBoxContainer" parent="WinControl/CoinsEarnedContainer" unique_id=803176876]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinControl/CoinsEarnedContainer/WinContainer" unique_id=509202260]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 32
+text = "Round Completion"
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="WinControl/CoinsEarnedContainer/WinContainer" unique_id=1440888315]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 28
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="DrawsContainer" type="HBoxContainer" parent="WinControl/CoinsEarnedContainer" unique_id=734228311]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinControl/CoinsEarnedContainer/DrawsContainer" unique_id=881283463]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 28
+text = "Draws Remaining ($1 per draw)"
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="WinControl/CoinsEarnedContainer/DrawsContainer" unique_id=473776909]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 28
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MovesContainer" type="HBoxContainer" parent="WinControl/CoinsEarnedContainer" unique_id=1907904005]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinControl/CoinsEarnedContainer/MovesContainer" unique_id=486851934]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 28
+text = "Number of Moves ($10 - Moves)"
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="WinControl/CoinsEarnedContainer/MovesContainer" unique_id=734982311]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 28
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SpacingLine" type="ColorRect" parent="WinControl/CoinsEarnedContainer" unique_id=1516089294]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Shadow" type="ColorRect" parent="WinControl/CoinsEarnedContainer/SpacingLine" unique_id=1141653165]
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 609.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="TotalContainer" type="HBoxContainer" parent="WinControl/CoinsEarnedContainer" unique_id=952610034]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinControl/CoinsEarnedContainer/TotalContainer" unique_id=185101463]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 32
+text = "Total Earned"
+vertical_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="WinControl/CoinsEarnedContainer/TotalContainer" unique_id=975591195]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 32
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]
