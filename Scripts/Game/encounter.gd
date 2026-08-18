@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name Encounter
 
+@export var money_on_win: int = 5
+
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
 @onready var deck_panel: DeckPanel = %DeckPanel
@@ -9,6 +11,8 @@ class_name Encounter
 @onready var draws_label: Label = %DrawsLabel
 @onready var money_label: Label = %MoneyLabel
 @onready var coins_earned_container: VBoxContainer = %CoinsEarnedContainer
+@onready var spacing_line: ColorRect = %SpacingLine
+@onready var total_container: HBoxContainer = %TotalContainer
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -26,6 +30,10 @@ var points_to_win: int = 500
 var current_points: float = 0.0
 var current_draws: int
 var current_money: float
+
+var moves: int = 0
+var win_tween: Tween
+var can_skip_tween: bool = false
 
 
 func _ready() -> void:
@@ -172,6 +180,7 @@ func release_card(card: Card) -> void:
 	
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
 		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
+		moves += 1
 		return
 	
 	
@@ -255,6 +264,38 @@ func win() -> void:
 		c.unfocus()
 	has_won = true
 	
-	var win_tween: Tween = create_tween()
+	var containers: Array = []
+	
+	for i in coins_earned_container.get_children():
+		i.visible = false
+		if i == spacing_line or i == total_container:
+			continue
+		containers.append(i)
+	
+	var total_money_earned: int = money_on_win + current_draws + max(0, 10 - moves)
+	
+	win_tween = create_tween()
 	win_tween.tween_interval(2.0)
 	win_tween.tween_property(self, "offset:y", -360, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	
+	win_tween.tween_callback(func(): RunData.money += total_money_earned; can_skip_tween = true)
+	
+	win_tween.tween_callback(func(): containers[0].visible = true)
+	win_tween.tween_method(func(value: float): containers[0].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(money_on_win), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	win_tween.tween_callback(func(): containers[1].visible = true)
+	win_tween.tween_method(func(value: float): containers[1].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(current_draws), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	win_tween.tween_callback(func(): containers[2].visible = true)
+	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(0, 10 - moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	win_tween.tween_callback(func(): spacing_line.visible = true)
+	win_tween.tween_callback(func(): total_container.visible = true)
+	win_tween.tween_method(func(value: float): total_container.get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(total_money_earned), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
+		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
+			can_skip_tween = false
+			win_tween.custom_step(INF)

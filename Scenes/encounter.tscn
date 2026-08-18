@@ -441,6 +441,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="SpacingLine" type="ColorRect" parent="WinControl/CoinsEarnedContainer" unique_id=1516089294]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
@@ -454,6 +455,7 @@ offset_bottom = 3.0
 color = Color(0, 0, 0, 0.5019608)
 
 [node name="TotalContainer" type="HBoxContainer" parent="WinControl/CoinsEarnedContainer" unique_id=952610034]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="WinControl/CoinsEarnedContainer/TotalContainer" unique_id=185101463]
