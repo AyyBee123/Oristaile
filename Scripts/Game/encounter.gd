@@ -179,8 +179,8 @@ func release_card(card: Card) -> void:
 	var slot_target: Slot = get_card_slot()
 	
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
-		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
 		moves += 1
+		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
 		return
 	
 	
@@ -271,8 +271,6 @@ func win() -> void:
 		if i == spacing_line or i == total_container:
 			continue
 		containers.append(i)
-	
-	await get_tree().process_frame
 	
 	var total_money_earned: int = money_on_win + current_draws + max(-money_on_win, -moves)
 	

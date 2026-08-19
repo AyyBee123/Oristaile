@@ -367,7 +367,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("6_askxb")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "Round Completion"
 vertical_alignment = 1
 
@@ -478,7 +478,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/font = ExtResource("6_askxb")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "$0"
 horizontal_alignment = 2
 vertical_alignment = 1
