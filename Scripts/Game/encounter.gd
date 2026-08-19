@@ -67,7 +67,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if held_card:
 		held_card.global_position = held_card.global_position.lerp(
-			get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 20
+			get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 40
 		)
 	money_label.text = "$%d" % int(current_money)
 
