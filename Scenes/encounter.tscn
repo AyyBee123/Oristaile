@@ -424,7 +424,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
-text = "Number of Moves ($10 - Moves)"
+text = "Number of Moves (-$1 per move)"
 vertical_alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="WinControl/CoinsEarnedContainer/MovesContainer" unique_id=734982311]

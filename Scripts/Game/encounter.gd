@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name Encounter
 
-@export var money_on_win: int = 5
+@export var money_on_win: int = 10
 
 @onready var slot_container: HBoxContainer = %SlotContainer
 @onready var hand: Control = %Hand
@@ -272,7 +272,9 @@ func win() -> void:
 			continue
 		containers.append(i)
 	
-	var total_money_earned: int = money_on_win + current_draws + max(0, 10 - moves)
+	await get_tree().process_frame
+	
+	var total_money_earned: int = money_on_win + current_draws + max(-money_on_win, -moves)
 	
 	win_tween = create_tween()
 	win_tween.tween_interval(2.0)
@@ -287,7 +289,7 @@ func win() -> void:
 	win_tween.tween_method(func(value: float): containers[1].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(current_draws), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	win_tween.tween_callback(func(): containers[2].visible = true)
-	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(0, 10 - moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(-money_on_win, -moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	win_tween.tween_callback(func(): spacing_line.visible = true)
 	win_tween.tween_callback(func(): total_container.visible = true)
