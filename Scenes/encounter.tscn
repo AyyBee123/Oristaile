@@ -10,12 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://8s4q061hfurn" path="res://Assets/Sprites/Cards/Back/Back Highlight.png" id="6_pswyi"]
 [ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
 [ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
+[ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/Misc/Button.png" id="11_4vfm1"]
+[ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_t6s0h"]
+[ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_t6s0h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pswyi"]
+texture = ExtResource("11_4vfm1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6b75a"]
+texture = ExtResource("12_t6s0h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vfm1"]
+texture = ExtResource("11_4vfm1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6s0h"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
+points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -184,8 +200,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 102.0
-offset_bottom = 15.0
+offset_top = 103.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
@@ -483,5 +499,54 @@ text = "$0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="ContinueButton" type="Button" parent="WinControl" unique_id=897450518]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.836
+anchor_right = 0.5
+anchor_bottom = 0.836
+offset_left = -86.0
+offset_top = -26.960022
+offset_right = 86.0
+offset_bottom = 27.039978
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_pswyi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6b75a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4vfm1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t6s0h")
+
+[node name="Label" type="Label" parent="WinControl/ContinueButton" unique_id=23650188]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.96000004
+offset_bottom = 0.15999603
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_t6s0h")
+relative_pressed_move = Vector2(0, -2)
+
 [connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]
+[connection signal="pressed" from="WinControl/ContinueButton" to="." method="_on_continue_button_pressed"]

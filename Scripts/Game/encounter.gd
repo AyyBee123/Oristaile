@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name Encounter
 
+@export var points_to_win: int = 500
 @export var money_on_win: int = 10
 
 @onready var slot_container: HBoxContainer = %SlotContainer
@@ -13,6 +14,7 @@ class_name Encounter
 @onready var coins_earned_container: VBoxContainer = %CoinsEarnedContainer
 @onready var spacing_line: ColorRect = %SpacingLine
 @onready var total_container: HBoxContainer = %TotalContainer
+@onready var continue_button: Button = %ContinueButton
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -26,7 +28,6 @@ var held_card: Card = null
 var draw_is_on_cooldown: bool = false
 var has_won: bool = false
 
-var points_to_win: int = 500
 var current_points: float = 0.0
 var current_draws: int
 var current_money: float
@@ -51,6 +52,7 @@ func _ready() -> void:
 	deck_panel.pressed.connect(_on_deck_panel_pressed)
 	
 	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
+	current_points_label.text = " %d / %d" % [0, points_to_win]
 	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
@@ -271,6 +273,7 @@ func win() -> void:
 		if i == spacing_line or i == total_container:
 			continue
 		containers.append(i)
+	continue_button.visible = false
 	
 	var total_money_earned: int = money_on_win + current_draws + max(-money_on_win, -moves)
 	
@@ -289,9 +292,16 @@ func win() -> void:
 	win_tween.tween_callback(func(): containers[2].visible = true)
 	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(-money_on_win, -moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
-	win_tween.tween_callback(func(): spacing_line.visible = true)
-	win_tween.tween_callback(func(): total_container.visible = true)
+	win_tween.tween_callback(func(): 
+		spacing_line.visible = true
+		total_container.visible = true
+	)
 	win_tween.tween_method(func(value: float): total_container.get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(total_money_earned), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	win_tween.tween_callback(func(): 
+		continue_button.visible = true
+		continue_button.grab_focus()
+	)
 
 
 func _input(event: InputEvent) -> void:
@@ -299,3 +309,8 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
 			can_skip_tween = false
 			win_tween.custom_step(INF)
+			get_viewport().set_input_as_handled()
+
+
+func _on_continue_button_pressed() -> void:
+	pass # Replace with function body.
