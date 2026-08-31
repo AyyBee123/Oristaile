@@ -307,9 +307,7 @@ func win() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		pass
-	elif event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
+	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
 			can_skip_tween = false
 			win_tween.custom_step(INF)
