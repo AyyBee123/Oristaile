@@ -14,7 +14,8 @@ class_name Encounter
 @onready var coins_earned_container: VBoxContainer = %CoinsEarnedContainer
 @onready var spacing_line: ColorRect = %SpacingLine
 @onready var total_container: HBoxContainer = %TotalContainer
-@onready var continue_button: Button = %ContinueButton
+@onready var empty_space: ColorRect = %"Empty Space"
+@onready var continue_label: Label = %ContinueLabel
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -27,6 +28,7 @@ var hovered_card: Card = null
 var held_card: Card = null
 var draw_is_on_cooldown: bool = false
 var has_won: bool = false
+var can_continue: bool = false
 
 var current_points: float = 0.0
 var current_draws: int
@@ -270,10 +272,9 @@ func win() -> void:
 	
 	for i in coins_earned_container.get_children():
 		i.visible = false
-		if i == spacing_line or i == total_container:
+		if i == spacing_line or i == total_container or i == empty_space or i == continue_label:
 			continue
 		containers.append(i)
-	continue_button.visible = false
 	
 	var total_money_earned: int = money_on_win + current_draws + max(-money_on_win, -moves)
 	
@@ -292,25 +293,28 @@ func win() -> void:
 	win_tween.tween_callback(func(): containers[2].visible = true)
 	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(-money_on_win, -moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
-	win_tween.tween_callback(func(): 
+	win_tween.tween_callback(func():
 		spacing_line.visible = true
 		total_container.visible = true
 	)
 	win_tween.tween_method(func(value: float): total_container.get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(total_money_earned), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
-	win_tween.tween_callback(func(): 
-		continue_button.visible = true
-		continue_button.grab_focus()
+	win_tween.tween_callback(func():
+		empty_space.visible = true
+		continue_label.visible = true
+		can_continue = true
 	)
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
+	if event.is_action_pressed("pause"):
+		pass
+	elif event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
 			can_skip_tween = false
 			win_tween.custom_step(INF)
 			get_viewport().set_input_as_handled()
-
-
-func _on_continue_button_pressed() -> void:
-	pass # Replace with function body.
+		elif event.pressed and can_continue:
+			print("hi")
+			can_continue = false
+			get_viewport().set_input_as_handled()
