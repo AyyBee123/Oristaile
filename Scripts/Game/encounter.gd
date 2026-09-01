@@ -16,6 +16,8 @@ class_name Encounter
 @onready var total_container: HBoxContainer = %TotalContainer
 @onready var empty_space: ColorRect = %"Empty Space"
 @onready var continue_label: Label = %ContinueLabel
+@onready var encounter_control: Control = %EncounterControl
+@onready var shop_control: Control = %ShopControl
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -40,6 +42,9 @@ var can_skip_tween: bool = false
 
 
 func _ready() -> void:
+	encounter_control.visible = true
+	shop_control.visible = false
+	
 	current_draws = RunData.draws_per_round
 	points_progress_bar.max_value = points_to_win
 	
@@ -306,6 +311,15 @@ func win() -> void:
 	)
 
 
+func transition_to_shop() -> void:
+	var shop_tween: Tween = create_tween()
+	shop_tween.tween_callback(func():
+		shop_control.visible = true
+		encounter_control.visible = false
+	)
+	shop_tween.tween_property(self, "offset:y", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
@@ -313,6 +327,6 @@ func _input(event: InputEvent) -> void:
 			win_tween.custom_step(INF)
 			get_viewport().set_input_as_handled()
 		elif event.pressed and can_continue:
-			print("hi")
+			transition_to_shop()
 			can_continue = false
 			get_viewport().set_input_as_handled()

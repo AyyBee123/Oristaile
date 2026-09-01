@@ -16,6 +16,7 @@ script = ExtResource("1_wwxys")
 points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -507,6 +508,37 @@ theme_override_font_sizes/font_size = 36
 text = "Press Any Button To Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ShopControl" type="Control" parent="." unique_id=553915089]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="ShopControl" unique_id=1230562900]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 
 [connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]
