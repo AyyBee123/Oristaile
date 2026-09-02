@@ -13,7 +13,6 @@
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
-points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 unique_name_in_owner = true
@@ -512,6 +511,7 @@ vertical_alignment = 1
 [node name="ShopControl" type="Control" parent="." unique_id=553915089]
 unique_name_in_owner = true
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
