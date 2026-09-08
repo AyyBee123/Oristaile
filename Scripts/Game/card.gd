@@ -33,19 +33,24 @@ var input_disabled: bool = false
 
 func _process(_delta: float) -> void:
 	# forces the card to be in an unfocused state if the mouse is not hovering over the card
-	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused:
-		unfocus()
+	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not encounter.controller_mode:
+		release_focus()
 
 
 func _ready() -> void:
 	original_z_index = z_index
 	card_texture.texture = CardData.get_card_texture(suit, number)
 	if is_playing_card:
-		mouse_entered.connect(focus)
-		mouse_exited.connect(unfocus)
+		focus_mode = Control.FOCUS_ALL
+		
+		mouse_entered.connect(grab_focus)
+		mouse_exited.connect(release_focus)
+		
+		focus_entered.connect(_on_focus_entered)
+		focus_exited.connect(_on_focus_exited)
 
 
-func focus() -> void:
+func _on_focus_entered() -> void:
 	if encounter.has_won: return
 	if not is_dragged and not is_focused:
 		is_focused = true
@@ -58,7 +63,7 @@ func focus() -> void:
 		focus_tween.tween_property(card_textures, "position:y", -20.0, 0.05)
 
 
-func unfocus() -> void:
+func _on_focus_exited() -> void:
 	is_focused = false
 	if focus_tween:
 		focus_tween.kill()

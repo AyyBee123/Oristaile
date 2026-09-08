@@ -18,6 +18,7 @@ class_name Encounter
 @onready var continue_label: Label = %ContinueLabel
 @onready var encounter_control: Control = %EncounterControl
 @onready var shop_control: Control = %ShopControl
+@onready var controller_focus_node: Control = deck_panel
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -39,6 +40,7 @@ var current_money: float
 var moves: int = 0
 var win_tween: Tween
 var can_skip_tween: bool = false
+var controller_mode: bool = false
 
 
 func _ready() -> void:
@@ -199,7 +201,7 @@ func release_card(card: Card) -> void:
 	hand.move_child(card, card.deck_index)
 	
 	card.global_position = preserved_pos
-	card.unfocus()
+	card._on_focus_exited()
 	
 	calculate_hand()
 	
@@ -241,6 +243,17 @@ func calculate_hand(animated: bool = true) -> void:
 			card.tween.tween_property(card, "position", pos, 0.333)
 		else:
 			card.position = pos
+	
+	var cards: Array = hand.get_children()
+	
+	for i in cards.size():
+		var card: Card = cards[i]
+		
+		if i > 0:
+			card.focus_neighbor_left = cards[i - 1].get_path()
+		
+		if i < cards.size() - 1:
+			card.focus_neighbor_right = cards[i + 1].get_path()
 
 
 func get_card_slot() -> Slot:
@@ -321,6 +334,21 @@ func transition_to_shop() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton:
+		if event.pressed:
+			switch_to_focus_navigation()
+	
+	elif event is InputEventJoypadMotion:
+		if abs(event.axis_value) > 0.5:
+			switch_to_focus_navigation()
+	
+	elif event is InputEventMouseMotion:
+		if event.relative != Vector2.ZERO:
+			controller_mode = false
+	
+	elif event is InputEventMouseButton:
+		controller_mode = false
+	
 	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
 			can_skip_tween = false
@@ -330,3 +358,13 @@ func _input(event: InputEvent) -> void:
 			transition_to_shop()
 			can_continue = false
 			get_viewport().set_input_as_handled()
+
+
+func switch_to_focus_navigation() -> void:
+	if controller_mode: return
+	controller_mode = true
+	
+	if hand.get_child_count() > 0:
+		hand.get_child(0).grab_focus()
+	
+	get_viewport().set_input_as_handled()

@@ -14,6 +14,10 @@ var draws_left: int:
 
 
 func _ready() -> void:
+	
+	focus_entered.connect(highlight.bind(true))
+	focus_exited.connect(highlight.bind(false))
+	
 	highlight(false)
 
 
@@ -25,8 +29,8 @@ func highlight(value: bool) -> void:
 
 
 func _on_mouse_entered() -> void:
-	highlight(true)
+	grab_focus()
 
 
 func _on_mouse_exited() -> void:
-	highlight(false)
+	release_focus()
