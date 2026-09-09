@@ -41,6 +41,7 @@ var moves: int = 0
 var win_tween: Tween
 var can_skip_tween: bool = false
 var controller_mode: bool = false
+var controller_slot_index: int = 0
 
 
 func _ready() -> void:
@@ -77,9 +78,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if held_card:
-		held_card.global_position = held_card.global_position.lerp(
-			get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 40
-		)
+		if controller_mode:
+			held_card.global_position = held_card.global_position.lerp(
+				get_slot_from_index().global_position + Vector2(14, 18), delta * 40
+			)
+		else:
+			held_card.global_position = held_card.global_position.lerp(
+				get_viewport().get_mouse_position() - held_card.size / 2.0, delta * 40
+			)
+			
 	money_label.text = "$%d" % int(current_money)
 
 
@@ -183,25 +190,32 @@ func grab_card(card: Card) -> void:
 	calculate_hand()
 
 
-func release_card(card: Card) -> void:
+func release_card(slot_target: Slot, card: Card) -> void:
 	if held_card == null: return
 	
+	controller_slot_index = 0
 	var preserved_pos: Vector2 = card.global_position
-	var slot_target: Slot = get_card_slot()
 	
+	# check if valid slot
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
 		moves += 1
 		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
+		if controller_mode: hand.get_child(0).grab_focus()
+		calculate_hand()
 		return
 	
-	
+	# return the card to hand
 	if card.get_parent():
 		held_card.get_parent().remove_child(card)
 	hand.add_child(card)
 	hand.move_child(card, card.deck_index)
 	
 	card.global_position = preserved_pos
-	card._on_focus_exited()
+	
+	if controller_mode:
+		card.grab_focus()
+	else:
+		card.release_focus()
 	
 	calculate_hand()
 	
@@ -248,12 +262,8 @@ func calculate_hand(animated: bool = true) -> void:
 	
 	for i in cards.size():
 		var card: Card = cards[i]
-		
-		if i > 0:
-			card.focus_neighbor_left = cards[i - 1].get_path()
-		
-		if i < cards.size() - 1:
-			card.focus_neighbor_right = cards[i + 1].get_path()
+		card.focus_neighbor_left = (cards[i - 1].get_path() if i > 0 else NodePath())
+		card.focus_neighbor_right = (cards[i + 1].get_path() if i < cards.size() - 1 else NodePath())
 
 
 func get_card_slot() -> Slot:
@@ -283,7 +293,7 @@ func give_points(slot: Slot, card: Card) -> void:
 
 func win() -> void:
 	for c: Card in hand.get_children():
-		c.unfocus()
+		c.release_focus()
 	has_won = true
 	
 	var containers: Array = []
@@ -334,6 +344,14 @@ func transition_to_shop() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("left") and held_card:
+		controller_slot_index = clampi(controller_slot_index - 1, 0, slot_container.get_children().size() - 1)
+		get_viewport().set_input_as_handled()
+	
+	if event.is_action_pressed("right") and held_card:
+		controller_slot_index = clampi(controller_slot_index + 1, 0, slot_container.get_children().size() - 1)
+		get_viewport().set_input_as_handled()
+	
 	if event is InputEventJoypadButton:
 		if event.pressed:
 			switch_to_focus_navigation()
@@ -368,3 +386,7 @@ func switch_to_focus_navigation() -> void:
 		hand.get_child(0).grab_focus()
 	
 	get_viewport().set_input_as_handled()
+
+
+func get_slot_from_index(index: int = controller_slot_index) -> Slot:
+	return slot_container.get_child(index)

@@ -2,7 +2,7 @@ extends Panel
 class_name Card
 
 signal held
-signal released
+signal released(slot)
 
 @onready var card_textures: Control = %CardTextures
 @onready var blank_card: TextureRect = %BlankCard
@@ -75,15 +75,30 @@ func _on_focus_exited() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if encounter.has_won: return
 	if event.is_action_pressed("grab"):
-		held.emit()
-		is_dragged = true
+		if event is InputEventJoypadButton:
+			if not is_dragged:
+				held.emit()
+				is_dragged = true
+		else:
+			held.emit()
+			is_dragged = true
+		accept_event()
 
 
 func _input(event: InputEvent) -> void:
 	if encounter.has_won: return
-	if event.is_action_released("grab") and is_dragged:
-		released.emit()
-		is_dragged = false
+	if event is InputEventMouseButton:
+		if event.is_action_released("grab") and is_dragged:
+			is_dragged = false
+			released.emit(encounter.get_card_slot())
+	if event is InputEventJoypadButton:
+		if event.is_action_pressed("cancel") and is_dragged:
+			is_dragged = false
+			released.emit(null)
+		if event.is_action_pressed("accept") and is_dragged:
+			is_dragged = false
+			released.emit(encounter.get_slot_from_index())
+			get_viewport().set_input_as_handled()
 
 
 func _exit_tree() -> void:
