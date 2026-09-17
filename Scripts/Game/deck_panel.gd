@@ -14,7 +14,7 @@ var draws_left: int:
 
 
 func _ready() -> void:
-	
+	back_highlight.visible = false
 	focus_entered.connect(highlight.bind(true))
 	focus_exited.connect(highlight.bind(false))
 	
