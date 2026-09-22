@@ -10,12 +10,42 @@
 [ext_resource type="Texture2D" uid="uid://8s4q061hfurn" path="res://Assets/Sprites/Cards/Back/Back Highlight.png" id="6_pswyi"]
 [ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
 [ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
+[ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/Misc/Button.png" id="11_6b75a"]
+[ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
+[ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h11f"]
+texture = ExtResource("11_6b75a")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cglur"]
+texture = ExtResource("12_sutrg")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t6s0h"]
+texture = ExtResource("11_6b75a")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lu83v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sutrg"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
+points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -539,6 +569,121 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.13333334, 0.3019608, 0.16470589, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopControl" unique_id=819918709]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -124.0
+offset_right = 300.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/VBoxContainer" unique_id=1092284651]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CardTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer" unique_id=1256883107]
+custom_minimum_size = Vector2(441, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gitas")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Buttons" type="VBoxContainer" parent="ShopControl/VBoxContainer/HBoxContainer" unique_id=821420487]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="RerollButton" type="Button" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons" unique_id=2040147417]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cglur")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lu83v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
+
+[node name="Label" type="Label" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons/RerollButton" unique_id=2130533405]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 24
+text = "Reroll"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_sutrg")
+
+[node name="ContinueButton" type="Button" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons" unique_id=1047107760]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cglur")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lu83v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
+
+[node name="Label" type="Label" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons/ContinueButton" unique_id=1171665098]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_sutrg")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ShopControl/VBoxContainer" unique_id=4213449]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PassiveTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer2" unique_id=851723784]
+custom_minimum_size = Vector2(294, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gitas")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="ConsumableTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer2" unique_id=434778826]
+custom_minimum_size = Vector2(294, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gitas")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]

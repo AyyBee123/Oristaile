@@ -1,6 +1,8 @@
 extends Label
 
-@export var relative_pressed_move: Vector2
+@export var relative_pressed_move: int = -2
+
+@onready var origin_y: float = position.y
 
 
 func _ready() -> void:
@@ -10,8 +12,8 @@ func _ready() -> void:
 
 
 func _on_button_down() -> void:
-	position -= relative_pressed_move
+	position.y -= relative_pressed_move
 
 
 func _on_button_up() -> void:
-	position += relative_pressed_move
+	position.y = origin_y
