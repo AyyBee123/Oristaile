@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 CardData="*uid://iusw0xktf8om"
 RunData="*uid://s8hkm7luknm8"
 Preloads="*uid://d2eevwte31daa"
+SignalBus="*uid://deabi331ia56d"
 
 [display]
 

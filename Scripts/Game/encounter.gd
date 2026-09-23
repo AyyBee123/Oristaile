@@ -138,8 +138,7 @@ func set_card_slot(slot: Slot) -> void:
 	card_res.number = number
 	
 	slots.append(card_res)
-	slot.card_res = card_res
-	slot.set_card_texture()
+	slot.set_card(card_res)
 
 
 func draw_card() -> void:

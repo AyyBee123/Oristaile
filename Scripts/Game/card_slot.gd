@@ -4,10 +4,14 @@ class_name Slot
 @onready var card_template: CardTemplate = %CardTemplate
 
 var card_res: CardResource
+var accepted_numbers: Array[int]
 
 
 func can_drop_card(card: Card) -> bool:
-	return card_res.number == (card.number % 13) + 1
+	for num in accepted_numbers:
+		if card.number == num:
+			return true
+	return false
 
 
 func is_matching_suit(card: Card) -> bool:
@@ -18,7 +22,11 @@ func drop_card(card: Card) -> void:
 	card.queue_free()
 
 
-func set_card_texture() -> void:
+func set_card(card: CardResource) -> void:
+	card_res = card
+	accepted_numbers.clear()
+	accepted_numbers.append(posmod(card.number - 2, 13) + 1)
+	SignalBus.card_slot_changed.emit(self)
 	card_template.set_card_texture(card_res.suit, card_res.number)
 
 
