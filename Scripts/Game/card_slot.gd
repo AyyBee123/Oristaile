@@ -4,28 +4,52 @@ class_name Slot
 @onready var card_template: CardTemplate = %CardTemplate
 
 var card_res: CardResource
-var accepted_numbers: Array[int]
 
 
 func can_drop_card(card: Card) -> bool:
+	var accepted_numbers: Array[int] = [posmod(card_res.number - 2, 13) + 1]
+	
+	# get all accepted numbers from items to check against the card slot
+	for item in RunData.items:
+		if item.has_methd("modify_accepted_numbers"):
+			item.modify_accepted_numbers(self, accepted_numbers)
+	
 	for num in accepted_numbers:
 		if card.number == num:
+			SignalBus.card_accepted.emit(card, self)
 			return true
 	return false
 
 
 func is_matching_suit(card: Card) -> bool:
-	return card_res.suit == card.suit
+	var card_suits: Array[int] = get_card_suit(card.card_res)
+	var slot_suits: Array[int] = get_card_suit(card_res)
+	
+	for suit in card_suits:
+		if suit in slot_suits:
+			SignalBus.matched_suit.emit(card, self)
+			return true
+	
+	return false
 
 
 func drop_card(card: Card) -> void:
 	card.queue_free()
 
 
+func get_card_suit(card: CardResource) -> Array[int]:
+	var suits: Array[int] = [card.suit]
+	
+	# get all suits that are considered "matching" suits
+	for item in RunData.items:
+		if item.has_method("modify_card_suit"):
+			item.modify_card_suit(suits, card)
+	
+	return suits
+
+
 func set_card(card: CardResource) -> void:
 	card_res = card
-	accepted_numbers.clear()
-	accepted_numbers.append(posmod(card.number - 2, 13) + 1)
 	SignalBus.card_slot_changed.emit(self)
 	card_template.set_card_texture(card_res.suit, card_res.number)
 

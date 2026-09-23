@@ -1,5 +1,7 @@
 extends Node
 
+enum suits { CLUBS, DIAMONDS, HEARTS, SPADES }
+
 var card_textures = {}
 
 

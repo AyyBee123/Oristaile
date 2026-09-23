@@ -273,10 +273,18 @@ func get_card_slot() -> Slot:
 
 
 func give_points(slot: Slot, card: Card) -> void:
+	var points_earned: float = RunData.base_points_per_card
+	
 	if slot.is_matching_suit(card):
-		current_points += RunData.base_points_per_card * RunData.matching_suit_points_multiplier
-	else:
-		current_points += RunData.base_points_per_card
+		points_earned *= RunData.matching_suit_points_multiplier
+	
+	for item in RunData.items:
+		if item.has_method("modify_points"):
+			item.modify_points(points_earned, card, slot)
+	
+	current_points += points_earned
+	
+	SignalBus.points_earned.emit(points_earned, card, slot)
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)

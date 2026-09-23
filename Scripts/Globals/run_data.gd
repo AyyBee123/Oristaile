@@ -16,6 +16,7 @@ var rng: RandomNumberGenerator
 
 var base_points_per_card: float = 100.0
 var matching_suit_points_multiplier: float = 3.0
+var items: Array
 
 
 func _init() -> void:
@@ -30,6 +31,7 @@ func reset() -> void:
 	cards_to_draw = 3
 	draws_per_round = 3
 	money = 10
+	items.clear()
 
 
 func create_deck() -> void:
