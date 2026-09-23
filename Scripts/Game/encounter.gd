@@ -280,7 +280,7 @@ func give_points(slot: Slot, card: Card) -> void:
 	
 	for item in RunData.items:
 		if item.has_method("modify_points"):
-			item.modify_points(points_earned, card, slot)
+			points_earned = item.modify_points(points_earned, card, slot)
 	
 	current_points += points_earned
 	
