@@ -278,13 +278,16 @@ func give_points(slot: Slot, card: Card) -> void:
 	if slot.is_matching_suit(card):
 		points_earned *= RunData.matching_suit_points_multiplier
 	
-	for item in RunData.items:
+	for item: ItemResource in RunData.items:
 		if item.has_method("modify_points"):
-			points_earned = item.modify_points(points_earned, card, slot)
+			points_earned = item.modify_points(points_earned, card.card_res, slot)
+	
+	if card.card_res.enchant and card.card_res.enchant.has_method("modify_points"):
+		card.card_res.enchant.modify_points(points_earned, card.card_res, slot)
 	
 	current_points += points_earned
 	
-	SignalBus.points_earned.emit(points_earned, card, slot)
+	SignalBus.points_earned.emit(points_earned, card.card_res, slot)
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
@@ -326,7 +329,7 @@ func win() -> void:
 	win_tween.tween_method(func(value: float): containers[1].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(current_draws), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	win_tween.tween_callback(func(): containers[2].visible = true)
-	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "$%d" % int(value), 0.0, float(max(-money_on_win, -moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	win_tween.tween_method(func(value: float): containers[2].get_node("MoneyLabel").text = "-$%d" % int(value), 0.0, float(min(money_on_win, moves)), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	win_tween.tween_callback(func():
 		spacing_line.visible = true

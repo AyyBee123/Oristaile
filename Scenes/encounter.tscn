@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
 [ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
 [ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/Misc/Button.png" id="11_6b75a"]
+[ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/Misc/Item Background.png" id="11_sutrg"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
 
@@ -44,7 +45,6 @@ script = ExtResource("1_wwxys")
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -84,9 +84,9 @@ anchor_top = 0.31100002
 anchor_right = 0.5
 anchor_bottom = 0.31100002
 offset_left = -320.0
-offset_top = -47.960007
+offset_top = -63.960007
 offset_right = 320.0
-offset_bottom = 48.04001
+offset_bottom = 32.04001
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -126,9 +126,9 @@ anchor_top = 0.67800003
 anchor_right = 0.5
 anchor_bottom = 0.67800003
 offset_left = -320.0
-offset_top = -60.080017
+offset_top = -88.08002
 offset_right = 320.0
-offset_bottom = 59.919983
+offset_bottom = 31.919983
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
@@ -256,7 +256,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EncounterControl" unique_id=617092277]
+[node name="Score & Money Container" type="HBoxContainer" parent="EncounterControl" unique_id=617092277]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -268,7 +268,7 @@ offset_top = -10.0
 offset_right = -110.0
 offset_bottom = 10.0
 
-[node name="PointsLabel" type="Label" parent="EncounterControl/HBoxContainer" unique_id=661612287]
+[node name="PointsLabel" type="Label" parent="EncounterControl/Score & Money Container" unique_id=661612287]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
@@ -277,7 +277,7 @@ theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "Score:"
 
-[node name="PointsProgressBar" type="TextureProgressBar" parent="EncounterControl/HBoxContainer" unique_id=856574861]
+[node name="PointsProgressBar" type="TextureProgressBar" parent="EncounterControl/Score & Money Container" unique_id=856574861]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -290,7 +290,7 @@ texture_under = ExtResource("7_42tis")
 texture_progress = ExtResource("8_pswyi")
 texture_progress_offset = Vector2(2, 2)
 
-[node name="CurrentPointsLabel" type="Label" parent="EncounterControl/HBoxContainer/PointsProgressBar" unique_id=537086783]
+[node name="CurrentPointsLabel" type="Label" parent="EncounterControl/Score & Money Container/PointsProgressBar" unique_id=537086783]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -307,13 +307,13 @@ text = " 0 / 500"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmptySpace" type="ColorRect" parent="EncounterControl/HBoxContainer" unique_id=488629292]
+[node name="EmptySpace" type="ColorRect" parent="EncounterControl/Score & Money Container" unique_id=488629292]
 custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="MoneyLabel" type="Label" parent="EncounterControl/HBoxContainer" unique_id=1278159343]
+[node name="MoneyLabel" type="Label" parent="EncounterControl/Score & Money Container" unique_id=1278159343]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
@@ -323,6 +323,39 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "$0"
+
+[node name="Items & Consumables Container" type="HBoxContainer" parent="EncounterControl" unique_id=902980653]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.892
+anchor_right = 0.5
+anchor_bottom = 0.892
+offset_left = -300.0
+offset_top = -34.119995
+offset_right = 300.0
+offset_bottom = 33.880005
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="Items" type="NinePatchRect" parent="EncounterControl/Items & Consumables Container" unique_id=137951340]
+custom_minimum_size = Vector2(448, 0)
+layout_mode = 2
+texture = ExtResource("11_sutrg")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Consumables" type="NinePatchRect" parent="EncounterControl/Items & Consumables Container" unique_id=791931762]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_sutrg")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="WinControl" type="Control" parent="." unique_id=1694297612]
 layout_mode = 3
@@ -539,6 +572,7 @@ vertical_alignment = 1
 
 [node name="ShopControl" type="Control" parent="." unique_id=553915089]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -577,9 +611,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -124.0
+offset_top = -140.0
 offset_right = 300.0
-offset_bottom = 124.0
+offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 

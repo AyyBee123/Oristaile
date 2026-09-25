@@ -16,7 +16,7 @@ var rng: RandomNumberGenerator
 
 var base_points_per_card: float = 100.0
 var matching_suit_points_multiplier: float = 3.0
-var items: Array
+var items: Array[ItemResource]
 
 
 func _init() -> void:
