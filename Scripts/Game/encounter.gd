@@ -278,16 +278,14 @@ func give_points(slot: Slot, card: Card) -> void:
 	if slot.is_matching_suit(card):
 		points_earned *= RunData.matching_suit_points_multiplier
 	
-	for item: ItemResource in RunData.items:
-		if item.has_method("modify_points"):
-			points_earned = item.modify_points(points_earned, card.card_res, slot)
+	for pin: PinResource in RunData.pins:
+		if pin.pin_script.has_method("modify_points"):
+			points_earned = pin.pin_script.modify_points(points_earned, card.card_res, slot)
 	
 	if card.card_res.enchant and card.card_res.enchant.has_method("modify_points"):
 		card.card_res.enchant.modify_points(points_earned, card.card_res, slot)
 	
 	current_points += points_earned
-	
-	SignalBus.points_earned.emit(points_earned, card.card_res, slot)
 	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)

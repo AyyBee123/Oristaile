@@ -9,23 +9,28 @@ var card_res: CardResource
 func can_drop_card(card: Card) -> bool:
 	var accepted_numbers: Array[int] = [posmod(card_res.number - 2, 13) + 1]
 	
-	# get all accepted numbers from items to check against the card slot
-	for item: ItemResource in RunData.items:
-		if item.has_methd("modify_accepted_numbers"):
-			item.modify_accepted_numbers(self, accepted_numbers)
+	# get all accepted numbers from pins to check against the card slot
+	for pin: PinResource in RunData.pins:
+		if pin.pin_script.has_method("modify_accepted_numbers"):
+			pin.pin_script.modify_accepted_numbers(self, accepted_numbers)
 	
 	if card.card_res.enchant and card.card_res.enchant.has_method("modify_accepted_numbers"):
 		card.card_res.enchant.modify_accepted_numbers(self, accepted_numbers)
 	
 	for num: int in accepted_numbers:
 		if card.number == num:
-			SignalBus.card_accepted.emit(card.card_res, self)
+			for pin: PinResource in RunData.pins:
+				if pin.has_method("on_card_accepted"):
+					pin.on_card_accepted(card, self)
+			
+			if card.card_res.enchant and card.card_res.enchant.has_method("on_card_accepted"):
+				card.card_res.enchant.on_card_accepted(card, self)
+			
 			return true
 	return false
 
 
 func is_matching_suit(card: Card) -> bool:
-	SignalBus.matched_suit.emit(card.card_res, self)
 	return card_res.suit in get_card_suit(card.card_res)
 
 
@@ -37,9 +42,9 @@ func get_card_suit(card: CardResource) -> Array[int]:
 	var suits: Array[int] = [card.suit]
 	
 	# get all suits that are considered "matching" suits
-	for item: ItemResource in RunData.items:
-		if item.has_method("modify_card_suit"):
-			item.modify_card_suit(card, suits)
+	for pin: PinResource in RunData.pins:
+		if pin.behaviour.has_method("modify_card_suit"):
+			pin.behaviour.modify_card_suit(card, suits)
 	
 	if card.enchant and card.enchant.has_method("modify_card_suit"):
 		card.enchant.modify_card_suit(card, suits)
@@ -49,7 +54,6 @@ func get_card_suit(card: CardResource) -> Array[int]:
 
 func set_card(card: CardResource) -> void:
 	card_res = card
-	SignalBus.card_slot_changed.emit(self)
 	card_template.set_card_texture(card_res.suit, card_res.number)
 
 

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c2dfbyhxxa7wm"]
+
+[ext_resource type="Script" uid="uid://beujmg6mxniw4" path="res://Scripts/Pins/Base/pin_scene.gd" id="1_grmy2"]
+
+[node name="Pin" type="TextureRect" unique_id=22210380]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_grmy2")

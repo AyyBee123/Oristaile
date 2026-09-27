@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PinResource" format=3 uid="uid://b5fs08btc20mm"]
+
+[ext_resource type="Script" uid="uid://b4vgq8aqoitov" path="res://Scripts/Pins/Base/pin_resource.gd" id="1_n7f78"]
+[ext_resource type="Script" uid="uid://d3kexp6nrh4pv" path="res://Scripts/Pins/blue_quill.gd" id="1_wufa8"]
+[ext_resource type="Texture2D" uid="uid://cg5w5s1jx6xsa" path="res://Assets/Sprites/Pins/Blue Quill.png" id="2_2w3vh"]
+
+[resource]
+script = ExtResource("1_n7f78")
+pin_name = "Blue Quill"
+description = "Spades count as Clubs and vice versa."
+texture = ExtResource("2_2w3vh")
+pin_script = ExtResource("1_wufa8")
+metadata/_custom_type_script = "uid://b4vgq8aqoitov"
