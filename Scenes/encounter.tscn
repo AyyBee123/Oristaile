@@ -223,6 +223,7 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 12
 text = "3 / 3"
@@ -274,6 +275,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "Score:"
@@ -302,6 +304,7 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 12
 text = " 0 / 500"
@@ -321,6 +324,7 @@ theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 16
 text = "$0"
@@ -369,7 +373,7 @@ offset_bottom = 17.52
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 40
 text = "Round Win Results"
@@ -397,7 +401,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "Round Completion"
@@ -410,6 +414,7 @@ theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "$0"
@@ -425,7 +430,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "Draws Remaining ($1 per draw)"
@@ -438,6 +443,7 @@ theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "$0"
@@ -453,7 +459,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "Number of Moves (-$1 per move)"
@@ -466,6 +472,7 @@ theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "$0"
@@ -497,7 +504,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 32
 text = "Total Earned"
@@ -510,6 +517,7 @@ theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 28
 text = "$0"
@@ -531,7 +539,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 36
 text = "Press Any Button To Continue"
@@ -553,7 +561,7 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="ShopControl" unique_id=1230562900]
+[node name="ShopBackground" type="ColorRect" parent="ShopControl" unique_id=1230562900]
 z_index = -1
 layout_mode = 1
 anchors_preset = 8
@@ -570,7 +578,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.13333334, 0.3019608, 0.16470589, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ShopControl" unique_id=819918709]
+[node name="ShopContainer" type="VBoxContainer" parent="ShopControl" unique_id=819918709]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -584,12 +592,12 @@ offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/VBoxContainer" unique_id=1092284651]
+[node name="CardContainer" type="HBoxContainer" parent="ShopControl/ShopContainer" unique_id=1092284651]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="CardTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer" unique_id=1256883107]
+[node name="CardTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/CardContainer" unique_id=1256883107]
 custom_minimum_size = Vector2(441, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -600,13 +608,82 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Buttons" type="VBoxContainer" parent="ShopControl/VBoxContainer/HBoxContainer" unique_id=821420487]
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture" unique_id=802976986]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer" unique_id=112464236]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=1355250205]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=1290379427]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=514019368]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect4" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=428673820]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/CardTexture" unique_id=369343315]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.018000001
+anchor_top = 0.042000003
+anchor_right = 0.018000001
+anchor_bottom = 0.042000003
+offset_left = 0.06199932
+offset_top = -0.040002346
+offset_right = 60.062
+offset_bottom = 20.959997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 24
+text = "Cards"
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="ShopControl/ShopContainer/CardContainer" unique_id=821420487]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="RerollButton" type="Button" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons" unique_id=2040147417]
+[node name="RerollButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=2040147417]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
@@ -615,7 +692,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lu83v")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
 
-[node name="Label" type="Label" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons/RerollButton" unique_id=2130533405]
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/RerollButton" unique_id=2130533405]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -625,6 +702,7 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 24
 text = "Reroll"
@@ -632,7 +710,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("13_sutrg")
 
-[node name="ContinueButton" type="Button" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons" unique_id=1047107760]
+[node name="ContinueButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=1047107760]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
@@ -641,7 +719,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lu83v")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
 
-[node name="Label" type="Label" parent="ShopControl/VBoxContainer/HBoxContainer/Buttons/ContinueButton" unique_id=1171665098]
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/ContinueButton" unique_id=1171665098]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -651,6 +729,7 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 24
 text = "Continue"
@@ -658,12 +737,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("13_sutrg")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ShopControl/VBoxContainer" unique_id=4213449]
+[node name="Pin & Conumable Container" type="HBoxContainer" parent="ShopControl/ShopContainer" unique_id=4213449]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="PassiveTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer2" unique_id=851723784]
+[node name="PassiveTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=851723784]
 custom_minimum_size = Vector2(294, 112)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -674,7 +753,69 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="ConsumableTexture" type="NinePatchRect" parent="ShopControl/VBoxContainer/HBoxContainer2" unique_id=434778826]
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture" unique_id=1678799017]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer" unique_id=159987185]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=696428506]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=2098529482]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=1450449015]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture" unique_id=1474467255]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.036000002
+anchor_right = 0.027
+anchor_bottom = 0.036000002
+offset_left = 0.061999798
+offset_top = 0.96799994
+offset_right = 42.062
+offset_bottom = 21.968
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 24
+text = "Pins"
+vertical_alignment = 1
+
+[node name="ConsumableTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=434778826]
 custom_minimum_size = Vector2(294, 112)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -684,6 +825,68 @@ patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture" unique_id=752597774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer" unique_id=336247455]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=2071732739]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=928468063]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=337007242]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture" unique_id=1568169566]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.036000002
+anchor_right = 0.027
+anchor_bottom = 0.036000002
+offset_left = 0.061999798
+offset_top = 0.96799994
+offset_right = 117.062
+offset_bottom = 21.968
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("6_askxb")
+theme_override_font_sizes/font_size = 24
+text = "Conumables"
+vertical_alignment = 1
 
 [node name="Items & Consumables Container" type="HBoxContainer" parent="ShopControl" unique_id=902980653]
 layout_mode = 1
