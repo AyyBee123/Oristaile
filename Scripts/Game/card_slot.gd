@@ -9,23 +9,12 @@ var card_res: CardResource
 func can_drop_card(card: Card) -> bool:
 	var accepted_numbers: Array[int] = [posmod(card_res.number - 2, 13) + 1]
 	
-	# get all accepted numbers from pins to check against the card slot
-	for pin: PinResource in RunData.pins:
-		if pin.pin_script.has_method("modify_accepted_numbers"):
-			pin.pin_script.modify_accepted_numbers(self, accepted_numbers)
-	
-	if card.card_res.enchant and card.card_res.enchant.has_method("modify_accepted_numbers"):
-		card.card_res.enchant.modify_accepted_numbers(self, accepted_numbers)
+	# get all accepted numbers from pins and enchants to check against the card slot
+	RunData.trigger_card_effects(card.card_res, &"modify_accepted_numbers", [self, accepted_numbers])
 	
 	for num: int in accepted_numbers:
 		if card.number == num:
-			for pin: PinResource in RunData.pins:
-				if pin.has_method("on_card_accepted"):
-					pin.on_card_accepted(card, self)
-			
-			if card.card_res.enchant and card.card_res.enchant.has_method("on_card_accepted"):
-				card.card_res.enchant.on_card_accepted(card, self)
-			
+			RunData.trigger_card_effects(card.card_res, &"on_card_accepted", [card, self])
 			return true
 	return false
 
@@ -42,12 +31,7 @@ func get_card_suit(card: CardResource) -> Array[int]:
 	var suits: Array[int] = [card.suit]
 	
 	# get all suits that are considered "matching" suits
-	for pin: PinResource in RunData.pins:
-		if pin.behaviour.has_method("modify_card_suit"):
-			pin.behaviour.modify_card_suit(card, suits)
-	
-	if card.enchant and card.enchant.has_method("modify_card_suit"):
-		card.enchant.modify_card_suit(card, suits)
+	RunData.trigger_card_effects(card, &"modify_card_suit", [card, suits])
 	
 	return suits
 

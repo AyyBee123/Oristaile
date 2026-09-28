@@ -278,12 +278,7 @@ func give_points(slot: Slot, card: Card) -> void:
 	if slot.is_matching_suit(card):
 		points_earned *= RunData.matching_suit_points_multiplier
 	
-	for pin: PinResource in RunData.pins:
-		if pin.pin_script.has_method("modify_points"):
-			points_earned = pin.pin_script.modify_points(points_earned, card.card_res, slot)
-	
-	if card.card_res.enchant and card.card_res.enchant.has_method("modify_points"):
-		card.card_res.enchant.modify_points(points_earned, card.card_res, slot)
+	RunData.trigger_card_effects(card.card_res, &"modify_points", [points_earned, card.card_res, slot])
 	
 	current_points += points_earned
 	

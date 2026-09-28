@@ -48,3 +48,19 @@ func add_pin(pin: PinResource) -> void:
 
 func remove_pin(pin: PinResource) -> void:
 	pins.erase(pin)
+
+
+func trigger_card_effects(card: CardResource, method: StringName, args: Array = []) -> void:
+	trigger_pins(method, args)
+	trigger_enchant(card, method, args)
+
+
+func trigger_pins(method: StringName, args: Array = []) -> void:
+	for pin: PinResource in pins:
+		if pin.behaviour and pin.behaviour.has_method(method):
+			pin.behaviour.callv(method, args)
+
+
+func trigger_enchant(card: CardResource, method: StringName, args: Array = []) -> void:
+	if card.enchant and card.enchant.has_method(method):
+		card.enchant.callv(method, args)
