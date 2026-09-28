@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_n7f78")
 pin_name = "Blue Quill"
+rarity = 1
 description = "Spades count as Clubs and vice versa."
 texture = ExtResource("2_2w3vh")
 pin_script = ExtResource("1_wufa8")

@@ -2,6 +2,7 @@ class_name PinResource
 extends Resource
 
 @export var pin_name: String
+@export_enum("COMMON", "RARE", "LEGENDARY") var rarity: int
 @export_multiline var description: String
 @export var texture: Texture2D
 @export var pin_script: GDScript

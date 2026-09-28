@@ -19,7 +19,7 @@ var matching_suit_points_multiplier: float = 3.0
 var pins: Array[PinResource]
 
 
-func _init() -> void:
+func _init() -> void: # reset is in _init for now; it should instead be called when starting a new run
 	reset()
 
 
