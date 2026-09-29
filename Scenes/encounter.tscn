@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
 [ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
 [ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/Misc/Button.png" id="11_6b75a"]
+[ext_resource type="Script" uid="uid://cgdy7at4b4djf" path="res://Scripts/Game/shop.gd" id="11_lu83v"]
 [ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/Misc/Item Background.png" id="11_sutrg"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
@@ -560,6 +561,7 @@ offset_right = 320.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("11_lu83v")
 
 [node name="ShopBackground" type="ColorRect" parent="ShopControl" unique_id=1230562900]
 z_index = -1
@@ -620,38 +622,11 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer" unique_id=112464236]
+[node name="CardContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer" unique_id=112464236]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=1355250205]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=1290379427]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=514019368]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect4" type="ColorRect" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer/HBoxContainer" unique_id=428673820]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/CardTexture" unique_id=369343315]
 z_index = -1
@@ -765,31 +740,11 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer" unique_id=159987185]
+[node name="PinContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer" unique_id=159987185]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=696428506]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=2098529482]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer/HBoxContainer" unique_id=1450449015]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture" unique_id=1474467255]
 z_index = -1
@@ -838,31 +793,11 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer" unique_id=336247455]
+[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer" unique_id=336247455]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=2071732739]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect2" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=928468063]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="ColorRect3" type="ColorRect" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer/HBoxContainer" unique_id=337007242]
-custom_minimum_size = Vector2(64, 64)
-custom_maximum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture" unique_id=1568169566]
 z_index = -1

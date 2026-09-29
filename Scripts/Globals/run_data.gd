@@ -18,6 +18,8 @@ var base_points_per_card: float = 100.0
 var matching_suit_points_multiplier: float = 3.0
 var pins: Array[PinResource]
 
+var pin_pool: PinPool
+
 
 func _init() -> void: # reset is in _init for now; it should instead be called when starting a new run
 	reset()
@@ -32,6 +34,7 @@ func reset() -> void:
 	draws_per_round = 3
 	money = 10
 	pins.clear()
+	pin_pool = Preloads.PIN_POOL.duplicate()
 
 
 func create_deck() -> void:

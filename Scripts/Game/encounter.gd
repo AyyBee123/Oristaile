@@ -1,5 +1,5 @@
-extends CanvasLayer
 class_name Encounter
+extends CanvasLayer
 
 @export var points_to_win: int = 500
 @export var money_on_win: int = 10
@@ -17,7 +17,7 @@ class_name Encounter
 @onready var empty_space: ColorRect = %"Empty Space"
 @onready var continue_label: Label = %ContinueLabel
 @onready var encounter_control: Control = %EncounterControl
-@onready var shop_control: Control = %ShopControl
+@onready var shop_control: Shop = %ShopControl
 @onready var controller_focus_node: Control = deck_panel
 
 const CARD_SPACING: float = 36.0
@@ -338,6 +338,7 @@ func win() -> void:
 
 
 func transition_to_shop() -> void:
+	shop_control.set_up_wares()
 	var shop_tween: Tween = create_tween()
 	shop_tween.tween_callback(func():
 		shop_control.visible = true
