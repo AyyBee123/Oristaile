@@ -64,6 +64,8 @@ func _ready() -> void:
 	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	current_points_label.text = " %d / %d" % [0, points_to_win]
 	
+	SignalBus.card_slot_changed.connect(_on_card_slot_changed)
+	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
 	
@@ -74,6 +76,8 @@ func _ready() -> void:
 		draw_card()
 		if i < RunData.cards_to_draw_at_start - 1:
 			await get_tree().create_timer(DRAW_BUFFER).timeout
+	
+	check_for_loss()
 
 
 func _process(delta: float) -> void:
@@ -110,6 +114,7 @@ func _on_deck_panel_pressed() -> void:
 			await get_tree().create_timer(DRAW_BUFFER).timeout
 	
 	draw_is_on_cooldown = false
+	check_for_loss()
 
 
 func set_card_slot(slot: Slot) -> void:
@@ -231,6 +236,7 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 	current_hand.erase(card.card_res)
 	set_card_slot(slot)
 	current_deck.append(card.card_res)
+	SignalBus.card_slot_changed.emit(slot)
 
 
 func calculate_hand(animated: bool = true) -> void:
@@ -270,6 +276,25 @@ func get_card_slot() -> Slot:
 		if Rect2(slot.global_position, slot.size).has_point(get_viewport().get_mouse_position()):
 			return slot
 	return null
+
+
+func has_valid_move() -> bool:
+	for card: Card in hand.get_children():
+		for slot: Slot in slot_container.get_children():
+			if slot.can_drop_card(card):
+				return true
+	return false
+
+
+func _on_card_slot_changed(_slot: Slot) -> void:
+	check_for_loss()
+
+
+func check_for_loss() -> void:
+	if current_draws <= 0 and not has_valid_move():
+		await get_tree().create_timer(1.0).timeout
+		print("Haha")
+		#lose_run()
 
 
 func give_points(slot: Slot, card: Card) -> void:
