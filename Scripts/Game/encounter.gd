@@ -291,10 +291,12 @@ func _on_card_slot_changed(_slot: Slot) -> void:
 
 
 func check_for_loss() -> void:
-	if current_draws <= 0 and not has_valid_move():
-		await get_tree().create_timer(1.0).timeout
-		print("Haha")
-		#lose_run()
+	if current_draws > 0 or has_valid_move():
+		return
+		
+	await get_tree().create_timer(1.0).timeout
+	print("Haha")
+	#lose_run()
 
 
 func give_points(slot: Slot, card: Card) -> void:
