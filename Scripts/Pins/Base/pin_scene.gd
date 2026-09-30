@@ -33,4 +33,4 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept"):
 		if is_shop_item:
 			RunData.add_pin(pin, global_position)
-			#queue_free()
+			queue_free()
