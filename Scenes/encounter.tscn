@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/Misc/Item Background.png" id="11_sutrg"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
+[ext_resource type="Script" uid="uid://xtb4403oqtsn" path="res://Scripts/Game/items_consumables_container.gd" id="15_cglur"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h11f"]
 texture = ExtResource("11_6b75a")
@@ -837,6 +838,7 @@ offset_bottom = 33.880005
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 12
+script = ExtResource("15_cglur")
 
 [node name="Items" type="NinePatchRect" parent="ShopControl/Items & Consumables Container" unique_id=137951340]
 custom_minimum_size = Vector2(448, 0)
@@ -855,6 +857,22 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/Items & Consumables Container/Consumables" unique_id=1897880927]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/Items & Consumables Container/Consumables/MarginContainer" unique_id=375036203]
+layout_mode = 2
+theme_override_constants/separation = 8
 
 [connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]

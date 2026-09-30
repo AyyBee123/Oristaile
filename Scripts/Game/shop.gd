@@ -13,4 +13,5 @@ const CONSUMABLES_SOLD: int = 3
 func set_up_wares() -> void:
 	for i in PINS_SOLD:
 		var new_pin: PinControl = Preloads.PIN_CONTROL.instantiate()
+		new_pin.is_shop_item = true
 		pin_container.add_child(new_pin)

@@ -74,7 +74,7 @@ func _on_focus_exited() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if encounter.has_won: return
-	if event.is_action_pressed("grab"):
+	if event.is_action_pressed("accept"):
 		if event is InputEventJoypadButton:
 			if not is_dragged:
 				held.emit()
@@ -88,7 +88,7 @@ func _gui_input(event: InputEvent) -> void:
 func _input(event: InputEvent) -> void:
 	if encounter.has_won: return
 	if event is InputEventMouseButton:
-		if event.is_action_released("grab") and is_dragged:
+		if event.is_action_released("accept") and is_dragged:
 			is_dragged = false
 			released.emit(encounter.get_card_slot())
 	if event is InputEventJoypadButton:

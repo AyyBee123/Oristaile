@@ -43,14 +43,16 @@ func create_deck() -> void:
 		deck.append(card)
 
 
-func add_pin(pin: PinResource) -> void:
+func add_pin(pin: PinResource, pos: Vector2 = Vector2.ZERO) -> void:
 	var new_pin: PinResource = pin.duplicate()
 	new_pin.initialize()
 	pins.append(new_pin)
+	SignalBus.pin_added.emit(new_pin, pos)
 
 
 func remove_pin(pin: PinResource) -> void:
 	pins.erase(pin)
+	SignalBus.pin_removed.emit(pin)
 
 
 func trigger_card_effects(card: CardResource, method: StringName, args: Array = []) -> void:

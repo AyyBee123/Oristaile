@@ -3,6 +3,9 @@ extends TextureRect
 
 @export var pin: PinResource
 
+var is_shop_item: bool = false
+var tween: Tween
+
 
 func _ready() -> void:
 	if not pin:
@@ -24,3 +27,10 @@ func _on_focus_entered() -> void:
 
 func _on_focus_exited() -> void:
 	pass
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("accept"):
+		if is_shop_item:
+			RunData.add_pin(pin, global_position)
+			#queue_free()
