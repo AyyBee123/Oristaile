@@ -7,33 +7,15 @@ var card_res: CardResource
 
 
 func can_drop_card(card: Card) -> bool:
-	var accepted_numbers: Array[int] = [posmod(card_res.number - 2, 13) + 1]
-	
-	# get all accepted numbers from pins and enchants to check against the card slot
-	RunData.trigger_card_effects(card.card_res, &"modify_accepted_numbers", [self, accepted_numbers])
-	
-	for num: int in accepted_numbers:
-		if card.number == num:
-			RunData.trigger_card_effects(card.card_res, &"on_card_accepted", [card, self])
-			return true
-	return false
+	return posmod(card_res.number - 2, 13) + 1 in card.card_res.get_numbers()
 
 
 func is_matching_suit(card: Card) -> bool:
-	return card_res.suit in get_card_suit(card.card_res)
+	return card_res.suit in card.card_res.get_suits()
 
 
 func drop_card(card: Card) -> void:
 	card.queue_free()
-
-
-func get_card_suit(card: CardResource) -> Array[int]:
-	var suits: Array[int] = [card.suit]
-	
-	# get all suits that are considered "matching" suits
-	RunData.trigger_card_effects(card, &"modify_card_suit", [card, suits])
-	
-	return suits
 
 
 func set_card(card: CardResource) -> void:

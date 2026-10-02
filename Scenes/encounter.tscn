@@ -44,6 +44,7 @@ texture_margin_bottom = 12.0
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
+points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 unique_name_in_owner = true
@@ -771,7 +772,7 @@ theme_override_font_sizes/font_size = 24
 text = "Pins"
 vertical_alignment = 1
 
-[node name="ConsumableTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=434778826]
+[node name="GumballTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=434778826]
 custom_minimum_size = Vector2(294, 112)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -782,7 +783,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture" unique_id=752597774]
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture" unique_id=752597774]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -794,13 +795,13 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 12
 
-[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture/MarginContainer" unique_id=336247455]
+[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture/MarginContainer" unique_id=336247455]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/ConsumableTexture" unique_id=1568169566]
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture" unique_id=1568169566]
 z_index = -1
 layout_mode = 1
 anchors_preset = -1
@@ -824,8 +825,8 @@ theme_override_font_sizes/font_size = 24
 text = "Conumables"
 vertical_alignment = 1
 
-[node name="Items & Consumables Container" type="HBoxContainer" parent="ShopControl" unique_id=902980653]
-layout_mode = 1
+[node name="Items & Gumballs Container" type="HBoxContainer" parent="." unique_id=902980653]
+z_index = 5
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.892
@@ -840,8 +841,8 @@ grow_vertical = 0
 theme_override_constants/separation = 12
 script = ExtResource("15_cglur")
 
-[node name="Items" type="NinePatchRect" parent="ShopControl/Items & Consumables Container" unique_id=137951340]
-custom_minimum_size = Vector2(448, 0)
+[node name="Pins" type="NinePatchRect" parent="Items & Gumballs Container" unique_id=137951340]
+custom_minimum_size = Vector2(456, 0)
 layout_mode = 2
 texture = ExtResource("11_sutrg")
 patch_margin_left = 2
@@ -849,30 +850,14 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
-[node name="Consumables" type="NinePatchRect" parent="ShopControl/Items & Consumables Container" unique_id=791931762]
+[node name="Gumballs" type="NinePatchRect" parent="Items & Gumballs Container" unique_id=791931762]
+custom_minimum_size = Vector2(132, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 texture = ExtResource("11_sutrg")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ShopControl/Items & Consumables Container/Consumables" unique_id=1897880927]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/Items & Consumables Container/Consumables/MarginContainer" unique_id=375036203]
-layout_mode = 2
-theme_override_constants/separation = 8
 
 [connection signal="mouse_entered" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="EncounterControl/DeckContainer/DeckPanel" to="EncounterControl/DeckContainer/DeckPanel" method="_on_mouse_exited"]
