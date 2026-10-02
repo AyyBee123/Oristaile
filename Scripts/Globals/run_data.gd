@@ -3,7 +3,7 @@ extends Node
 signal money_value_changed(amount: int)
 
 var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
-var deck: Array[CardResource]
+var deck: Array[CardResource] # modified deck for the current run
 var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
 var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
 var draws_per_round: int # number of times the deck panel can be clicked in one round
@@ -41,6 +41,11 @@ func create_deck() -> void:
 	deck.clear() # clear the deck to remove previous deck of cards
 	for card: CardResource in starting_deck.cards: # create a new deck with each of the cards in the selected deck
 		deck.append(card)
+
+
+func set_pins() -> void:
+	for pin in pins:
+		pin.initialize()
 
 
 func add_pin(pin: PinResource, pos: Vector2 = Vector2.ZERO) -> void:

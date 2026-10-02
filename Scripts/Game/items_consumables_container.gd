@@ -8,6 +8,8 @@ func _ready() -> void:
 	SignalBus.pin_added.connect(add_pin)
 	SignalBus.pin_removed.connect(remove_pin)
 	
+	RunData.set_pins()
+	
 	for pin: PinResource in RunData.pins:
 		var found: bool = false
 		
