@@ -5,10 +5,13 @@ extends Control
 @onready var pin_container: HBoxContainer = %PinContainer
 @onready var consumable_container: HBoxContainer = %ConsumableContainer
 @onready var current_money_label: Label = %CurrentMoneyLabel
+@onready var reroll_button: Button = %RerollButton
+@onready var continue_button: Button = %ContinueButton
 
 const CARDS_SOLD: int = 4
 const PINS_SOLD: int = 3
 const CONSUMABLES_SOLD: int = 3
+const REROLL_COST: int = 5
 
 var current_money: float
 
@@ -17,14 +20,17 @@ func set_up_wares() -> void:
 	current_money = RunData.money
 	current_money_label.text = "$%d" % int(current_money)
 	
-	remove_wares(card_container)
-	remove_wares(pin_container)
-	remove_wares(consumable_container)
+	reset_wares()
 	
-	for i in PINS_SOLD:
-		var new_pin: ShopPin = Preloads.SHOP_PIN.instantiate()
-		new_pin.purchased.connect(purchase_pin.bind(new_pin))
-		pin_container.add_child(new_pin)
+	reroll_button.get_node("CostLabel").text = "$%d" % REROLL_COST
+	reroll_button.pressed.connect(func(): 
+		if RunData.money < REROLL_COST:
+			return
+		reset_wares()
+		reroll_button.disabled = true
+		RunData.money -= REROLL_COST
+	)
+	continue_button.pressed.connect(func(): pass)
 	
 	RunData.money_value_changed.connect(func(v: int):
 		var money_tween: Tween = create_tween()
@@ -36,6 +42,17 @@ func set_up_wares() -> void:
 
 func _process(_delta: float) -> void:
 	current_money_label.text = "$%d" % int(current_money)
+
+
+func reset_wares() -> void:
+	remove_wares(card_container)
+	remove_wares(pin_container)
+	remove_wares(consumable_container)
+	
+	for i in PINS_SOLD:
+		var new_pin: ShopPin = Preloads.SHOP_PIN.instantiate()
+		new_pin.purchased.connect(purchase_pin.bind(new_pin))
+		pin_container.add_child(new_pin)
 
 
 func remove_wares(container: Container):
