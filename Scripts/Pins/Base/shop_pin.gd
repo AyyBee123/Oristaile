@@ -10,9 +10,8 @@ var price: int:
 
 
 func _ready() -> void:
-	if not pin:
-		pin = RunData.pin_pool.get_random_pin()
-	texture = pin.texture
+	super._ready()
+	price = ItemData.PIN_PRICES.get(pin.rarity, 5)
 
 
 func _on_mouse_entered() -> void:
