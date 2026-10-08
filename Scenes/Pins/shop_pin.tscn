@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://h46vylmp7xr"]
+
+[ext_resource type="Texture2D" uid="uid://cg5w5s1jx6xsa" path="res://Assets/Sprites/Pins/Blue Quill.png" id="1_ia0pa"]
+[ext_resource type="Script" uid="uid://d3sj0gsejuopo" path="res://Scripts/Pins/Base/shop_pin.gd" id="2_ia0pa"]
+[ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="3_walpc"]
+
+[node name="Shop Pin" type="TextureRect" unique_id=22210380]
+custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 2
+texture = ExtResource("1_ia0pa")
+script = ExtResource("2_ia0pa")
+
+[node name="PriceLabel" type="Label" parent="." unique_id=839774217]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -12.0
+offset_right = 14.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_walpc")
+theme_override_font_sizes/font_size = 28
+text = "$0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c2dfbyhxxa7wm"]
 
 [ext_resource type="Script" uid="uid://beujmg6mxniw4" path="res://Scripts/Pins/Base/pin_scene.gd" id="1_grmy2"]
+[ext_resource type="Texture2D" uid="uid://cg5w5s1jx6xsa" path="res://Assets/Sprites/Pins/Blue Quill.png" id="1_p22sa"]
 
 [node name="Pin" type="TextureRect" unique_id=22210380]
 custom_minimum_size = Vector2(64, 64)
@@ -10,6 +11,7 @@ offset_bottom = 64.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 2
+texture = ExtResource("1_p22sa")
 script = ExtResource("1_grmy2")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

@@ -5,6 +5,7 @@ const CARD = preload("uid://b7vbqnm071427")
 const CARD_TEMPLATE = preload("uid://b6qwjhd8kh2k6")
 const BLANK_CARD = preload("uid://da2c7evu4kmtt")
 const PIN_CONTROL = preload("uid://c2dfbyhxxa7wm")
+const SHOP_PIN = preload("uid://h46vylmp7xr")
 
 ## Decks
 const STANDARD_DECK = preload("uid://bytne242bwqw5")
