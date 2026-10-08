@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/Misc/Item Background.png" id="11_sutrg"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
+[ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/Misc/Button Disabled.png" id="14_djnds"]
 [ext_resource type="Script" uid="uid://xtb4403oqtsn" path="res://Scripts/Game/items_consumables_container.gd" id="15_cglur"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h11f"]
@@ -56,7 +57,6 @@ texture_margin_bottom = 12.0
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
-points_to_win = 100
 
 [node name="EncounterControl" type="Control" parent="." unique_id=1977854810]
 unique_name_in_owner = true
@@ -868,7 +868,7 @@ anchor_right = 0.027
 anchor_bottom = 0.036000002
 offset_left = 0.061999798
 offset_top = 0.96799994
-offset_right = 117.062
+offset_right = 87.062
 offset_bottom = 21.968
 grow_horizontal = 2
 grow_vertical = 2
@@ -879,7 +879,7 @@ theme_override_constants/shadow_offset_y = -1
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("6_askxb")
 theme_override_font_sizes/font_size = 24
-text = "Conumables"
+text = "Gumballs"
 vertical_alignment = 1
 
 [node name="Items & Gumballs Container" type="HBoxContainer" parent="." unique_id=902980653]
