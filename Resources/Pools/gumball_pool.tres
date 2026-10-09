@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GumballPool" format=3 uid="uid://paqq2cfryjt4"]
+
+[ext_resource type="Script" uid="uid://dxr16ylm8asdj" path="res://Scripts/Resources/gumball_resource.gd" id="1_e52g5"]
+[ext_resource type="Resource" uid="uid://vx4jhoy85x5s" path="res://Resources/Gumballs/grey_gumball.tres" id="2_4ktlb"]
+[ext_resource type="Script" uid="uid://vs3bujw34c31" path="res://Scripts/Resources/gumball_pool.gd" id="2_g402i"]
+[ext_resource type="Resource" uid="uid://c8shiglarcr6c" path="res://Resources/Gumballs/red_gumball.tres" id="3_3t0v1"]
+
+[resource]
+script = ExtResource("2_g402i")
+gumball_folder = "res://Resources/Gumballs"
+gumballs = Array[ExtResource("1_e52g5")]([ExtResource("2_4ktlb"), ExtResource("3_3t0v1")])
+full_pool = Array[ExtResource("1_e52g5")]([ExtResource("2_4ktlb"), ExtResource("3_3t0v1")])
+metadata/_custom_type_script = "uid://bf2luo3ublg0s"

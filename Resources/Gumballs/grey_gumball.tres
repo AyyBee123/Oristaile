@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GumballResource" format=3 uid="uid://vx4jhoy85x5s"]
+
+[ext_resource type="Script" uid="uid://dxr16ylm8asdj" path="res://Scripts/Resources/gumball_resource.gd" id="1_unbrg"]
+[ext_resource type="Texture2D" uid="uid://bmjhj4rh6ortv" path="res://Assets/Sprites/Gumballs/Gumball Grey.png" id="2_unbrg"]
+
+[resource]
+script = ExtResource("1_unbrg")
+gumball_name = "Grey Gumball"
+rarity = 1
+texture = ExtResource("2_unbrg")
+metadata/_custom_type_script = "uid://dxr16ylm8asdj"

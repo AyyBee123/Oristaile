@@ -53,6 +53,11 @@ func reset_wares() -> void:
 		var new_pin: ShopPin = Preloads.SHOP_PIN.instantiate()
 		new_pin.purchased.connect(purchase_pin.bind(new_pin))
 		pin_container.add_child(new_pin)
+	
+	for i in CONSUMABLES_SOLD:
+		var new_gumball: ShopGumball = Preloads.SHOP_GUMBALL.instantiate()
+		new_gumball.purchased.connect(purchase_gumball.bind(new_gumball))
+		consumable_container.add_child(new_gumball)
 
 
 func remove_wares(container: Container):
@@ -69,3 +74,13 @@ func purchase_pin(pin: ShopPin) -> void:
 	pin_container.move_child(empty, index)
 	
 	RunData.money -= pin.price
+
+
+func purchase_gumball(gumball: ShopGumball) -> void:
+	var index: int = gumball.get_index()
+	var empty: Control = Control.new()
+	empty.custom_minimum_size = gumball.custom_minimum_size
+	consumable_container.add_child(empty)
+	consumable_container.move_child(empty, index)
+	
+	RunData.money -= gumball.price

@@ -3,12 +3,10 @@
 [ext_resource type="Script" uid="uid://b4vgq8aqoitov" path="res://Scripts/Resources/pin_resource.gd" id="1_a2wg1"]
 [ext_resource type="Resource" uid="uid://b5fs08btc20mm" path="res://Resources/Pins/blue_quill.tres" id="2_dqey3"]
 [ext_resource type="Script" uid="uid://bf2luo3ublg0s" path="res://Scripts/Resources/pin_pool.gd" id="2_xta26"]
-[ext_resource type="Resource" uid="uid://bq8fw4js6jei3" path="res://Resources/Pins/blue_quill_common.tres" id="3_x6iic"]
-[ext_resource type="Resource" uid="uid://8v5xelr7o3m6" path="res://Resources/Pins/blue_quill_legendary.tres" id="4_ayxn8"]
 
 [resource]
 script = ExtResource("2_xta26")
 pin_folder = "res://Resources/Pins"
-pins = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3"), ExtResource("3_x6iic"), ExtResource("4_ayxn8")])
-full_pool = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3"), ExtResource("3_x6iic"), ExtResource("4_ayxn8")])
+pins = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3")])
+full_pool = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3")])
 metadata/_custom_type_script = "uid://bf2luo3ublg0s"

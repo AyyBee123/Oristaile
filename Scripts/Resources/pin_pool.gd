@@ -20,22 +20,29 @@ func refill_pin_pool(rarity: PinResource.Rarity) -> void:
 
 
 func get_random_pin() -> PinResource:
-	var rarity: PinResource.Rarity = get_random_rarity()
+	var rarity: PinResource.Rarity = get_random_pin_rarity()
 	var available_pins: Array[PinResource] = get_pins_by_rarity(rarity)
 	
 	if available_pins.is_empty():
 		refill_pin_pool(rarity)
 		available_pins = get_pins_by_rarity(rarity)
 	
-	var selected_pin: PinResource = available_pins.pick_random()
+	if available_pins.is_empty(): # this will never be called later
+		return get_random_pin()
+	
+	var random_index: int = RunData.rng.randi_range(0, available_pins.size() - 1)
+	var selected_pin: PinResource = available_pins[random_index]
 	pins.erase(selected_pin)
+	
+	if selected_pin == null: # this will never be called later
+		return get_random_pin()
 	
 	return selected_pin
 
 
-func get_random_rarity() -> PinResource.Rarity:
+func get_random_pin_rarity() -> PinResource.Rarity:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-	var roll: float = randf_range(0.0, total_weight)
+	var roll: float = RunData.rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
 		return PinResource.Rarity.COMMON
