@@ -32,6 +32,8 @@ var held_card: Card = null
 var draw_is_on_cooldown: bool = false
 var has_won: bool = false
 var can_continue: bool = false
+var pending_draws: int = 0
+var is_drawing: bool = false
 
 var current_points: float = 0.0
 var current_draws: int
@@ -46,7 +48,10 @@ var controller_slot_index: int = 0
 
 func _ready() -> void:
 	encounter_control.visible = true
-	shop_control.visible = false
+	shop_control.visible = not encounter_control.visible
+	
+	if shop_control.visible:
+		transition_to_shop()
 	
 	current_draws = RunData.draws_per_round
 	points_progress_bar.max_value = points_to_win
@@ -65,6 +70,7 @@ func _ready() -> void:
 	current_points_label.text = " %d / %d" % [0, points_to_win]
 	
 	SignalBus.card_slot_changed.connect(_on_card_slot_changed)
+	SignalBus.draw_card.connect(draw_card)
 	
 	for card in RunData.deck:
 		current_deck.append(card.duplicate())
@@ -110,8 +116,6 @@ func _on_deck_panel_pressed() -> void:
 	
 	for i in RunData.cards_to_draw:
 		draw_card()
-		if i < RunData.cards_to_draw - 1:
-			await get_tree().create_timer(DRAW_BUFFER).timeout
 	
 	draw_is_on_cooldown = false
 	check_for_loss()
@@ -147,33 +151,50 @@ func set_card_slot(slot: Slot) -> void:
 
 
 func draw_card() -> void:
-	if has_won: return
-	if current_deck.is_empty(): return
+	pending_draws += 1
 	
-	var index = RunData.rng.randi_range(0, current_deck.size() - 1)
-	var card_res: CardResource = current_deck.pop_at(index)
-	var card: Card = Preloads.CARD.instantiate()
+	if is_drawing:
+		return
 	
-	card.is_playing_card = true
+	is_drawing = true
 	
-	card.held.connect(grab_card.bind(card))
-	card.released.connect(release_card.bind(card))
+	while pending_draws > 0:
+		pending_draws -= 1
+		
+		if has_won or current_deck.is_empty():
+			pending_draws = 0
+			break
+		
+		if current_deck.is_empty(): return
+		
+		var index = RunData.rng.randi_range(0, current_deck.size() - 1)
+		var card_res: CardResource = current_deck.pop_at(index)
+		var card: Card = Preloads.CARD.instantiate()
+		
+		card.is_playing_card = true
+		
+		card.held.connect(grab_card.bind(card))
+		card.released.connect(release_card.bind(card))
+		
+		card.card_res = card_res
+		card.suit = card_res.suit
+		card.number = card_res.number
+		
+		card.z_index = 2
+		
+		if has_won:
+			card.disable_input()
+		
+		current_hand.append(card_res)
+		hand.add_child(card)
+		
+		card.global_position = deck_panel.global_position
+		
+		calculate_hand()
 	
-	card.card_res = card_res
-	card.suit = card_res.suit
-	card.number = card_res.number
+		await get_tree().create_timer(DRAW_BUFFER).timeout
 	
-	card.z_index = 2
-	
-	if has_won:
-		card.disable_input()
-	
-	current_hand.append(card_res)
-	hand.add_child(card)
-	
-	card.global_position = deck_panel.global_position
-	
-	calculate_hand()
+	is_drawing = false
 
 
 func grab_card(card: Card) -> void:

@@ -26,3 +26,9 @@ func _on_focus_entered() -> void:
 
 func _on_focus_exited() -> void:
 	pass
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("accept") and gumball:
+		gumball.use()
+		queue_free()
