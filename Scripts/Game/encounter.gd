@@ -114,6 +114,10 @@ func _on_deck_panel_pressed() -> void:
 	for i in RunData.cards_to_draw:
 		draw_card()
 	
+	if current_draws <= 0:
+		deck_panel.focus_mode = Control.FOCUS_NONE
+		switch_to_focus_navigation()
+	
 	check_for_loss()
 
 
@@ -191,6 +195,12 @@ func draw_card() -> void:
 		await get_tree().create_timer(DRAW_BUFFER).timeout
 	
 	is_drawing = false
+	
+	if get_viewport().gui_get_focus_owner():
+		return
+	
+	if hand.get_child_count() > 0:
+		hand.get_child(0).grab_focus()
 
 
 func grab_card(card: Card) -> void:
