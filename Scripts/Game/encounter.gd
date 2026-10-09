@@ -432,11 +432,13 @@ func switch_to_focus_navigation() -> void:
 	if controller_mode: return
 	controller_mode = true
 	
-	if not get_viewport().gui_get_focus_owner():
-		if hand.get_child_count() > 0:
-			hand.get_child(0).grab_focus()
-		else:
-			deck_panel.grab_focus()
+	if get_viewport().gui_get_focus_owner():
+		return
+	
+	if hand.get_child_count() > 0:
+		hand.get_child(0).grab_focus()
+	else:
+		deck_panel.grab_focus()
 	
 	get_viewport().set_input_as_handled()
 
