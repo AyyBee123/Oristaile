@@ -29,7 +29,6 @@ var current_hand: Array[CardResource]
 
 var hovered_card: Card = null
 var held_card: Card = null
-var draw_is_on_cooldown: bool = false
 var has_won: bool = false
 var can_continue: bool = false
 var pending_draws: int = 0
@@ -102,7 +101,7 @@ func _process(delta: float) -> void:
 
 func _on_deck_panel_pressed() -> void:
 	if has_won: return
-	if current_draws <= 0 or draw_is_on_cooldown: return
+	if current_draws <= 0: return
 	
 	deck_panel.draws_left = current_draws
 	
@@ -112,12 +111,9 @@ func _on_deck_panel_pressed() -> void:
 	
 	draws_label.text = "%d / %d" % [current_draws, RunData.draws_per_round]
 	
-	draw_is_on_cooldown = true
-	
 	for i in RunData.cards_to_draw:
 		draw_card()
 	
-	draw_is_on_cooldown = false
 	check_for_loss()
 
 
@@ -278,9 +274,11 @@ func calculate_hand(animated: bool = true) -> void:
 				card.tween.kill()
 				card.tween = null
 			card.tween = card.create_tween()
+			card.tween.tween_callback(func(): card.mouse_filter = Control.MOUSE_FILTER_IGNORE)
 			card.tween.set_ease(Tween.EASE_OUT)
 			card.tween.set_trans(Tween.TRANS_CUBIC)
 			card.tween.tween_property(card, "position", pos, 0.333)
+			card.tween.tween_callback(func(): card.mouse_filter = Control.MOUSE_FILTER_PASS)
 		else:
 			card.position = pos
 	
@@ -434,8 +432,11 @@ func switch_to_focus_navigation() -> void:
 	if controller_mode: return
 	controller_mode = true
 	
-	if hand.get_child_count() > 0:
-		hand.get_child(0).grab_focus()
+	if not get_viewport().gui_get_focus_owner():
+		if hand.get_child_count() > 0:
+			hand.get_child(0).grab_focus()
+		else:
+			deck_panel.grab_focus()
 	
 	get_viewport().set_input_as_handled()
 
