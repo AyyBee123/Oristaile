@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpcqv0xgxxpq"
-path="res://.godot/imported/Card Deck.png-0f530bbe9ff846164d559d76eb8d039e.ctex"
+uid="uid://b30xdnaedrfbq"
+path="res://.godot/imported/Button Green.png-1798d1552e1626fae251eacc7fae94e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Misc/Card Deck.png"
-dest_files=["res://.godot/imported/Card Deck.png-0f530bbe9ff846164d559d76eb8d039e.ctex"]
+source_file="res://Assets/Sprites/UI/Button Green.png"
+dest_files=["res://.godot/imported/Button Green.png-1798d1552e1626fae251eacc7fae94e4.ctex"]
 
 [params]
 

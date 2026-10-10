@@ -2,21 +2,23 @@
 
 [ext_resource type="Script" uid="uid://cr5dt1lmi5wov" path="res://Scripts/Game/encounter.gd" id="1_wwxys"]
 [ext_resource type="PackedScene" uid="uid://cyla6va0jap7f" path="res://Scenes/Card/card_slot.tscn" id="2_hoo3l"]
-[ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/Misc/Card Deck.png" id="3_gitas"]
+[ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/UI/Card Deck.png" id="3_gitas"]
 [ext_resource type="Script" uid="uid://bi31mce6k4sr7" path="res://Scripts/Game/deck_panel.gd" id="4_42tis"]
 [ext_resource type="Texture2D" uid="uid://dnjtcfdo2yon6" path="res://Assets/Sprites/Cards/Back/Red Back.png" id="5_bd0u2"]
 [ext_resource type="BitMap" uid="uid://cooi0qnm23wrf" path="res://Assets/Sprites/Cards/Misc/Back Mask.png" id="5_hoo3l"]
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="6_askxb"]
 [ext_resource type="Texture2D" uid="uid://8s4q061hfurn" path="res://Assets/Sprites/Cards/Back/Back Highlight.png" id="6_pswyi"]
-[ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/Misc/Progress Bar.png" id="7_42tis"]
-[ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/Misc/Progress Bar Fill.png" id="8_pswyi"]
-[ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/Misc/Button.png" id="11_6b75a"]
+[ext_resource type="Texture2D" uid="uid://cyf67b203j626" path="res://Assets/Sprites/UI/Progress Bar.png" id="7_42tis"]
+[ext_resource type="Texture2D" uid="uid://byhc55r1o36yl" path="res://Assets/Sprites/UI/Progress Bar Fill.png" id="8_pswyi"]
+[ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/UI/Button.png" id="11_6b75a"]
 [ext_resource type="Script" uid="uid://cgdy7at4b4djf" path="res://Scripts/Game/shop.gd" id="11_lu83v"]
-[ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/Misc/Item Background.png" id="11_sutrg"]
-[ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/Misc/Button Pressed.png" id="12_sutrg"]
+[ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/UI/Item Background.png" id="11_sutrg"]
+[ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/UI/Button Pressed.png" id="12_sutrg"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
-[ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/Misc/Button Disabled.png" id="14_djnds"]
+[ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/UI/Button Disabled.png" id="14_djnds"]
 [ext_resource type="Script" uid="uid://xtb4403oqtsn" path="res://Scripts/Game/items_consumables_container.gd" id="15_cglur"]
+[ext_resource type="Texture2D" uid="uid://b30xdnaedrfbq" path="res://Assets/Sprites/UI/Button Green.png" id="16_2u3ec"]
+[ext_resource type="Texture2D" uid="uid://um140kr3s406" path="res://Assets/Sprites/UI/Button Green Pressed.png" id="17_pejwv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h11f"]
 texture = ExtResource("11_6b75a")
@@ -48,12 +50,30 @@ texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sutrg"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2u3ec"]
-texture = ExtResource("14_djnds")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xybq1"]
+texture = ExtResource("16_2u3ec")
 texture_margin_left = 12.0
 texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8nje"]
+texture = ExtResource("17_pejwv")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gahy8"]
+texture = ExtResource("16_2u3ec")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_djnds"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8v3p0"]
 
 [node name="Encounter" type="CanvasLayer" unique_id=1945341202]
 script = ExtResource("1_wwxys")
@@ -747,11 +767,11 @@ disabled_color = Color(0.68857026, 0.56565255, 0.34574345, 1)
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cglur")
-theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_2u3ec")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xybq1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v8nje")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gahy8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_djnds")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8v3p0")
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/ContinueButton" unique_id=1171665098]
 layout_mode = 1
