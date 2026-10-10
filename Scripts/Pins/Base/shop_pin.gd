@@ -23,11 +23,11 @@ func _on_mouse_exited() -> void:
 
 
 func _on_focus_entered() -> void:
-	pass
+	material.set_shader_parameter("set_color", true)
 
 
 func _on_focus_exited() -> void:
-	pass
+	material.set_shader_parameter("set_color", false)
 
 
 func _gui_input(event: InputEvent) -> void:

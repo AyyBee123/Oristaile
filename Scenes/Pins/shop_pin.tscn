@@ -1,10 +1,19 @@
 [gd_scene format=3 uid="uid://h46vylmp7xr"]
 
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="1_042lo"]
 [ext_resource type="Texture2D" uid="uid://cg5w5s1jx6xsa" path="res://Assets/Sprites/Pins/Blue Quill.png" id="1_ia0pa"]
 [ext_resource type="Script" uid="uid://d3sj0gsejuopo" path="res://Scripts/Pins/Base/shop_pin.gd" id="2_ia0pa"]
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="3_walpc"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8nje"]
+resource_local_to_scene = true
+shader = ExtResource("1_042lo")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
 [node name="Shop Pin" type="TextureRect" unique_id=22210380]
+material = SubResource("ShaderMaterial_v8nje")
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 offset_right = 64.0

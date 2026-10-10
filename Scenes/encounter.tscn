@@ -14,12 +14,21 @@
 [ext_resource type="Script" uid="uid://cgdy7at4b4djf" path="res://Scripts/Game/shop.gd" id="11_lu83v"]
 [ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/UI/Item Background.png" id="11_sutrg"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/UI/Button Pressed.png" id="12_sutrg"]
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="12_v8nje"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="13_sutrg"]
 [ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/UI/Button Disabled.png" id="14_djnds"]
 [ext_resource type="Script" uid="uid://xtb4403oqtsn" path="res://Scripts/Game/items_consumables_container.gd" id="15_cglur"]
 [ext_resource type="Texture2D" uid="uid://b30xdnaedrfbq" path="res://Assets/Sprites/UI/Button Green.png" id="16_2u3ec"]
 [ext_resource type="Texture2D" uid="uid://um140kr3s406" path="res://Assets/Sprites/UI/Button Green Pressed.png" id="17_pejwv"]
 [ext_resource type="Texture2D" uid="uid://ds8o422h5u6jb" path="res://Assets/Sprites/UI/Button Green Disabled.png" id="18_pejwv"]
+[ext_resource type="Script" uid="uid://omchbublas43" path="res://Scripts/Misc/button_highlight.gd" id="20_gahy8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5h11f"]
+resource_local_to_scene = true
+shader = ExtResource("12_v8nje")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5h11f"]
 texture = ExtResource("11_6b75a")
@@ -50,6 +59,13 @@ texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sutrg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8v3p0"]
+resource_local_to_scene = true
+shader = ExtResource("12_v8nje")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xybq1"]
 texture = ExtResource("16_2u3ec")
@@ -721,6 +737,7 @@ alignment = 1
 
 [node name="RerollButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=2040147417]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5h11f")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_5h11f")
@@ -728,6 +745,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_cglur")
 theme_override_styles/hover = SubResource("StyleBoxTexture_t6s0h")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_216y6")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sutrg")
+script = ExtResource("20_gahy8")
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/RerollButton" unique_id=2130533405]
 layout_mode = 1
@@ -771,6 +789,7 @@ disabled_color = Color(0.68857026, 0.56565255, 0.34574345, 1)
 
 [node name="ContinueButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=1047107760]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8v3p0")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_xybq1")
@@ -778,6 +797,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_v8nje")
 theme_override_styles/hover = SubResource("StyleBoxTexture_gahy8")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_2u3ec")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8v3p0")
+script = ExtResource("20_gahy8")
 
 [node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/ContinueButton" unique_id=1171665098]
 layout_mode = 1

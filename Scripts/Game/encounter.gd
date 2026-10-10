@@ -299,8 +299,6 @@ func calculate_hand(animated: bool = true) -> void:
 		var card: Card = cards[i]
 		card.focus_neighbor_left = (cards[i - 1].get_path() if i > 0 else NodePath())
 		card.focus_neighbor_right = (cards[i + 1].get_path() if i < cards.size() - 1 else NodePath())
-		card.focus_neighbor_bottom = NodePath()
-		card.focus_neighbor_top = NodePath()
 
 
 func get_card_slot() -> Slot:
@@ -405,6 +403,7 @@ func transition_to_shop() -> void:
 		encounter_control.visible = false
 	)
 	shop_tween.tween_property(self, "offset:y", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	shop_tween.tween_callback(func(): %RerollButton.grab_focus())
 
 
 func _input(event: InputEvent) -> void:
@@ -444,6 +443,7 @@ func _input(event: InputEvent) -> void:
 
 func switch_to_focus_navigation() -> void:
 	if controller_mode and get_viewport().gui_get_focus_owner(): return
+	if held_card: return
 	controller_mode = true
 	
 	if hand.get_child_count() > 0:

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://8pp0m71bnvx6"]
 
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="1_7vx4r"]
 [ext_resource type="Texture2D" uid="uid://5jw7rwnfvc3d" path="res://Assets/Sprites/Gumballs/Gumball Red.png" id="1_mkaw8"]
 [ext_resource type="Script" uid="uid://bx88ro82uqirc" path="res://Scripts/Gumballs/Base/gumball_scene.gd" id="1_ta0rv"]
 [ext_resource type="Texture2D" uid="uid://rvm6kt0263ei" path="res://Assets/Sprites/UI/Description Background.png" id="3_7vx4r"]
@@ -12,30 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://b0fh82qc27me7" path="res://Assets/Sprites/UI/Button Small Pressed.png" id="10_mkaw8"]
 [ext_resource type="Texture2D" uid="uid://3jhacodni8nb" path="res://Assets/Sprites/UI/Button Small Disabled.png" id="11_7vx4r"]
 
-[sub_resource type="Shader" id="Shader_mkaw8"]
-code = "shader_type canvas_item;
-
-uniform vec4 og_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform vec4 new_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
-uniform bool set_color = false;
-
-void fragment() {
-	vec4 curr_color = texture(TEXTURE, UV);
-
-    // define a threshold for the comparison
-	uvec4 uint_curr_color = uvec4(round(curr_color * 255.0));
-	uvec4 uint_og_color = uvec4(round(og_color * 255.0));
-	if (uint_curr_color == uint_og_color && set_color) {
-		COLOR = new_color;
-	}
-
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xybq1"]
 resource_local_to_scene = true
-shader = SubResource("Shader_mkaw8")
+shader = ExtResource("1_7vx4r")
 shader_parameter/og_color = Color(0, 0, 0, 1)
-shader_parameter/new_color = Color(1, 0.94509804, 0.15294118, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
 shader_parameter/set_color = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhdi4"]

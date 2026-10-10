@@ -27,6 +27,10 @@ func set_up_wares() -> void:
 		if RunData.money < REROLL_COST:
 			return
 		reset_wares()
+		var encounter: Encounter = get_tree().current_scene
+		if encounter.controller_mode:
+			if focus_neighbor_bottom:
+				encounter.get_node(focus_neighbor_bottom).grab_focus()
 		reroll_button.disabled = true
 		RunData.money -= REROLL_COST
 	)
