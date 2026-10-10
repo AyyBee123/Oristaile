@@ -1,5 +1,7 @@
 class_name ShopGumball
-extends GumballControl
+extends TextureRect
+
+@export var gumball: GumballResource
 
 signal purchased(index: int)
 
@@ -10,7 +12,9 @@ var price: int:
 
 
 func _ready() -> void:
-	super._ready()
+	if not gumball:
+		gumball = RunData.gumball_pool.get_random_gumball()
+	texture = gumball.texture
 	price = ItemData.GUMBALL_PRICES.get(gumball.rarity, 5)
 
 

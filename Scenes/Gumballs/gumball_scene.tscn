@@ -1,8 +1,105 @@
 [gd_scene format=3 uid="uid://8pp0m71bnvx6"]
 
+[ext_resource type="Texture2D" uid="uid://5jw7rwnfvc3d" path="res://Assets/Sprites/Gumballs/Gumball Red.png" id="1_mkaw8"]
 [ext_resource type="Script" uid="uid://bx88ro82uqirc" path="res://Scripts/Gumballs/Base/gumball_scene.gd" id="1_ta0rv"]
+[ext_resource type="Texture2D" uid="uid://rvm6kt0263ei" path="res://Assets/Sprites/UI/Description Background.png" id="3_7vx4r"]
+[ext_resource type="Texture2D" uid="uid://bgwunr5urjead" path="res://Assets/Sprites/UI/Button Green Small.png" id="4_45me3"]
+[ext_resource type="Texture2D" uid="uid://cgd65twvv4ob1" path="res://Assets/Sprites/UI/Button Green Small Pressed.png" id="5_0gm71"]
+[ext_resource type="Texture2D" uid="uid://d38j0owi60xfm" path="res://Assets/Sprites/UI/Button Green Small Disabled.png" id="6_yylae"]
+[ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="7_jd62w"]
+[ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="8_4t34f"]
+[ext_resource type="Texture2D" uid="uid://djns6mnob0jm2" path="res://Assets/Sprites/UI/Button Small.png" id="9_7vx4r"]
+[ext_resource type="Texture2D" uid="uid://b0fh82qc27me7" path="res://Assets/Sprites/UI/Button Small Pressed.png" id="10_mkaw8"]
+[ext_resource type="Texture2D" uid="uid://3jhacodni8nb" path="res://Assets/Sprites/UI/Button Small Disabled.png" id="11_7vx4r"]
+
+[sub_resource type="Shader" id="Shader_mkaw8"]
+code = "shader_type canvas_item;
+
+uniform vec4 og_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 new_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform bool set_color = false;
+
+void fragment() {
+	vec4 curr_color = texture(TEXTURE, UV);
+
+    // define a threshold for the comparison
+	uvec4 uint_curr_color = uvec4(round(curr_color * 255.0));
+	uvec4 uint_og_color = uvec4(round(og_color * 255.0));
+	if (uint_curr_color == uint_og_color && set_color) {
+		COLOR = new_color;
+	}
+
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xybq1"]
+resource_local_to_scene = true
+shader = SubResource("Shader_mkaw8")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94509804, 0.15294118, 1)
+shader_parameter/set_color = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhdi4"]
+texture = ExtResource("4_45me3")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0l8x"]
+texture = ExtResource("5_0gm71")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xok2"]
+texture = ExtResource("4_45me3")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0sq1"]
+texture = ExtResource("6_yylae")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bq1e1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ym3vn"]
+texture = ExtResource("9_7vx4r")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wvan6"]
+texture = ExtResource("10_mkaw8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cj1on"]
+texture = ExtResource("9_7vx4r")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7lli2"]
+texture = ExtResource("11_7vx4r")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c32w1"]
 
 [node name="Gumball" type="TextureRect" unique_id=22210380]
+material = SubResource("ShaderMaterial_xybq1")
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 offset_right = 64.0
@@ -10,10 +107,103 @@ offset_bottom = 64.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 2
+texture = ExtResource("1_mkaw8")
 script = ExtResource("1_ta0rv")
+
+[node name="Use Popup" type="NinePatchRect" parent="." unique_id=1578193037]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.656
+anchor_right = 1.0
+anchor_bottom = 0.344
+offset_top = -0.01599884
+offset_bottom = -0.016000748
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("3_7vx4r")
+
+[node name="MarginContainer" type="MarginContainer" parent="Use Popup" unique_id=2093735490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Use Popup/MarginContainer" unique_id=315087021]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="UseButton" type="Button" parent="Use Popup/MarginContainer/VBoxContainer" unique_id=1271844365]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_dhdi4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y0l8x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8xok2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_p0sq1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bq1e1")
+
+[node name="Label" type="Label" parent="Use Popup/MarginContainer/VBoxContainer/UseButton" unique_id=1471470207]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("7_jd62w")
+theme_override_font_sizes/font_size = 12
+text = "Use"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_4t34f")
+
+[node name="DiscardButton" type="Button" parent="Use Popup/MarginContainer/VBoxContainer" unique_id=506200704]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_ym3vn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wvan6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cj1on")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7lli2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c32w1")
+
+[node name="Label" type="Label" parent="Use Popup/MarginContainer/VBoxContainer/DiscardButton" unique_id=1572073206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("7_jd62w")
+theme_override_font_sizes/font_size = 12
+text = "Discard"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_4t34f")
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Use Popup/MarginContainer/VBoxContainer/UseButton" to="." method="_on_use_button_pressed"]
+[connection signal="pressed" from="Use Popup/MarginContainer/VBoxContainer/DiscardButton" to="." method="_on_discard_button_pressed"]
