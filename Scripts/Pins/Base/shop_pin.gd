@@ -30,7 +30,7 @@ func _on_focus_exited() -> void:
 	pass
 
 
-func _on_gui_input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept") and RunData.money >= price:
 		RunData.add_pin(pin, global_position)
 		purchased.emit()

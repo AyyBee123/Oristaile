@@ -23,6 +23,10 @@ var gumballs: Array[GumballResource]
 var pin_pool: PinPool
 var gumball_pool: GumballPool
 
+var encounter_number: int
+enum GameState { ENCOUNTER, SHOP }
+var current_state: GameState = GameState.ENCOUNTER
+
 
 func _init() -> void: # reset is in _init for now; it should instead be called when starting a new run
 	reset()
@@ -41,6 +45,7 @@ func reset() -> void:
 	gumballs.clear()
 	pin_pool = Preloads.PIN_POOL.duplicate()
 	gumball_pool = Preloads.GUMBALL_POOL.duplicate()
+	gumballs.append(preload("uid://c8shiglarcr6c").duplicate())
 
 
 func create_deck() -> void:

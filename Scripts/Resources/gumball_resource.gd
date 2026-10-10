@@ -24,3 +24,4 @@ func initialize() -> void:
 func use() -> void:
 	if behaviour:
 		behaviour.use()
+	RunData.remove_gumball(self)

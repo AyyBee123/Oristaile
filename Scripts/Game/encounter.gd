@@ -47,6 +47,7 @@ var controller_slot_index: int = 0
 
 func _ready() -> void:
 	encounter_control.visible = true
+	RunData.current_state = RunData.GameState.ENCOUNTER
 	shop_control.visible = not encounter_control.visible
 	
 	if shop_control.visible:
@@ -394,6 +395,7 @@ func win() -> void:
 
 
 func transition_to_shop() -> void:
+	RunData.current_state = RunData.GameState.SHOP
 	shop_control.set_up_wares()
 	var shop_tween: Tween = create_tween()
 	shop_tween.tween_callback(func():
