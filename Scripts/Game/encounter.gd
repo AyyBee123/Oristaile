@@ -46,8 +46,8 @@ var controller_slot_index: int = 0
 
 
 func _ready() -> void:
-	encounter_control.visible = true
 	RunData.current_state = RunData.GameState.ENCOUNTER
+	encounter_control.visible = true
 	shop_control.visible = not encounter_control.visible
 	
 	if shop_control.visible:
@@ -299,6 +299,8 @@ func calculate_hand(animated: bool = true) -> void:
 		var card: Card = cards[i]
 		card.focus_neighbor_left = (cards[i - 1].get_path() if i > 0 else NodePath())
 		card.focus_neighbor_right = (cards[i + 1].get_path() if i < cards.size() - 1 else NodePath())
+		card.focus_neighbor_bottom = NodePath()
+		card.focus_neighbor_top = NodePath()
 
 
 func get_card_slot() -> Slot:
@@ -441,15 +443,12 @@ func _input(event: InputEvent) -> void:
 
 
 func switch_to_focus_navigation() -> void:
-	if controller_mode: return
+	if controller_mode and get_viewport().gui_get_focus_owner(): return
 	controller_mode = true
-	
-	if get_viewport().gui_get_focus_owner():
-		return
 	
 	if hand.get_child_count() > 0:
 		hand.get_child(0).grab_focus()
-	else:
+	elif deck_panel.draws_left > 0:
 		deck_panel.grab_focus()
 	
 	get_viewport().set_input_as_handled()
