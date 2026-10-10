@@ -33,7 +33,7 @@ func reset() -> void:
 	rng.randomize()
 	create_deck()
 	cards_to_draw_at_start = 7
-	cards_to_draw = 3
+	cards_to_draw = 2
 	draws_per_round = 3
 	gumball_capacity = 2
 	money = 10
