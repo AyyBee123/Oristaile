@@ -9,11 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://d38j0owi60xfm" path="res://Assets/Sprites/UI/Button Green Small Disabled.png" id="6_yylae"]
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="7_jd62w"]
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="8_4t34f"]
+[ext_resource type="Script" uid="uid://omchbublas43" path="res://Scripts/Misc/button_highlight.gd" id="8_45me3"]
 [ext_resource type="Texture2D" uid="uid://djns6mnob0jm2" path="res://Assets/Sprites/UI/Button Small.png" id="9_7vx4r"]
 [ext_resource type="Texture2D" uid="uid://b0fh82qc27me7" path="res://Assets/Sprites/UI/Button Small Pressed.png" id="10_mkaw8"]
 [ext_resource type="Texture2D" uid="uid://3jhacodni8nb" path="res://Assets/Sprites/UI/Button Small Disabled.png" id="11_7vx4r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xybq1"]
+resource_local_to_scene = true
+shader = ExtResource("1_7vx4r")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vx4r"]
 resource_local_to_scene = true
 shader = ExtResource("1_7vx4r")
 shader_parameter/og_color = Color(0, 0, 0, 1)
@@ -49,6 +57,13 @@ texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bq1e1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45me3"]
+resource_local_to_scene = true
+shader = ExtResource("1_7vx4r")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ym3vn"]
 texture = ExtResource("9_7vx4r")
@@ -127,6 +142,7 @@ alignment = 1
 
 [node name="UseButton" type="Button" parent="Use Popup/MarginContainer/VBoxContainer" unique_id=1271844365]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_7vx4r")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_dhdi4")
@@ -134,6 +150,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_y0l8x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8xok2")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_p0sq1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bq1e1")
+script = ExtResource("8_45me3")
 
 [node name="Label" type="Label" parent="Use Popup/MarginContainer/VBoxContainer/UseButton" unique_id=1471470207]
 layout_mode = 1
@@ -155,6 +172,8 @@ vertical_alignment = 1
 script = ExtResource("8_4t34f")
 
 [node name="DiscardButton" type="Button" parent="Use Popup/MarginContainer/VBoxContainer" unique_id=506200704]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_45me3")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxTexture_ym3vn")
@@ -162,6 +181,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wvan6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cj1on")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_7lli2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_c32w1")
+script = ExtResource("8_45me3")
 
 [node name="Label" type="Label" parent="Use Popup/MarginContainer/VBoxContainer/DiscardButton" unique_id=1572073206]
 layout_mode = 1
