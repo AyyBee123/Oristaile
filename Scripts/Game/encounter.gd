@@ -19,6 +19,7 @@ extends CanvasLayer
 @onready var encounter_control: Control = %EncounterControl
 @onready var shop_control: Shop = %ShopControl
 @onready var controller_focus_node: Control = deck_panel
+@onready var items_gumballs_container: HBoxContainer = %"Items & Gumballs Container"
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -280,16 +281,24 @@ func calculate_hand(animated: bool = true) -> void:
 		var card: Card = hand.get_child(i)
 		var pos: Vector2 = Vector2(start + i * spacing, 0)
 		
+		var gumballs: Array[Node] = items_gumballs_container.gumballs.get_children()
+		if not gumballs.is_empty():
+			card.focus_neighbor_bottom = card.get_path_to(gumballs[0])
+			
+			if i == 0:
+				for gumball in gumballs:
+					gumball.focus_neighbor_top = gumball.get_path_to(card)
+		else:
+			card.focus_neighbor_bottom = NodePath()
+		
 		if animated:
 			if card.tween: # kill the tween to prevent animation glitches from older tweens
 				card.tween.kill()
 				card.tween = null
 			card.tween = card.create_tween()
-			card.tween.tween_callback(func(): card.mouse_filter = Control.MOUSE_FILTER_IGNORE)
 			card.tween.set_ease(Tween.EASE_OUT)
 			card.tween.set_trans(Tween.TRANS_CUBIC)
-			card.tween.tween_property(card, "position", pos, 0.333)
-			card.tween.tween_callback(func(): card.mouse_filter = Control.MOUSE_FILTER_PASS)
+			card.tween.tween_property(card, "position", pos, card.draw_tween_time)
 		else:
 			card.position = pos
 	
@@ -353,7 +362,7 @@ func give_points(slot: Slot, card: Card) -> void:
 
 func win() -> void:
 	for c: Card in hand.get_children():
-		c.release_focus()
+		c.focus_mode = Control.FOCUS_NONE
 	has_won = true
 	
 	var containers: Array = []
@@ -403,7 +412,7 @@ func transition_to_shop() -> void:
 		encounter_control.visible = false
 	)
 	shop_tween.tween_property(self, "offset:y", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	shop_tween.tween_callback(func(): %RerollButton.grab_focus())
+	shop_tween.tween_callback(func(): if controller_mode: %RerollButton.grab_focus())
 
 
 func _input(event: InputEvent) -> void:
@@ -419,15 +428,19 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			switch_to_focus_navigation()
 	
-	elif event is InputEventJoypadMotion:
+	if event is InputEventKey:
+		if event.pressed:
+			switch_to_focus_navigation()
+	
+	if event is InputEventJoypadMotion:
 		if abs(event.axis_value) > 0.5:
 			switch_to_focus_navigation()
 	
-	elif event is InputEventMouseMotion:
+	if event is InputEventMouseMotion:
 		if event.relative != Vector2.ZERO:
 			controller_mode = false
 	
-	elif event is InputEventMouseButton:
+	if event is InputEventMouseButton:
 		controller_mode = false
 	
 	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
@@ -442,16 +455,23 @@ func _input(event: InputEvent) -> void:
 
 
 func switch_to_focus_navigation() -> void:
-	if controller_mode and get_viewport().gui_get_focus_owner(): return
-	if held_card: return
+	if held_card:
+		return
+
 	controller_mode = true
-	
-	if hand.get_child_count() > 0:
-		hand.get_child(0).grab_focus()
-	elif deck_panel.draws_left > 0:
-		deck_panel.grab_focus()
-	
-	get_viewport().set_input_as_handled()
+
+	if get_viewport().gui_get_focus_owner():
+		return
+
+	match RunData.current_state:
+		RunData.GameState.ENCOUNTER:
+			if hand.get_child_count() > 0:
+				hand.get_child(0).grab_focus()
+			elif deck_panel.draws_left > 0:
+				deck_panel.grab_focus()
+
+		RunData.GameState.SHOP:
+			%RerollButton.grab_focus()
 
 
 func get_slot_from_index(index: int = controller_slot_index) -> Slot:

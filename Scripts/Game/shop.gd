@@ -7,6 +7,7 @@ extends Control
 @onready var current_money_label: Label = %CurrentMoneyLabel
 @onready var reroll_button: Button = %RerollButton
 @onready var continue_button: Button = %ContinueButton
+@onready var items_gumballs_container: HBoxContainer = %"Items & Gumballs Container"
 
 const CARDS_SOLD: int = 4
 const PINS_SOLD: int = 3
@@ -62,6 +63,23 @@ func reset_wares() -> void:
 		var new_gumball: ShopGumball = Preloads.SHOP_GUMBALL.instantiate()
 		new_gumball.purchased.connect(purchase_gumball.bind(new_gumball))
 		consumable_container.add_child(new_gumball)
+	
+	var pins: Array = pin_container.get_children()
+	var gumballs: Array = consumable_container.get_children()
+	var player_gumballs: Array = items_gumballs_container.gumballs.get_children()
+	
+	if player_gumballs.is_empty(): return
+	
+	for pin: ShopPin in pins:
+		pin.focus_neighbor_bottom = pin.get_path_to(player_gumballs[0])
+		for player_gumball: GumballControl in player_gumballs:
+			player_gumball.focus_neighbor_top = player_gumball.get_path_to(pin)
+	
+	for gumball: ShopGumball in gumballs:
+		gumball.focus_neighbor_bottom = gumball.get_path_to(player_gumballs[0])
+		
+	for player_gumball: GumballControl in player_gumballs:
+		player_gumball.focus_neighbor_top = player_gumball.get_path_to(gumballs.back())
 
 
 func remove_wares(container: Container):

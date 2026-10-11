@@ -2,6 +2,7 @@ extends HBoxContainer
 
 @onready var pins: NinePatchRect = $Pins
 @onready var gumballs: NinePatchRect = $Gumballs
+@onready var encounter: Encounter = get_tree().current_scene
 
 
 func _ready() -> void:
@@ -121,6 +122,11 @@ func calculate_gumballs(animated: bool = true) -> void:
 	var container_width: float = gumballs.size.x
 	var count: int = gumballs.get_child_count()
 	
+	await get_tree().process_frame
+	
+	if RunData.current_state == RunData.GameState.ENCOUNTER:
+		encounter.calculate_hand(false)
+	
 	if count == 0:
 		return
 	
@@ -129,6 +135,7 @@ func calculate_gumballs(animated: bool = true) -> void:
 	for i in range(count):
 		var gumball: GumballControl = gumballs.get_child(i)
 		var pos: Vector2 = Vector2(i * spacing, 0)
+		
 		if animated:
 			if gumball.tween:
 				gumball.tween.kill()

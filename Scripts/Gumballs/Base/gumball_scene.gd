@@ -5,6 +5,7 @@ extends TextureRect
 
 @onready var use_popup: NinePatchRect = %"Use Popup"
 @onready var use_button: Button = %UseButton
+@onready var encounter: Encounter = get_tree().current_scene
 
 var tween: Tween
 
@@ -14,6 +15,13 @@ func _ready() -> void:
 		gumball = RunData.gumball_pool.get_random_gumball()
 	texture = gumball.texture
 	use_popup.visibility_changed.connect(func(): if use_popup.visible and gumball.behaviour: use_button.disabled = not gumball.behaviour.can_use())
+
+
+func _process(_delta: float) -> void:
+	if encounter.has_won and RunData.current_state == RunData.GameState.ENCOUNTER:
+		focus_mode = Control.FOCUS_NONE
+	else:
+		focus_mode = Control.FOCUS_ALL
 
 
 func _on_mouse_entered() -> void:

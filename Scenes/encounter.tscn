@@ -930,6 +930,7 @@ text = "Gumballs"
 vertical_alignment = 1
 
 [node name="Items & Gumballs Container" type="HBoxContainer" parent="." unique_id=902980653]
+unique_name_in_owner = true
 z_index = 5
 anchors_preset = -1
 anchor_left = 0.5

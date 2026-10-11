@@ -12,6 +12,7 @@ signal released(slot)
 
 var card_res: CardResource
 var tween: Tween
+var draw_tween_time: float = 0.333
 var original_z_index: int
 
 var suit: int = -1 # 0 = clubs, 1 = diamonds, 2 = hearts, 3 = spades
@@ -41,13 +42,14 @@ func _ready() -> void:
 	original_z_index = z_index
 	card_texture.texture = CardData.get_card_texture(suit, number)
 	if is_playing_card:
-		focus_mode = Control.FOCUS_ALL
-		
 		mouse_entered.connect(grab_focus)
 		mouse_exited.connect(release_focus)
 		
 		focus_entered.connect(_on_focus_entered)
 		focus_exited.connect(_on_focus_exited)
+		
+		await get_tree().create_timer(draw_tween_time).timeout
+		focus_mode = Control.FOCUS_ALL
 
 
 func _on_focus_entered() -> void:
@@ -91,7 +93,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_released("accept") and is_dragged:
 			is_dragged = false
 			released.emit(encounter.get_card_slot())
-	if event is InputEventJoypadButton:
+	if event is InputEventJoypadButton or event is InputEventKey:
 		if event.is_action_pressed("cancel") and is_dragged:
 			is_dragged = false
 			released.emit(null)
