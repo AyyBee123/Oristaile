@@ -17,9 +17,9 @@ extends CanvasLayer
 @onready var empty_space: ColorRect = %"Empty Space"
 @onready var continue_label: Label = %ContinueLabel
 @onready var encounter_control: Control = %EncounterControl
-@onready var shop_control: Shop = %ShopControl
 @onready var controller_focus_node: Control = deck_panel
 @onready var items_gumballs_container: HBoxContainer = %"Items & Gumballs Container"
+@onready var background: ColorRect = %Background
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -42,17 +42,13 @@ var current_money: float
 var moves: int = 0
 var win_tween: Tween
 var can_skip_tween: bool = false
-var controller_mode: bool = false
 var controller_slot_index: int = 0
 
 
 func _ready() -> void:
-	RunData.current_state = RunData.GameState.ENCOUNTER
-	encounter_control.visible = true
-	shop_control.visible = not encounter_control.visible
-	
-	if shop_control.visible:
-		transition_to_shop()
+	UINavigation.last_focused = null
+	UINavigation.set_default_focus(deck_panel)
+	RunData.current_scene = RunData.Scenes.ENCOUNTER
 	
 	current_draws = RunData.draws_per_round
 	points_progress_bar.max_value = points_to_win
@@ -89,7 +85,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if held_card:
-		if controller_mode:
+		if UINavigation.controller_mode:
 			held_card.global_position = held_card.global_position.lerp(
 				get_slot_from_index().global_position + Vector2(14, 18), delta * 40
 			)
@@ -118,7 +114,7 @@ func _on_deck_panel_pressed() -> void:
 	
 	if current_draws <= 0:
 		deck_panel.focus_mode = Control.FOCUS_NONE
-		switch_to_focus_navigation()
+		update_default_focus()
 	
 	check_for_loss()
 
@@ -200,9 +196,6 @@ func draw_card() -> void:
 	
 	if get_viewport().gui_get_focus_owner():
 		return
-	
-	if hand.get_child_count() > 0:
-		hand.get_child(0).grab_focus()
 
 
 func grab_card(card: Card) -> void:
@@ -233,7 +226,7 @@ func release_card(slot_target: Slot, card: Card) -> void:
 	if slot_target and slot_target.can_drop_card(card): # check if the held card is valid at the targeted card slot
 		moves += 1
 		change_card_slot(slot_target, card) # change the slot card to a new one when a valid card is placed
-		if controller_mode: hand.get_child(0).grab_focus()
+		if UINavigation.controller_mode and not has_won: hand.get_child(0).grab_focus()
 		calculate_hand()
 		return
 	
@@ -245,7 +238,7 @@ func release_card(slot_target: Slot, card: Card) -> void:
 	
 	card.global_position = preserved_pos
 	
-	if controller_mode:
+	if UINavigation.controller_mode:
 		card.grab_focus()
 	else:
 		card.release_focus()
@@ -281,16 +274,6 @@ func calculate_hand(animated: bool = true) -> void:
 		var card: Card = hand.get_child(i)
 		var pos: Vector2 = Vector2(start + i * spacing, 0)
 		
-		var gumballs: Array[Node] = items_gumballs_container.gumballs.get_children()
-		if not gumballs.is_empty():
-			card.focus_neighbor_bottom = card.get_path_to(gumballs[0])
-			
-			if i == 0:
-				for gumball in gumballs:
-					gumball.focus_neighbor_top = gumball.get_path_to(card)
-		else:
-			card.focus_neighbor_bottom = NodePath()
-		
 		if animated:
 			if card.tween: # kill the tween to prevent animation glitches from older tweens
 				card.tween.kill()
@@ -308,6 +291,8 @@ func calculate_hand(animated: bool = true) -> void:
 		var card: Card = cards[i]
 		card.focus_neighbor_left = (cards[i - 1].get_path() if i > 0 else NodePath())
 		card.focus_neighbor_right = (cards[i + 1].get_path() if i < cards.size() - 1 else NodePath())
+	
+	update_default_focus()
 
 
 func get_card_slot() -> Slot:
@@ -404,15 +389,13 @@ func win() -> void:
 
 
 func transition_to_shop() -> void:
-	RunData.current_state = RunData.GameState.SHOP
-	shop_control.set_up_wares()
 	var shop_tween: Tween = create_tween()
 	shop_tween.tween_callback(func():
-		shop_control.visible = true
 		encounter_control.visible = false
+		background.visible = true
 	)
-	shop_tween.tween_property(self, "offset:y", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	shop_tween.tween_callback(func(): if controller_mode: %RerollButton.grab_focus())
+	shop_tween.tween_property(self, "offset:y", 0, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	shop_tween.tween_callback(func(): get_tree().change_scene_to_packed(Preloads.SHOP))
 
 
 func _input(event: InputEvent) -> void:
@@ -424,25 +407,6 @@ func _input(event: InputEvent) -> void:
 		controller_slot_index = clampi(controller_slot_index + 1, 0, slot_container.get_children().size() - 1)
 		get_viewport().set_input_as_handled()
 	
-	if event is InputEventJoypadButton:
-		if event.pressed:
-			switch_to_focus_navigation()
-	
-	if event is InputEventKey:
-		if event.pressed:
-			switch_to_focus_navigation()
-	
-	if event is InputEventJoypadMotion:
-		if abs(event.axis_value) > 0.5:
-			switch_to_focus_navigation()
-	
-	if event is InputEventMouseMotion:
-		if event.relative != Vector2.ZERO:
-			controller_mode = false
-	
-	if event is InputEventMouseButton:
-		controller_mode = false
-	
 	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed and win_tween and win_tween.is_running() and can_skip_tween:
 			can_skip_tween = false
@@ -450,28 +414,17 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 		elif event.pressed and can_continue:
 			transition_to_shop()
-			can_continue = false
-			get_viewport().set_input_as_handled()
 
 
-func switch_to_focus_navigation() -> void:
-	if held_card:
-		return
-
-	controller_mode = true
-
-	if get_viewport().gui_get_focus_owner():
-		return
-
-	match RunData.current_state:
-		RunData.GameState.ENCOUNTER:
-			if hand.get_child_count() > 0:
-				hand.get_child(0).grab_focus()
-			elif deck_panel.draws_left > 0:
-				deck_panel.grab_focus()
-
-		RunData.GameState.SHOP:
-			%RerollButton.grab_focus()
+func update_default_focus() -> void:
+	if has_won: return
+	
+	if hand.get_child_count() > 0:
+		UINavigation.set_default_focus(hand.get_child(0))
+	elif deck_panel.draws_left > 0:
+		UINavigation.set_default_focus(deck_panel)
+	else:
+		UINavigation.set_default_focus(null)
 
 
 func get_slot_from_index(index: int = controller_slot_index) -> Slot:

@@ -34,4 +34,3 @@ func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept") and RunData.money >= price:
 		RunData.add_pin(pin, global_position)
 		purchased.emit()
-		queue_free()

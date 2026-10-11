@@ -24,8 +24,8 @@ var pin_pool: PinPool
 var gumball_pool: GumballPool
 
 var encounter_number: int
-enum GameState { ENCOUNTER, SHOP }
-var current_state: GameState = GameState.ENCOUNTER
+var current_scene: int
+enum Scenes { ENCOUNTER, SHOP }
 
 
 func _init() -> void: # reset is in _init for now; it should instead be called when starting a new run
@@ -40,7 +40,7 @@ func reset() -> void:
 	cards_to_draw = 2
 	draws_per_round = 3
 	gumball_capacity = 2
-	money = 10
+	money = 60
 	pins.clear()
 	gumballs.clear()
 	pin_pool = Preloads.PIN_POOL.duplicate()

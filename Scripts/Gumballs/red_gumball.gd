@@ -7,4 +7,4 @@ func use() -> void:
 
 
 func can_use() -> bool:
-	return RunData.current_state == RunData.GameState.ENCOUNTER
+	return RunData.current_scene == RunData.Scenes.ENCOUNTER

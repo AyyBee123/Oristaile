@@ -34,7 +34,7 @@ var input_disabled: bool = false
 
 func _process(_delta: float) -> void:
 	# forces the card to be in an unfocused state if the mouse is not hovering over the card
-	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not encounter.controller_mode:
+	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not UINavigation.controller_mode:
 		release_focus()
 
 

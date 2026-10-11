@@ -6,7 +6,6 @@ extends TextureRect
 @onready var use_popup: NinePatchRect = %"Use Popup"
 @onready var use_button: Button = %UseButton
 @onready var discard_button: Button = %DiscardButton
-@onready var encounter: Encounter = get_tree().current_scene
 
 var tween: Tween
 
@@ -23,13 +22,6 @@ func _ready() -> void:
 			else:
 				use_button.focus_mode = Control.FOCUS_ALL
 	)
-
-
-func _process(_delta: float) -> void:
-	if encounter.has_won and RunData.current_state == RunData.GameState.ENCOUNTER:
-		focus_mode = Control.FOCUS_NONE
-	else:
-		focus_mode = Control.FOCUS_ALL
 
 
 func _on_mouse_entered() -> void:
@@ -51,7 +43,7 @@ func _on_focus_exited() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept") and not use_popup.visible:
 		use_popup.visible = true
-		if encounter.controller_mode:
+		if UINavigation.controller_mode:
 			if not use_button.disabled:
 				use_button.grab_focus()
 			else:
@@ -66,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_cancel"):
 		use_popup.visible = false
-		if encounter.controller_mode:
+		if UINavigation.controller_mode:
 			grab_focus()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton:

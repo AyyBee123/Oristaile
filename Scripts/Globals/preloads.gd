@@ -1,5 +1,9 @@
 extends Node
 
+## Scenes
+const ENCOUNTER = preload("uid://c7u2v2cos0fp0")
+const SHOP = preload("uid://c7v36m25ea3fo")
+
 ## General Objects
 const CARD = preload("uid://b7vbqnm071427")
 const CARD_TEMPLATE = preload("uid://b6qwjhd8kh2k6")

@@ -1,5 +1,5 @@
 class_name Shop
-extends Control
+extends CanvasLayer
 
 @onready var card_container: HBoxContainer = %CardContainer
 @onready var pin_container: HBoxContainer = %PinContainer
@@ -17,6 +17,17 @@ const REROLL_COST: int = 5
 var current_money: float
 
 
+func _ready() -> void:
+	UINavigation.last_focused = null
+	UINavigation.set_default_focus(reroll_button)
+	RunData.current_scene = RunData.Scenes.SHOP
+	set_up_wares()
+	
+	offset.y = -360
+	var shop_tween: Tween = create_tween()
+	shop_tween.tween_property(self, "offset:y", 0, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+
 func set_up_wares() -> void:
 	current_money = RunData.money
 	current_money_label.text = "$%d" % int(current_money)
@@ -28,11 +39,10 @@ func set_up_wares() -> void:
 		if RunData.money < REROLL_COST:
 			return
 		reset_wares()
-		var encounter: Encounter = get_tree().current_scene
-		if encounter.controller_mode:
-			if focus_neighbor_bottom:
-				encounter.get_node(focus_neighbor_bottom).grab_focus()
 		reroll_button.disabled = true
+		reroll_button.focus_mode = Control.FOCUS_NONE
+		UINavigation.set_default_focus(continue_button)
+		continue_button.grab_focus()
 		RunData.money -= REROLL_COST
 	)
 	continue_button.pressed.connect(func(): pass)
@@ -63,23 +73,6 @@ func reset_wares() -> void:
 		var new_gumball: ShopGumball = Preloads.SHOP_GUMBALL.instantiate()
 		new_gumball.purchased.connect(purchase_gumball.bind(new_gumball))
 		consumable_container.add_child(new_gumball)
-	
-	var pins: Array = pin_container.get_children()
-	var gumballs: Array = consumable_container.get_children()
-	var player_gumballs: Array = items_gumballs_container.gumballs.get_children()
-	
-	if player_gumballs.is_empty(): return
-	
-	for pin: ShopPin in pins:
-		pin.focus_neighbor_bottom = pin.get_path_to(player_gumballs[0])
-		for player_gumball: GumballControl in player_gumballs:
-			player_gumball.focus_neighbor_top = player_gumball.get_path_to(pin)
-	
-	for gumball: ShopGumball in gumballs:
-		gumball.focus_neighbor_bottom = gumball.get_path_to(player_gumballs[0])
-		
-	for player_gumball: GumballControl in player_gumballs:
-		player_gumball.focus_neighbor_top = player_gumball.get_path_to(gumballs.back())
 
 
 func remove_wares(container: Container):
@@ -96,6 +89,9 @@ func purchase_pin(pin: ShopPin) -> void:
 	pin_container.move_child(empty, index)
 	
 	RunData.money -= pin.price
+	
+	pin_container.remove_child(pin)
+	pin.queue_free()
 
 
 func purchase_gumball(gumball: ShopGumball) -> void:
@@ -106,3 +102,6 @@ func purchase_gumball(gumball: ShopGumball) -> void:
 	consumable_container.move_child(empty, index)
 	
 	RunData.money -= gumball.price
+	
+	consumable_container.remove_child(gumball)
+	gumball.queue_free()

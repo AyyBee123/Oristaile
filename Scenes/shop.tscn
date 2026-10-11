@@ -1,0 +1,470 @@
+[gd_scene format=3 uid="uid://c7v36m25ea3fo"]
+
+[ext_resource type="Script" uid="uid://cgdy7at4b4djf" path="res://Scripts/Game/shop.gd" id="1_k6pkm"]
+[ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="2_1sjcd"]
+[ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/UI/Card Deck.png" id="3_1cyt5"]
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="4_0vsm1"]
+[ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/UI/Button.png" id="5_3568l"]
+[ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/UI/Button Pressed.png" id="6_mjtuy"]
+[ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/UI/Button Disabled.png" id="7_cuuv1"]
+[ext_resource type="Script" uid="uid://omchbublas43" path="res://Scripts/Misc/button_highlight.gd" id="8_yl1pv"]
+[ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/pressed_button_move_label.gd" id="9_m13ki"]
+[ext_resource type="Texture2D" uid="uid://b30xdnaedrfbq" path="res://Assets/Sprites/UI/Button Green.png" id="10_3mbjb"]
+[ext_resource type="Texture2D" uid="uid://um140kr3s406" path="res://Assets/Sprites/UI/Button Green Pressed.png" id="11_jhx1v"]
+[ext_resource type="Texture2D" uid="uid://ds8o422h5u6jb" path="res://Assets/Sprites/UI/Button Green Disabled.png" id="12_dvu38"]
+[ext_resource type="Script" uid="uid://xtb4403oqtsn" path="res://Scripts/Game/items_consumables_container.gd" id="13_1cyt5"]
+[ext_resource type="Texture2D" uid="uid://d1nl7cmtjrw22" path="res://Assets/Sprites/UI/Item Background.png" id="14_0vsm1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7yfq"]
+resource_local_to_scene = true
+shader = ExtResource("4_0vsm1")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6rctg"]
+texture = ExtResource("5_3568l")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1shhe"]
+texture = ExtResource("6_mjtuy")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1qjt"]
+texture = ExtResource("5_3568l")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ik0jt"]
+texture = ExtResource("7_cuuv1")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lkkvn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xv2t3"]
+resource_local_to_scene = true
+shader = ExtResource("4_0vsm1")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0icju"]
+texture = ExtResource("10_3mbjb")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ihrg5"]
+texture = ExtResource("11_jhx1v")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ig322"]
+texture = ExtResource("10_3mbjb")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gugvk"]
+texture = ExtResource("12_dvu38")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7de3"]
+
+[node name="Shop" type="CanvasLayer" unique_id=286159256]
+script = ExtResource("1_k6pkm")
+
+[node name="ShopControl" type="Control" parent="." unique_id=1995379335]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopBackground" type="ColorRect" parent="ShopControl" unique_id=618318128]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.13333334, 0.3019608, 0.16470589, 1)
+
+[node name="CurrentMoneyLabel" type="Label" parent="ShopControl" unique_id=254896189]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031000001
+anchor_top = 0.054
+anchor_right = 0.031000001
+anchor_bottom = 0.054
+offset_left = -11.84
+offset_top = -10.440001
+offset_right = 12.16
+offset_bottom = 10.559999
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "$0"
+
+[node name="ShopContainer" type="VBoxContainer" parent="ShopControl" unique_id=1081282905]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -140.0
+offset_right = 300.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="ShopControl/ShopContainer" unique_id=1503623069]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="CardTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/CardContainer" unique_id=1863396977]
+custom_minimum_size = Vector2(441, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_1cyt5")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture" unique_id=1993473751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="CardContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/CardContainer/CardTexture/MarginContainer" unique_id=782682085]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/CardTexture" unique_id=323277602]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.018000001
+anchor_top = 0.042000003
+anchor_right = 0.018000001
+anchor_bottom = 0.042000003
+offset_left = 0.06199932
+offset_top = -0.040002346
+offset_right = 60.062
+offset_bottom = 20.959997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "Cards"
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="ShopControl/ShopContainer/CardContainer" unique_id=344536892]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="RerollButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=1754760691]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_k7yfq")
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_6rctg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1shhe")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1qjt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ik0jt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lkkvn")
+script = ExtResource("8_yl1pv")
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/RerollButton" unique_id=1591681188]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "Reroll"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_m13ki")
+
+[node name="CostLabel" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/RerollButton" unique_id=1525493095]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "$5"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_m13ki")
+disabled_color = Color(0.68857026, 0.56565255, 0.34574345, 1)
+
+[node name="ContinueButton" type="Button" parent="ShopControl/ShopContainer/CardContainer/Buttons" unique_id=1222979322]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xv2t3")
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_0icju")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ihrg5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ig322")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gugvk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t7de3")
+script = ExtResource("8_yl1pv")
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/CardContainer/Buttons/ContinueButton" unique_id=67310172]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_m13ki")
+
+[node name="Pin & Conumable Container" type="HBoxContainer" parent="ShopControl/ShopContainer" unique_id=562600753]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PassiveTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=1714618285]
+custom_minimum_size = Vector2(294, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_1cyt5")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture" unique_id=187083646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="PinContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture/MarginContainer" unique_id=128508896]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/PassiveTexture" unique_id=2143654240]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.036000002
+anchor_right = 0.027
+anchor_bottom = 0.036000002
+offset_left = 0.061999798
+offset_top = 0.96799994
+offset_right = 42.062
+offset_bottom = 21.968
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "Pins"
+vertical_alignment = 1
+
+[node name="GumballTexture" type="NinePatchRect" parent="ShopControl/ShopContainer/Pin & Conumable Container" unique_id=1763712425]
+custom_minimum_size = Vector2(294, 112)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_1cyt5")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture" unique_id=365585752]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="ConsumableContainer" type="HBoxContainer" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture/MarginContainer" unique_id=1638723823]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopControl/ShopContainer/Pin & Conumable Container/GumballTexture" unique_id=1710959200]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.036000002
+anchor_right = 0.027
+anchor_bottom = 0.036000002
+offset_left = 0.061999798
+offset_top = 0.96799994
+offset_right = 87.062
+offset_bottom = 21.968
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.077281736, 0.20948166, 0.101766445, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_1sjcd")
+theme_override_font_sizes/font_size = 24
+text = "Gumballs"
+vertical_alignment = 1
+
+[node name="Items & Gumballs Container" type="HBoxContainer" parent="ShopControl" unique_id=1117604048]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.892
+anchor_right = 0.5
+anchor_bottom = 0.892
+offset_left = -300.0
+offset_top = -34.119995
+offset_right = 300.0
+offset_bottom = 33.880005
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+script = ExtResource("13_1cyt5")
+
+[node name="Pins" type="NinePatchRect" parent="ShopControl/Items & Gumballs Container" unique_id=429600593]
+custom_minimum_size = Vector2(456, 0)
+layout_mode = 2
+texture = ExtResource("14_0vsm1")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Gumballs" type="NinePatchRect" parent="ShopControl/Items & Gumballs Container" unique_id=1416156084]
+custom_minimum_size = Vector2(132, 0)
+layout_mode = 2
+texture = ExtResource("14_0vsm1")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="ShopBackground" type="ColorRect" parent="." unique_id=377175712]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = 180.0
+offset_right = 320.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.13333334, 0.3019608, 0.16470589, 1)
