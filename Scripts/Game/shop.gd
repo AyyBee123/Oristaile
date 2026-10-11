@@ -41,8 +41,10 @@ func set_up_wares() -> void:
 		reset_wares()
 		reroll_button.disabled = true
 		reroll_button.focus_mode = Control.FOCUS_NONE
+		reroll_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		UINavigation.set_default_focus(continue_button)
-		continue_button.grab_focus()
+		if UINavigation.controller_mode:
+			continue_button.grab_focus()
 		RunData.money -= REROLL_COST
 	)
 	continue_button.pressed.connect(func(): pass)

@@ -436,6 +436,7 @@ theme_override_constants/separation = 12
 script = ExtResource("13_1cyt5")
 
 [node name="Pins" type="NinePatchRect" parent="ShopControl/Items & Gumballs Container" unique_id=429600593]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(456, 0)
 layout_mode = 2
 texture = ExtResource("14_0vsm1")
@@ -445,6 +446,7 @@ patch_margin_right = 2
 patch_margin_bottom = 2
 
 [node name="Gumballs" type="NinePatchRect" parent="ShopControl/Items & Gumballs Container" unique_id=1416156084]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(132, 0)
 layout_mode = 2
 texture = ExtResource("14_0vsm1")

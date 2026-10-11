@@ -48,7 +48,6 @@ func _ready() -> void:
 		focus_entered.connect(_on_focus_entered)
 		focus_exited.connect(_on_focus_exited)
 		
-		await get_tree().create_timer(draw_tween_time).timeout
 		focus_mode = Control.FOCUS_ALL
 
 

@@ -20,6 +20,8 @@ extends CanvasLayer
 @onready var controller_focus_node: Control = deck_panel
 @onready var items_gumballs_container: HBoxContainer = %"Items & Gumballs Container"
 @onready var background: ColorRect = %Background
+@onready var pins: NinePatchRect = %Pins
+@onready var gumballs: NinePatchRect = %Gumballs
 
 const CARD_SPACING: float = 36.0
 const DRAW_BUFFER: float = 0.1
@@ -114,6 +116,7 @@ func _on_deck_panel_pressed() -> void:
 	
 	if current_draws <= 0:
 		deck_panel.focus_mode = Control.FOCUS_NONE
+		deck_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		update_default_focus()
 	
 	check_for_loss()
@@ -355,6 +358,10 @@ func give_points(slot: Slot, card: Card) -> void:
 func win() -> void:
 	for c: Card in hand.get_children():
 		c.focus_mode = Control.FOCUS_NONE
+		c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for g: GumballControl in gumballs.get_children():
+		g.focus_mode = Control.FOCUS_NONE
+		g.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	has_won = true
 	
 	var containers: Array = []

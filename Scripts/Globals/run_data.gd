@@ -40,12 +40,11 @@ func reset() -> void:
 	cards_to_draw = 2
 	draws_per_round = 3
 	gumball_capacity = 2
-	money = 60
+	money = 10
 	pins.clear()
 	gumballs.clear()
 	pin_pool = Preloads.PIN_POOL.duplicate()
 	gumball_pool = Preloads.GUMBALL_POOL.duplicate()
-	gumballs.append(preload("uid://vx4jhoy85x5s").duplicate())
 
 
 func create_deck() -> void:

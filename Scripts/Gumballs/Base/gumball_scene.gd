@@ -14,13 +14,15 @@ func _ready() -> void:
 	if not gumball:
 		gumball = RunData.gumball_pool.get_random_gumball()
 	texture = gumball.texture
-	use_popup.visibility_changed.connect(func(): 
+	use_popup.visibility_changed.connect(func():
 		if use_popup.visible and gumball.behaviour:
 			use_button.disabled = not gumball.behaviour.can_use()
 			if use_button.disabled:
 				use_button.focus_mode = Control.FOCUS_NONE
+				use_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			else:
 				use_button.focus_mode = Control.FOCUS_ALL
+				use_button.mouse_filter = Control.MOUSE_FILTER_STOP
 	)
 
 
@@ -52,7 +54,7 @@ func _gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not use_popup.visible:
 		return
 	
@@ -61,6 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if UINavigation.controller_mode:
 			grab_focus()
 		get_viewport().set_input_as_handled()
+	
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if not use_popup.get_global_rect().has_point(event.position):
