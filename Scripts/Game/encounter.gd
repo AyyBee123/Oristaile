@@ -261,6 +261,13 @@ func change_card_slot(slot: Slot, card: Card) -> void:
 	SignalBus.card_slot_changed.emit(slot)
 
 
+func reroll_slot(slot: Slot) -> void:
+	slot.remove_card()
+	slots.erase(slot.card_res)
+	set_card_slot(slot)
+	SignalBus.card_slot_changed.emit(slot)
+
+
 func calculate_hand(animated: bool = true) -> void:
 	# calculate each card's position in the hand box container
 	var card_width: float = Preloads.BLANK_CARD.get_width()

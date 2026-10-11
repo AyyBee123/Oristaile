@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_d0epg")
 gumball_name = "Red Gumball"
+description = "Draw 2 cards."
 texture = ExtResource("2_hp863")
 gumball_script = ExtResource("1_yj6p4")
 metadata/_custom_type_script = "uid://dxr16ylm8asdj"

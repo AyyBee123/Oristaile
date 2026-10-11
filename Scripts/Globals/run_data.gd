@@ -45,6 +45,7 @@ func reset() -> void:
 	gumballs.clear()
 	pin_pool = Preloads.PIN_POOL.duplicate()
 	gumball_pool = Preloads.GUMBALL_POOL.duplicate()
+	gumballs.append(preload("uid://vx4jhoy85x5s").duplicate())
 
 
 func create_deck() -> void:
