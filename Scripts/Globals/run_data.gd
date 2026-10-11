@@ -28,7 +28,7 @@ var current_scene: int
 enum Scenes { ENCOUNTER, SHOP }
 
 
-func _init() -> void: # reset is in _init for now; it should instead be called when starting a new run
+func _ready() -> void:
 	reset()
 
 
@@ -43,8 +43,9 @@ func reset() -> void:
 	money = 10
 	pins.clear()
 	gumballs.clear()
-	pin_pool = Preloads.PIN_POOL.duplicate()
-	gumball_pool = Preloads.GUMBALL_POOL.duplicate()
+	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources too early
+	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
+	gumball_pool = preload("uid://paqq2cfryjt4").duplicate()
 
 
 func create_deck() -> void:

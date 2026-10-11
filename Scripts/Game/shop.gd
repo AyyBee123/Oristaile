@@ -35,7 +35,7 @@ func set_up_wares() -> void:
 	reset_wares()
 	
 	reroll_button.get_node("CostLabel").text = "$%d" % REROLL_COST
-	reroll_button.pressed.connect(func(): 
+	reroll_button.pressed.connect(func():
 		if RunData.money < REROLL_COST:
 			return
 		reset_wares()

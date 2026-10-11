@@ -15,7 +15,3 @@ const SHOP_GUMBALL = preload("uid://drftbodd1lodc")
 
 ## Decks
 const STANDARD_DECK = preload("uid://bytne242bwqw5")
-
-## Pools
-const PIN_POOL = preload("uid://nwqplsk0sh64")
-const GUMBALL_POOL = preload("uid://paqq2cfryjt4")
