@@ -20,7 +20,7 @@ func _ready() -> void:
 	if not card_res:
 		card_res = CardResource.new()
 		card_res.suit = RunData.rng.randi_range(0, 3)
-		card_res.number = RunData.rng.randi_range(0, 13)
+		card_res.number = RunData.rng.randi_range(1, 13)
 	
 	card_texture.texture = CardData.get_card_texture(card_res.suit, card_res.number)
 	
