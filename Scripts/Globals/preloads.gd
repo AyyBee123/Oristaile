@@ -16,3 +16,6 @@ const SHOP_GUMBALL = preload("uid://drftbodd1lodc")
 
 ## Decks
 const STANDARD_DECK = preload("uid://bytne242bwqw5")
+
+## UI Nodes
+const DECK_UI = preload("uid://bc0yni1aokr0r")

@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="2_1sjcd"]
 [ext_resource type="Texture2D" uid="uid://hpcqv0xgxxpq" path="res://Assets/Sprites/UI/Card Deck.png" id="3_1cyt5"]
 [ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="4_0vsm1"]
+[ext_resource type="Script" uid="uid://blxe6gxb5qedt" path="res://Scripts/Misc/deck_view.gd" id="4_3568l"]
 [ext_resource type="Texture2D" uid="uid://cxuuf8h5yjg8h" path="res://Assets/Sprites/UI/Button.png" id="5_3568l"]
 [ext_resource type="Texture2D" uid="uid://ld60syvg1sys" path="res://Assets/Sprites/UI/Button Pressed.png" id="6_mjtuy"]
 [ext_resource type="Texture2D" uid="uid://bueigq6uwbvwf" path="res://Assets/Sprites/UI/Button Disabled.png" id="7_cuuv1"]
@@ -144,6 +145,27 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("2_1sjcd")
 theme_override_font_sizes/font_size = 24
 text = "$0"
+
+[node name="Settings & Deck Container" type="HBoxContainer" parent="ShopControl" unique_id=2092766417]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+offset_left = 110.0
+offset_top = -10.0
+offset_right = 312.0
+offset_bottom = 14.0
+alignment = 2
+
+[node name="DeckView" type="TextureRect" parent="ShopControl/Settings & Deck Container" unique_id=1024117257]
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("14_0vsm1")
+expand_mode = 3
+script = ExtResource("4_3568l")
 
 [node name="ShopContainer" type="VBoxContainer" parent="ShopControl" unique_id=1081282905]
 layout_mode = 1

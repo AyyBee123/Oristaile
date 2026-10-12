@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bc0yni1aokr0r"]
+
+[ext_resource type="Script" uid="uid://hbc40ct0o45e" path="res://Scripts/UI/deck_ui.gd" id="1_1ste3"]
+
+[node name="Deck UI" type="ColorRect" unique_id=395107471]
+z_index = 8
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+script = ExtResource("1_1ste3")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=405066802]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 640.0
+offset_bottom = 360.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 72
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1043598161]
+layout_mode = 2
+
+[node name="CardGrid" type="GridContainer" parent="MarginContainer/ScrollContainer" unique_id=1975604047]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6

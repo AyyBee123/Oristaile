@@ -20,6 +20,7 @@ func drop_card(card: Card) -> void:
 
 func set_card(card: CardResource) -> void:
 	card_res = card
+	card_template.card_res = card_res
 	card_template.set_card_texture(card_res.suit, card_res.number)
 
 
