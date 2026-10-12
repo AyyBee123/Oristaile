@@ -1,7 +1,7 @@
 class_name ShopPin
 extends PinControl
 
-signal purchased(index: int)
+signal purchased
 
 var price: int:
 	set(v):

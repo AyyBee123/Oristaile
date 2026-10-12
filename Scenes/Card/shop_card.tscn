@@ -1,12 +1,69 @@
 [gd_scene format=3 uid="uid://uumruah8tov7"]
 
 [ext_resource type="Script" uid="uid://bp8fkva4eosl7" path="res://Scripts/Game/shop_card.gd" id="1_ktisj"]
+[ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="2_ct78r"]
+[ext_resource type="Texture2D" uid="uid://b26c0etw3n2t2" path="res://Assets/Sprites/Cards/Spades/Ace Spades.png" id="3_2jr7l"]
+[ext_resource type="Texture2D" uid="uid://cvb1jl1ae5jkk" path="res://Assets/Sprites/Cards/Misc/Card Focus.png" id="4_2jr7l"]
+[ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="5_w7do4"]
 
-[node name="Shop Card" type="Control" unique_id=1327181675]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ct78r"]
+
+[node name="Shop Card" type="Panel" unique_id=1928517694]
+custom_minimum_size = Vector2(72, 96)
+offset_right = 72.0
+offset_bottom = 96.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ct78r")
 script = ExtResource("1_ktisj")
+
+[node name="BlankCard" type="TextureRect" parent="." unique_id=312057601]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("2_ct78r")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=504724736]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("3_2jr7l")
+
+[node name="FocusOutline" type="TextureRect" parent="." unique_id=576201234]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 96.0
+mouse_filter = 2
+texture = ExtResource("4_2jr7l")
+
+[node name="PriceLabel" type="Label" parent="." unique_id=178334846]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.984
+anchor_right = 0.5
+anchor_bottom = 0.984
+offset_left = -36.0
+offset_top = -12.4640045
+offset_right = 36.0
+offset_bottom = 12.5359955
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.81960785, 0.47058824, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_w7do4")
+theme_override_font_sizes/font_size = 28
+text = "$0"
+horizontal_alignment = 1
+vertical_alignment = 1

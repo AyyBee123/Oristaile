@@ -3,7 +3,7 @@ extends TextureRect
 
 @export var gumball: GumballResource
 
-signal purchased(index: int)
+signal purchased
 
 var price: int:
 	set(v):

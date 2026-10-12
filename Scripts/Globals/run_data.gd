@@ -64,6 +64,10 @@ func set_gumballs() -> void:
 		gumball.initialize()
 
 
+func add_card(card: CardResource) -> void:
+	deck.append(card)
+
+
 func add_pin(pin: PinResource, pos: Vector2 = Vector2.ZERO) -> void:
 	var new_pin: PinResource = pin.duplicate()
 	new_pin.initialize()

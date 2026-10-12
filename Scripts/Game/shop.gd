@@ -66,6 +66,11 @@ func reset_wares() -> void:
 	remove_wares(pin_container)
 	remove_wares(consumable_container)
 	
+	for i in CARDS_SOLD:
+		var new_card: ShopCard = Preloads.SHOP_CARD.instantiate()
+		new_card.purchased.connect(purchase_card.bind(new_card))
+		card_container.add_child(new_card)
+	
 	for i in PINS_SOLD:
 		var new_pin: ShopPin = Preloads.SHOP_PIN.instantiate()
 		new_pin.purchased.connect(purchase_pin.bind(new_pin))
@@ -81,6 +86,19 @@ func remove_wares(container: Container):
 	for node in container.get_children():
 		container.remove_child(node)
 		node.queue_free()
+
+
+func purchase_card(card: ShopCard) -> void:
+	var index: int = card.get_index()
+	var empty: Control = Control.new()
+	empty.custom_minimum_size = card.custom_minimum_size
+	card_container.add_child(empty)
+	card_container.move_child(empty, index)
+	
+	RunData.money -= card.price
+	
+	card_container.remove_child(card)
+	card.queue_free()
 
 
 func purchase_pin(pin: ShopPin) -> void:

@@ -178,8 +178,6 @@ func draw_card() -> void:
 		card.released.connect(release_card.bind(card))
 		
 		card.card_res = card_res
-		card.suit = card_res.suit
-		card.number = card_res.number
 		
 		card.z_index = 2
 		

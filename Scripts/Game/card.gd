@@ -40,6 +40,10 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	original_z_index = z_index
+	
+	suit = card_res.suit
+	number = card_res.number
+	
 	card_texture.texture = CardData.get_card_texture(suit, number)
 	if is_playing_card:
 		mouse_entered.connect(grab_focus)
