@@ -50,8 +50,16 @@ func reset() -> void:
 
 func create_deck() -> void:
 	deck.clear() # clear the deck to remove previous deck of cards
-	for card: CardResource in starting_deck.cards: # create a new deck with each of the cards in the selected deck
-		deck.append(card.duplicate())
+	set_cards(starting_deck.cards)
+
+
+func set_cards(card_deck: Array) -> void:
+	for card: CardResource in card_deck: # create a new deck with each of the cards in the selected deck
+		var new_card = card.duplicate()
+		if card.enchant: 
+			new_card.enchant = card.enchant.duplicate()
+			new_card.enchant.initialize()
+		deck.append(new_card)
 
 
 func set_pins() -> void:
@@ -65,6 +73,8 @@ func set_gumballs() -> void:
 
 
 func add_card(card: CardResource) -> void:
+	if card.enchant:
+		card.enchant.initialize()
 	deck.append(card)
 
 
@@ -104,5 +114,6 @@ func trigger_pins(method: StringName, args: Array = []) -> void:
 
 
 func trigger_enchant(card: CardResource, method: StringName, args: Array = []) -> void:
-	if card.enchant and card.enchant.has_method(method):
-		card.enchant.callv(method, args)
+	var enchant: EnchantResource = card.enchant
+	if enchant and enchant.behaviour.has_method(method):
+		enchant.behaviour.callv(method, args)

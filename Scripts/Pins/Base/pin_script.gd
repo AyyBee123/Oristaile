@@ -12,7 +12,7 @@ func load_save_data(_data: Dictionary) -> void:
 
 # Baseline functions to refer to:
 #
-# func modify_points(points_earned: float, card_res: CardResource, slot: Slot) -> float:
+# func modify_points(score: Dictionary, card_res: CardResource, slot: Slot) -> void: # use score["points"] to access points earned
 # func modify_accepted_numbers(slot: Slot, accepted_numbers: Array[int]) -> void:
 # func modify_card_suit(card: CardResource, suits: Array[int]) -> void:
 # func on_card_accepted(points_earned: float, card: CardResource, slot: Slot) -> void:

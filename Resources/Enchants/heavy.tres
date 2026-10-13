@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://m2mdl472t2a5"]
+
+[ext_resource type="Script" uid="uid://ekpxq5hewvec" path="res://Scripts/Enchants/heavy.gd" id="1_05qva"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="1_be7w4"]
+[ext_resource type="Shader" uid="uid://dtmblyuyn6exf" path="res://Shaders/Enchants/heavy.gdshader" id="2_uolxl"]
+
+[resource]
+script = ExtResource("1_be7w4")
+enchant_name = "Heavy"
+rarity = 1
+description = "Points earned from this card are doubled."
+shader = ExtResource("2_uolxl")
+enchant_script = ExtResource("1_05qva")
+metadata/_custom_type_script = "uid://bipskg07p00gf"

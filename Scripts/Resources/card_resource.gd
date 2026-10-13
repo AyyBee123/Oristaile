@@ -8,21 +8,11 @@ class_name CardResource
 
 func get_suits() -> Array[int]:
 	var suits: Array[int] = [suit]
-	
-	RunData.trigger_pins(&"modify_card_suit", [self, suits])
-	
-	if enchant and enchant.has_method("modify_card_suit"):
-		enchant.modify_card_suit(self, suits)
-	
+	RunData.trigger_card_effects(self, &"modify_card_suit", [self, suits])
 	return suits
 
 
 func get_numbers() -> Array[int]:
 	var numbers: Array[int] = [number]
-	
-	RunData.trigger_pins(&"modify_card_number", [self, numbers])
-	
-	if enchant and enchant.has_method("modify_card_number"):
-		enchant.modify_card_number(self, numbers)
-	
+	RunData.trigger_card_effects(self, &"modify_card_number", [self, numbers])
 	return numbers

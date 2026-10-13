@@ -337,7 +337,10 @@ func give_points(slot: Slot, card: Card) -> void:
 	if slot.is_matching_suit(card):
 		points_earned *= RunData.matching_suit_points_multiplier
 	
-	RunData.trigger_card_effects(card.card_res, &"modify_points", [points_earned, card.card_res, slot])
+	# allows the points to be modified without directly returning a value
+	var score: Dictionary = { "points": points_earned }
+	RunData.trigger_card_effects(card.card_res, &"modify_points", [score, card.card_res, slot])
+	points_earned = score["points"]
 	
 	current_points += points_earned
 	

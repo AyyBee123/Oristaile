@@ -32,12 +32,6 @@ var focus_tween: Tween
 var input_disabled: bool = false
 
 
-func _process(_delta: float) -> void:
-	# forces the card to be in an unfocused state if the mouse is not hovering over the card
-	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not UINavigation.controller_mode:
-		release_focus()
-
-
 func _ready() -> void:
 	original_z_index = z_index
 	
@@ -45,6 +39,9 @@ func _ready() -> void:
 	number = card_res.number
 	
 	card_texture.texture = CardData.get_card_texture(suit, number)
+	
+	update_enchant()
+	
 	if is_playing_card:
 		mouse_entered.connect(grab_focus)
 		mouse_exited.connect(release_focus)
@@ -53,6 +50,24 @@ func _ready() -> void:
 		focus_exited.connect(_on_focus_exited)
 		
 		focus_mode = Control.FOCUS_ALL
+
+
+func _process(_delta: float) -> void:
+	# forces the card to be in an unfocused state if the mouse is not hovering over the card
+	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not UINavigation.controller_mode:
+		release_focus()
+	
+	if card_res and card_res.enchant and card_res.enchant.behaviour:
+		if card_res.enchant.behaviour.has_method("update_visual_position"):
+			card_res.enchant.behaviour.update_visual_position(self, blank_card)
+
+
+func update_enchant() -> void:
+	if card_res.enchant == null: return
+	
+	var enchant_material: ShaderMaterial = ShaderMaterial.new()
+	enchant_material.shader = card_res.enchant.shader.duplicate()
+	blank_card.material = enchant_material
 
 
 func _on_focus_entered() -> void:
