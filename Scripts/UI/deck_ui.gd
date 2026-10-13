@@ -20,6 +20,7 @@ func display_deck() -> void:
 		var card: CardTemplate = Preloads.CARD_TEMPLATE.instantiate()
 		card.card_res = card_res.duplicate()
 		card.set_card_texture(card_res.suit, card_res.number)
+		card.update_enchant()
 		card_grid.add_child(card)
 
 

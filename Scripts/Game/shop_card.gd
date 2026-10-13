@@ -7,6 +7,8 @@ class_name ShopCard
 
 signal purchased
 
+const BASE_ENCHANT_CHANCE: float = 0.02
+
 var card_res: CardResource
 var price: int:
 	set(v):
@@ -22,6 +24,10 @@ func _ready() -> void:
 		card_res.suit = RunData.rng.randi_range(0, 3)
 		card_res.number = RunData.rng.randi_range(1, 13)
 	
+	if RunData.rng.randf() < BASE_ENCHANT_CHANCE:
+		card_res.enchant = RunData.enchant_pool.get_random_enchant()
+		update_enchant()
+	
 	card_texture.texture = CardData.get_card_texture(card_res.suit, card_res.number)
 	
 	mouse_entered.connect(grab_focus)
@@ -29,6 +35,14 @@ func _ready() -> void:
 	
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
+
+
+func update_enchant() -> void:
+	if card_res.enchant == null: return
+	
+	var enchant_material: ShaderMaterial = ShaderMaterial.new()
+	enchant_material.shader = card_res.enchant.shader.duplicate()
+	blank_card.material = enchant_material
 
 
 func _on_mouse_entered() -> void:
