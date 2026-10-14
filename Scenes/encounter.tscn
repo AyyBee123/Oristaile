@@ -325,7 +325,7 @@ text = "$0"
 
 [node name="Items & Gumballs Container" type="HBoxContainer" parent="EncounterControl" unique_id=902980653]
 unique_name_in_owner = true
-z_index = 5
+z_index = 4
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
