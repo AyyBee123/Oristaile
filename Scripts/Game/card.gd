@@ -56,10 +56,6 @@ func _process(_delta: float) -> void:
 	# forces the card to be in an unfocused state if the mouse is not hovering over the card
 	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()) and is_focused and not UINavigation.controller_mode:
 		release_focus()
-	
-	if card_res and card_res.enchant and card_res.enchant.behaviour:
-		if card_res.enchant.behaviour.has_method("update_visual_position"):
-			card_res.enchant.behaviour.update_visual_position(self, blank_card)
 
 
 func update_enchant() -> void:
