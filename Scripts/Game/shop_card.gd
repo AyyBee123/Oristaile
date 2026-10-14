@@ -7,7 +7,7 @@ class_name ShopCard
 
 signal purchased
 
-const BASE_ENCHANT_CHANCE: float = 0.004
+const BASE_ENCHANT_CHANCE: float = 0.01
 
 var card_res: CardResource
 var price: int:
