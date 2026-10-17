@@ -9,7 +9,6 @@ uniform float black_threshold : hint_range(0.0, 0.2) = 0.001;
 uniform float min_shine_width : hint_range(0.001, 0.5) = 0.24;
 uniform float max_shine_width : hint_range(0.001, 0.5) = 0.5;
 
-uniform float pixel_size = 64.0;
 uniform float shine_count : hint_range(1.0, 10.0, 1.0) = 2.0;
 
 uniform vec2 direction = vec2(1.0, 0.75);
@@ -44,7 +43,7 @@ void fragment() {
 	);
 	
 	// Pixelated coordinates
-	vec2 pixel_uv = floor(UV * pixel_size) / pixel_size;
+	vec2 pixel_uv = floor(UV / TEXTURE_PIXEL_SIZE) * TEXTURE_PIXEL_SIZE;
 	
 	// Direction of the reflection bands
 	vec2 dir = normalize(direction);
