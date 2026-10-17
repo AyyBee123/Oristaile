@@ -63,7 +63,10 @@ func update_enchant() -> void:
 	
 	var enchant_material: ShaderMaterial = ShaderMaterial.new()
 	enchant_material.shader = card_res.enchant.shader.duplicate()
-	blank_card.material = enchant_material
+	if card_res.enchant.is_card_background_shader:
+		blank_card.material = enchant_material
+	else:
+		card_texture.material = enchant_material
 
 
 func _on_focus_entered() -> void:

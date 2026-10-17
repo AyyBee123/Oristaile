@@ -12,6 +12,7 @@ enum Rarity {
 @export_multiline var description: String
 @export var shader: Shader
 @export var enchant_script: GDScript
+@export var is_card_background_shader: bool = false
 
 var behaviour: EnchantScript
 
