@@ -344,6 +344,8 @@ func give_points(slot: Slot, card: Card) -> void:
 	
 	current_points += points_earned
 	
+	RunData.trigger_card_effects(card.card_res, &"on_card_accepted", [points_earned, card.card_res, slot])
+	
 	var tween: Tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
