@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("2_h1f41")
-enchant_name = "Heavy"
+enchant_name = "Rainbow"
 rarity = 2
 description = "Counts as every suit."
 shader = ExtResource("3_h1f41")
 enchant_script = ExtResource("1_7du28")
-is_card_background_shader = true
+is_card_background_shader = false
 metadata/_custom_type_script = "uid://bipskg07p00gf"
