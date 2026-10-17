@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://bu8qf1x3lkcsw"]
+
+[ext_resource type="Script" uid="uid://hm5nhismewdb" path="res://Scripts/Enchants/rainbow.gd" id="1_7du28"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="2_h1f41"]
+[ext_resource type="Shader" uid="uid://dll4261elwa04" path="res://Shaders/Enchants/rainbow.gdshader" id="3_h1f41"]
+
+[resource]
+script = ExtResource("2_h1f41")
+enchant_name = "Heavy"
+rarity = 2
+description = "Counts as every suit."
+shader = ExtResource("3_h1f41")
+enchant_script = ExtResource("1_7du28")
+is_card_background_shader = true
+metadata/_custom_type_script = "uid://bipskg07p00gf"
