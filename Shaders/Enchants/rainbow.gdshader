@@ -10,7 +10,7 @@ void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
 	vec2 pixel_uv = floor(UV / TEXTURE_PIXEL_SIZE) * TEXTURE_PIXEL_SIZE;
 	float time = TIME * 0.2;
-	float rotated = fract((pixel_uv.x + pixel_uv.y) * 0.5 * 2.0 + time);
+	float rotated = fract((pixel_uv.x + pixel_uv.y) + time);
 	
 	COLOR.rgb = hsv2rgb(vec3(rotated, 1.0, 0.8));
 	COLOR.a = tex.a;
