@@ -11,9 +11,19 @@ func display_deck() -> void:
 	var sorted_deck: Array[CardResource] = RunData.deck.duplicate()
 	
 	sorted_deck.sort_custom(func(a: CardResource, b: CardResource):
-		if a.suit == b.suit:
+		if a.suit != b.suit:
+			return a.suit < b.suit
+		
+		if a.number != b.number:
 			return a.number < b.number
-		return a.suit < b.suit
+		
+		if (a.enchant != null) != (b.enchant != null):
+			return a.enchant != null
+		
+		if a.enchant and b.enchant:
+			return a.enchant.enchant_name.naturalnocasecmp_to(b.enchant.enchant_name) < 0
+	
+		return false
 	)
 	
 	for card_res: CardResource in sorted_deck:
