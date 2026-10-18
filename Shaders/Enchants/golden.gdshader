@@ -1,22 +1,22 @@
 shader_type canvas_item;
 
-uniform vec4 metal_color : source_color = vec4(1.0, 0.78, 0.35, 1.0);
+const vec4 metal_color = vec4(1.0, 0.78, 0.35, 1.0);
 
-uniform float metallic_strength : hint_range(0.0, 1.0) = 0.6;
-uniform float shine_strength : hint_range(0.0, 2.0) = 0.6;
-uniform float black_threshold : hint_range(0.0, 0.2) = 0.001;
+const float metallic_strength = 0.6;
+const float shine_strength = 0.6;
+const float black_threshold = 0.001;
 
-uniform float min_shine_width : hint_range(0.001, 0.5) = 0.24;
-uniform float max_shine_width : hint_range(0.001, 0.5) = 0.5;
+const float min_shine_width = 0.24;
+const float max_shine_width = 0.5;
 
-uniform float shine_count : hint_range(1.0, 10.0, 1.0) = 2.0;
+const float shine_count = 2.0;
 
-uniform vec2 direction = vec2(1.0, 0.75);
+const vec2 direction = vec2(1.0, 0.75);
 
-uniform float movement_strength = 0.001;
+const float movement_strength = 0.001;
 
-uniform float horizontal_strength : hint_range(0.0, 10.0) = 1.0;
-uniform float vertical_strength : hint_range(0.0, 10.0) = 2.0;
+const float horizontal_strength = 1.0;
+const float vertical_strength = 2.0;
 
 varying vec2 card_position;
 
