@@ -44,7 +44,7 @@ func reset() -> void:
 	money = 10
 	pins.clear()
 	gumballs.clear()
-	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources too early
+	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources inside the pools too early
 	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
 	gumball_pool = preload("uid://paqq2cfryjt4").duplicate()
 	enchant_pool = preload("uid://x42gage5qrdb").duplicate()

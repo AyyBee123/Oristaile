@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://q67r04b1xgws"]
 
+[ext_resource type="Script" uid="uid://dupm6r3tsr40k" path="res://Scripts/Game/encounter_select.gd" id="1_272w5"]
+
 [node name="Encounter Select" type="CanvasLayer" unique_id=1648333757]
+script = ExtResource("1_272w5")
 
 [node name="EncounterSelectControl" type="Control" parent="." unique_id=322485139]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,3 +43,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EncounterSelectControl/MarginContainer" unique_id=644038262]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Level" type="NinePatchRect" parent="EncounterSelectControl/MarginContainer/HBoxContainer" unique_id=1165390687]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="EncounterSelectControl/MarginContainer/HBoxContainer" unique_id=1594815337]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="EncounterSelectControl/MarginContainer/HBoxContainer" unique_id=1648704815]
+layout_mode = 2
+size_flags_horizontal = 3
