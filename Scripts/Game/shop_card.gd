@@ -40,14 +40,11 @@ func _ready() -> void:
 func update_enchant() -> void:
 	if card_res.enchant == null: return
 	
-	var enchant_material: ShaderMaterial = ShaderMaterial.new()
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		enchant_material.shader = card_res.enchant.background_shader.duplicate()
-		blank_card.material = enchant_material
+		blank_card.material = card_res.enchant.background_shader.duplicate()
 	if enchant.foreground_shader:
-		enchant_material.shader = card_res.enchant.foreground_shader.duplicate()
-		card_texture.material = enchant_material
+		card_texture.material = card_res.enchant.foreground_shader.duplicate()
 
 
 func _on_mouse_entered() -> void:

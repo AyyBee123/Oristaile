@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="2_15t55"]
 [ext_resource type="Shader" uid="uid://dkgqanbnubd1f" path="res://Shaders/Enchants/golden.gdshader" id="3_brbmc"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7okck"]
+shader = ExtResource("3_brbmc")
+
 [resource]
 script = ExtResource("2_15t55")
 enchant_name = "Golden"
 rarity = 1
 description = "Matching with this card grants $3."
-background_shader = ExtResource("3_brbmc")
+background_shader = SubResource("ShaderMaterial_7okck")
 enchant_script = ExtResource("1_brbmc")
 metadata/_custom_type_script = "uid://bipskg07p00gf"

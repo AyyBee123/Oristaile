@@ -11,11 +11,8 @@ func set_card_texture(suit: int, number: int) -> void:
 func update_enchant() -> void:
 	if card_res.enchant == null: return
 	
-	var enchant_material: ShaderMaterial = ShaderMaterial.new()
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		enchant_material.shader = card_res.enchant.background_shader.duplicate()
-		material = enchant_material
+		material = card_res.enchant.background_shader.duplicate()
 	if enchant.foreground_shader:
-		enchant_material.shader = card_res.enchant.foreground_shader.duplicate()
-		%Texture.material = enchant_material
+		%Texture.material = card_res.enchant.foreground_shader.duplicate()

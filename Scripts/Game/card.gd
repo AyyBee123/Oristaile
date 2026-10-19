@@ -61,14 +61,11 @@ func _process(_delta: float) -> void:
 func update_enchant() -> void:
 	if card_res.enchant == null: return
 	
-	var enchant_material: ShaderMaterial = ShaderMaterial.new()
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		enchant_material.shader = card_res.enchant.background_shader.duplicate()
-		blank_card.material = enchant_material
+		blank_card.material = card_res.enchant.background_shader
 	if enchant.foreground_shader:
-		enchant_material.shader = card_res.enchant.foreground_shader.duplicate()
-		card_texture.material = enchant_material
+		card_texture.material = card_res.enchant.foreground_shader
 
 
 func _on_focus_entered() -> void:

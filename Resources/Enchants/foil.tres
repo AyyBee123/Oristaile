@@ -4,10 +4,13 @@
 [ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="2_hl8ok"]
 [ext_resource type="Shader" uid="uid://1r4mmupdras2" path="res://Shaders/Enchants/foil.gdshader" id="3_hl8ok"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glp82"]
+shader = ExtResource("3_hl8ok")
+
 [resource]
 script = ExtResource("2_hl8ok")
 enchant_name = "Foil"
 description = "Points earned from this card are increased by +50."
-background_shader = ExtResource("3_hl8ok")
+background_shader = SubResource("ShaderMaterial_glp82")
 enchant_script = ExtResource("1_4vidu")
 metadata/_custom_type_script = "uid://bipskg07p00gf"

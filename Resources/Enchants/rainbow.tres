@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="2_h1f41"]
 [ext_resource type="Shader" uid="uid://dll4261elwa04" path="res://Shaders/Enchants/rainbow.gdshader" id="3_h1f41"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkym0"]
+shader = ExtResource("3_h1f41")
+
 [resource]
 script = ExtResource("2_h1f41")
 enchant_name = "Rainbow"
 rarity = 2
 description = "Counts as every suit."
-foreground_shader = ExtResource("3_h1f41")
+foreground_shader = SubResource("ShaderMaterial_mkym0")
 enchant_script = ExtResource("1_7du28")
 metadata/_custom_type_script = "uid://bipskg07p00gf"
