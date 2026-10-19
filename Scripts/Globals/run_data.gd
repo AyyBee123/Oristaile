@@ -36,18 +36,18 @@ func _ready() -> void:
 func reset() -> void:
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
+	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources inside the pools too early
+	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
+	gumball_pool = preload("uid://paqq2cfryjt4").duplicate()
+	enchant_pool = preload("uid://x42gage5qrdb").duplicate()
+	pins.clear()
+	gumballs.clear()
 	create_deck()
 	cards_to_draw_at_start = 7
 	cards_to_draw = 2
 	draws_per_round = 3
 	gumball_capacity = 2
 	money = 10
-	pins.clear()
-	gumballs.clear()
-	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources inside the pools too early
-	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
-	gumball_pool = preload("uid://paqq2cfryjt4").duplicate()
-	enchant_pool = preload("uid://x42gage5qrdb").duplicate()
 
 
 func create_deck() -> void:

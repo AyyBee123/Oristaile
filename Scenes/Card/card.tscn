@@ -7,8 +7,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkeji"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5dc4"]
-
 [node name="Card" type="Panel" unique_id=2086377053]
 custom_minimum_size = Vector2(72, 96)
 offset_right = 72.0
@@ -27,7 +25,6 @@ mouse_filter = 2
 
 [node name="BlankCard" type="TextureRect" parent="CardTextures" unique_id=685032555]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_r5dc4")
 layout_mode = 1
 offset_right = 72.0
 offset_bottom = 96.0
