@@ -52,7 +52,7 @@ void fragment() {
 		horizontal_strength,
 		vertical_strength
 	);
-
+	
 	float movement = dot(weighted_position, dir) * movement_strength;
 	float diagonal = dot(pixel_uv, dir) + movement;
 	
