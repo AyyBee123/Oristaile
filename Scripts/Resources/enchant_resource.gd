@@ -16,9 +16,9 @@ enum EnchantType {
 @export var enchant_name: String
 @export var rarity: Rarity = Rarity.COMMON
 @export_multiline var description: String
-@export var shader: Shader
+@export var background_shader: Shader
+@export var foreground_shader: Shader
 @export var enchant_script: GDScript
-@export var enchant_type: EnchantType = EnchantType.BACKGROUND
 
 var behaviour: EnchantScript
 

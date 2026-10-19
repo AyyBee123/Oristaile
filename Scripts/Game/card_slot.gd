@@ -33,16 +33,13 @@ func update_enchant() -> void:
 	if card_res.enchant == null: return
 	
 	var enchant_material: ShaderMaterial = ShaderMaterial.new()
-	enchant_material.shader = card_res.enchant.shader.duplicate()
-	var enchant_type = card_res.enchant.EnchantType
-	match card_res.enchant.enchant_type:
-		enchant_type.BACKGROUND:
-			blank_card.material = enchant_material
-		enchant_type.FOREGROUND:
-			card_texture.material = enchant_material
-		enchant_type.FULL:
-			blank_card.material = enchant_material
-			card_texture.material = enchant_material
+	var enchant: EnchantResource = card_res.enchant
+	if enchant.background_shader:
+		enchant_material.shader = card_res.enchant.background_shader.duplicate()
+		blank_card.material = enchant_material
+	if enchant.foreground_shader:
+		enchant_material.shader = card_res.enchant.foreground_shader.duplicate()
+		card_texture.material = enchant_material
 
 
 func remove_card() -> void:

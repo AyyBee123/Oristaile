@@ -9,6 +9,6 @@ script = ExtResource("1_be7w4")
 enchant_name = "Heavy"
 rarity = 1
 description = "Points earned from this card are doubled."
-shader = ExtResource("2_uolxl")
+background_shader = ExtResource("2_uolxl")
 enchant_script = ExtResource("1_05qva")
 metadata/_custom_type_script = "uid://bipskg07p00gf"

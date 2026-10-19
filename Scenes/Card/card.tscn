@@ -8,21 +8,29 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkeji"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r5dc4"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rffhp"]
 noise_type = 2
 seed = 1
-frequency = 0.015
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yw1pg"]
-noise = SubResource("FastNoiseLite_r5dc4")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r5dc4"]
+noise = SubResource("FastNoiseLite_rffhp")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0g18"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yw1pg"]
 shader = ExtResource("2_yw1pg")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_yw1pg")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_r5dc4")
+shader_parameter/card_color = Color(0.7, 0.85, 0.7, 1)
+shader_parameter/card_color_strength = 0.5
 shader_parameter/infection_color = Color(0.25, 0.55, 0.2, 1)
+shader_parameter/infection_color_2 = Color(0.33537692, 0.5323657, 0.21880314, 1)
+shader_parameter/infection_color_3 = Color(0.58063716, 0.6865693, 0.42955112, 1)
 shader_parameter/infection_threshold = 0.55
-shader_parameter/infection_strength = 0.8
+shader_parameter/infection_strength = 0.9
 shader_parameter/pixel_size = 1.0
+shader_parameter/movement_direction = Vector2(1, 1)
+shader_parameter/movement_speed = 0.04
+shader_parameter/wave_amplitude = 0.05
+shader_parameter/wave_frequency = 8.0
+shader_parameter/wave_speed = 2.0
 
 [node name="Card" type="Panel" unique_id=2086377053]
 custom_minimum_size = Vector2(72, 96)
@@ -42,7 +50,7 @@ mouse_filter = 2
 
 [node name="BlankCard" type="TextureRect" parent="CardTextures" unique_id=685032555]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_c0g18")
+material = SubResource("ShaderMaterial_yw1pg")
 layout_mode = 1
 offset_right = 72.0
 offset_bottom = 96.0
