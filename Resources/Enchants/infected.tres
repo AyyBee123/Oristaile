@@ -2,11 +2,11 @@
 
 [ext_resource type="Shader" uid="uid://g6dp315y8ac8" path="res://Shaders/Enchants/infected.gdshader" id="1_7okck"]
 [ext_resource type="Script" uid="uid://djtruj728paxt" path="res://Scripts/Enchants/infected.gd" id="2_7okck"]
+[ext_resource type="Shader" uid="uid://ldma53v1wc0g" path="res://Shaders/Enchants/color_tint.gdshader" id="3_7p06y"]
 [ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_f58p7"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jfiie"]
 noise_type = 2
-seed = 1
 frequency = 0.015
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_abarb"]
@@ -29,11 +29,17 @@ shader_parameter/wave_amplitude = 0.05
 shader_parameter/wave_frequency = 8.0
 shader_parameter/wave_speed = 2.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lu2rh"]
+shader = ExtResource("3_7p06y")
+shader_parameter/tint_color = Color(0.30588236, 0.3882353, 0.16862746, 1)
+shader_parameter/tint_strength = 0.5
+
 [resource]
 script = ExtResource("3_f58p7")
 enchant_name = "Infected"
 rarity = 1
 description = "Placeholder."
 background_shader = SubResource("ShaderMaterial_f58p7")
+foreground_shader = SubResource("ShaderMaterial_lu2rh")
 enchant_script = ExtResource("2_7okck")
 metadata/_custom_type_script = "uid://bipskg07p00gf"
