@@ -30,7 +30,7 @@ shader_parameter/movement_direction = Vector2(1, 1)
 shader_parameter/movement_speed = 0.04
 shader_parameter/wave_amplitude = 0.05
 shader_parameter/wave_frequency = 8.0
-shader_parameter/wave_speed = 2.0
+shader_parameter/wave_speed = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lu2rh"]
 shader = ExtResource("3_7p06y")
