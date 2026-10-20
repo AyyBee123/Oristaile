@@ -10,14 +10,6 @@ func load_save_data(_data: Dictionary) -> void:
 	pass # ex: counter = data.get("counter", 0)
 
 
-func set_background_shader_values(_shader: ShaderMaterial) -> void:
-	pass
-
-
-func set_foreground_shader_values(_shader: ShaderMaterial) -> void:
-	pass
-
-
 # Baseline functions to refer to:
 #
 # func modify_points(score: Dictionary, card_res: CardResource, slot: Slot) -> void: # use score["points"] to access points earned
