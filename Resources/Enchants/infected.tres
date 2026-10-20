@@ -7,6 +7,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jfiie"]
 noise_type = 2
+seed = 106
 frequency = 0.015
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_abarb"]
