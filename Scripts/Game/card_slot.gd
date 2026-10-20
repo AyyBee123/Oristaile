@@ -1,8 +1,7 @@
 extends TextureRect
 class_name Slot
 
-@onready var blank_card: TextureRect = %BlankCard
-@onready var card_texture: TextureRect = %Texture
+@onready var card_node: CardTemplate = %CardNode
 
 var card_res: CardResource
 
@@ -21,22 +20,7 @@ func drop_card(card: Card) -> void:
 
 func set_card(card: CardResource) -> void:
 	card_res = card
-	set_card_texture(card_res.suit, card_res.number)
-	update_enchant()
-
-
-func set_card_texture(suit: int, number: int) -> void:
-	card_texture.texture = CardData.get_card_texture(suit, number)
-
-
-func update_enchant() -> void:
-	if card_res.enchant == null: return
-	
-	var enchant: EnchantResource = card_res.enchant
-	if enchant.background_shader:
-		blank_card.material = card_res.enchant.background_shader
-	if enchant.foreground_shader:
-		card_texture.material = card_res.enchant.foreground_shader
+	card_node.refresh_card(self)
 
 
 func remove_card() -> void:

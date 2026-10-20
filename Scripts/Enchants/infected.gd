@@ -1,5 +1,7 @@
 extends EnchantScript
 
+const NUMBER_OF_INFECTIONS: int = 2
+
 
 func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) -> void:
 	var encounter: Node = Engine.get_main_loop().current_scene
@@ -15,7 +17,7 @@ func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) ->
 		
 		available_cards.append(target)
 	
-	for i in mini(2, available_cards.size()):
+	for i in mini(NUMBER_OF_INFECTIONS, available_cards.size()):
 		var index: int = RunData.rng.randi_range(0, available_cards.size() - 1)
 		var target: CardResource = available_cards.pop_at(index)
 		
@@ -29,6 +31,6 @@ func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) ->
 		# refresh the card if it's currently in the hand
 		for hand_card: Card in encounter.hand.get_children():
 			if hand_card.card_res == target:
-				hand_card.play_vfx(Preloads.INFECTION_VFX)
-				hand_card.refresh_card()
+				hand_card.card_node.play_vfx(Preloads.INFECTION_VFX)
+				hand_card.card_node.refresh_card()
 				break

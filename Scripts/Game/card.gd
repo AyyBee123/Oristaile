@@ -4,10 +4,7 @@ class_name Card
 signal held
 signal released(slot)
 
-@onready var card_textures: Control = %CardTextures
-@onready var blank_card: TextureRect = %BlankCard
-@onready var card_texture: TextureRect = %Texture
-@onready var focus_outline: TextureRect = %FocusOutline
+@onready var card_node: CardTemplate = %CardNode
 @onready var encounter: Encounter = get_tree().current_scene
 
 var card_res: CardResource
@@ -22,7 +19,7 @@ var is_dragged: bool = false
 var is_focused: bool = false:
 	set(v):
 		is_focused = v
-		focus_outline.visible = v and is_playing_card
+		card_node.focus_outline.visible = v and is_playing_card
 var deck_index: int = -1
 var preview: Card
 var is_playing_card: bool = false # checks if the card is a playing card in the player's hand
@@ -35,12 +32,7 @@ var input_disabled: bool = false
 func _ready() -> void:
 	original_z_index = z_index
 	
-	suit = card_res.suit
-	number = card_res.number
-	
-	card_texture.texture = CardData.get_card_texture(suit, number)
-	
-	update_enchant()
+	card_node.refresh_card(self)
 	
 	if is_playing_card:
 		mouse_entered.connect(grab_focus)
@@ -58,35 +50,6 @@ func _process(_delta: float) -> void:
 		release_focus()
 
 
-func update_enchant() -> void:
-	blank_card.material = null
-	card_texture.material = null
-	
-	if not card_res.enchant:
-		return
-	
-	var enchant: EnchantResource = card_res.enchant
-	
-	if enchant.background_shader:
-		blank_card.material = enchant.background_shader
-	
-	if enchant.foreground_shader:
-		card_texture.material = enchant.foreground_shader
-
-
-func refresh_card() -> void:
-	suit = card_res.suit
-	number = card_res.number
-	card_texture.texture = CardData.get_card_texture(suit, number)
-	update_enchant()
-
-
-func play_vfx(vfx_scene: PackedScene) -> void:
-	var vfx: Control = vfx_scene.instantiate()
-	vfx.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	add_child(vfx)
-
-
 func _on_focus_entered() -> void:
 	if encounter.has_won: return
 	if not is_dragged and not is_focused:
@@ -97,7 +60,7 @@ func _on_focus_entered() -> void:
 		focus_tween = create_tween()
 		focus_tween.set_trans(Tween.TRANS_QUAD)
 		focus_tween.set_ease(Tween.EASE_OUT)
-		focus_tween.tween_property(card_textures, "position:y", -20.0, 0.05)
+		focus_tween.tween_property(card_node, "position:y", -20.0, 0.05)
 
 
 func _on_focus_exited() -> void:
@@ -106,7 +69,7 @@ func _on_focus_exited() -> void:
 		focus_tween.kill()
 		focus_tween = null
 	focus_tween = create_tween()
-	focus_tween.tween_property(card_textures, "position:y", 0.0, 0.05)
+	focus_tween.tween_property(card_node, "position:y", 0.0, 0.05)
 
 
 func _gui_input(event: InputEvent) -> void:
