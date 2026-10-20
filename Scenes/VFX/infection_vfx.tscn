@@ -33,6 +33,3 @@ layout_mode = 1
 offset_right = 72.0
 offset_bottom = 96.0
 texture = ExtResource("3_10jp4")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1079782571]
-unique_name_in_owner = true
