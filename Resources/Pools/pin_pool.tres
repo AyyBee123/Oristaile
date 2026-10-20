@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://b4vgq8aqoitov" path="res://Scripts/Resources/pin_resource.gd" id="1_a2wg1"]
 [ext_resource type="Resource" uid="uid://b5fs08btc20mm" path="res://Resources/Pins/blue_quill.tres" id="2_dqey3"]
 [ext_resource type="Script" uid="uid://bf2luo3ublg0s" path="res://Scripts/Resources/pin_pool.gd" id="2_xta26"]
+[ext_resource type="Resource" uid="uid://c8rhbhrewu75q" path="res://Resources/Pins/royal_crown.tres" id="3_dqey3"]
 
 [resource]
 script = ExtResource("2_xta26")
 pin_folder = "res://Resources/Pins"
-pins = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3")])
-full_pool = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3")])
+pins = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3"), ExtResource("3_dqey3")])
+full_pool = Array[ExtResource("1_a2wg1")]([ExtResource("2_dqey3"), ExtResource("3_dqey3")])
 metadata/_custom_type_script = "uid://bf2luo3ublg0s"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PinResource" format=3 uid="uid://c8rhbhrewu75q"]
+
+[ext_resource type="Script" uid="uid://b8rtgk0f2b5m7" path="res://Scripts/Pins/royal_crown.gd" id="1_1mlmr"]
+[ext_resource type="Script" uid="uid://b4vgq8aqoitov" path="res://Scripts/Resources/pin_resource.gd" id="2_t6xat"]
+[ext_resource type="Texture2D" uid="uid://cliujso3dgrai" path="res://Assets/Sprites/Pins/Royal Crown.png" id="3_1mlmr"]
+
+[resource]
+script = ExtResource("2_t6xat")
+pin_name = "Royal Crown"
+rarity = 1
+description = "Scoring with a face card gives $2."
+texture = ExtResource("3_1mlmr")
+pin_script = ExtResource("1_1mlmr")
+metadata/_custom_type_script = "uid://b4vgq8aqoitov"
