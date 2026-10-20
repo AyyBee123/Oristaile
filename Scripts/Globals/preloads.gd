@@ -16,6 +16,10 @@ const SHOP_GUMBALL = preload("uid://drftbodd1lodc")
 
 ## Decks
 const STANDARD_DECK = preload("uid://bytne242bwqw5")
+const INFECTED_DECK = preload("uid://caukc2nh1mcdy")
 
 ## UI Nodes
 const DECK_UI = preload("uid://bc0yni1aokr0r")
+
+## VFX Nodes
+const INFECTION_VFX = preload("uid://b56vd5rg6d8th")

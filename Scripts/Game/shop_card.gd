@@ -25,7 +25,7 @@ func _ready() -> void:
 		card_res.number = RunData.rng.randi_range(1, 13)
 	
 	if RunData.rng.randf() < BASE_ENCHANT_CHANCE:
-		card_res.enchant = RunData.enchant_pool.get_random_enchant()
+		RunData.add_card_enchant(card_res, RunData.enchant_pool.get_random_enchant().duplicate())
 		update_enchant()
 	
 	card_texture.texture = CardData.get_card_texture(card_res.suit, card_res.number)
@@ -42,9 +42,9 @@ func update_enchant() -> void:
 	
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		blank_card.material = card_res.enchant.background_shader.duplicate()
+		blank_card.material = card_res.enchant.background_shader
 	if enchant.foreground_shader:
-		card_texture.material = card_res.enchant.foreground_shader.duplicate()
+		card_texture.material = card_res.enchant.foreground_shader
 
 
 func _on_mouse_entered() -> void:

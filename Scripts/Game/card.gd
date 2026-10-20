@@ -59,13 +59,32 @@ func _process(_delta: float) -> void:
 
 
 func update_enchant() -> void:
-	if card_res.enchant == null: return
+	blank_card.material = null
+	card_texture.material = null
+	
+	if not card_res.enchant:
+		return
 	
 	var enchant: EnchantResource = card_res.enchant
+	
 	if enchant.background_shader:
-		blank_card.material = card_res.enchant.background_shader
+		blank_card.material = enchant.background_shader
+	
 	if enchant.foreground_shader:
-		card_texture.material = card_res.enchant.foreground_shader
+		card_texture.material = enchant.foreground_shader
+
+
+func refresh_card() -> void:
+	suit = card_res.suit
+	number = card_res.number
+	card_texture.texture = CardData.get_card_texture(suit, number)
+	update_enchant()
+
+
+func play_vfx(vfx_scene: PackedScene) -> void:
+	var vfx: Control = vfx_scene.instantiate()
+	vfx.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(vfx)
 
 
 func _on_focus_entered() -> void:

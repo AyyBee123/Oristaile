@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://h46vylmp7xr"]
 
-[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/color_replace.gdshader" id="1_042lo"]
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/Misc/color_replace.gdshader" id="1_042lo"]
 [ext_resource type="Texture2D" uid="uid://cg5w5s1jx6xsa" path="res://Assets/Sprites/Pins/Blue Quill.png" id="1_ia0pa"]
 [ext_resource type="Script" uid="uid://d3sj0gsejuopo" path="res://Scripts/Pins/Base/shop_pin.gd" id="2_ia0pa"]
 [ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="3_walpc"]

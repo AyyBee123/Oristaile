@@ -34,9 +34,9 @@ func update_enchant() -> void:
 	
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		blank_card.material = card_res.enchant.background_shader.duplicate()
+		blank_card.material = card_res.enchant.background_shader
 	if enchant.foreground_shader:
-		card_texture.material = card_res.enchant.foreground_shader.duplicate()
+		card_texture.material = card_res.enchant.foreground_shader
 
 
 func remove_card() -> void:

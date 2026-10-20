@@ -12,6 +12,13 @@ extends Resource
 @export var legendary_weighting: float = 2.0
 
 
+func get_enchant_by_name(name: String) -> EnchantResource:
+	for enchant: EnchantResource in enchants:
+		if enchant.enchant_name == name:
+			return enchant
+	return null
+
+
 func get_random_enchant() -> EnchantResource:
 	var rarity: EnchantResource.Rarity = get_random_enchant_rarity()
 	var available_enchants: Array[EnchantResource] = get_enchants_by_rarity(rarity)

@@ -13,6 +13,6 @@ func update_enchant() -> void:
 	
 	var enchant: EnchantResource = card_res.enchant
 	if enchant.background_shader:
-		material = card_res.enchant.background_shader.duplicate()
+		material = card_res.enchant.background_shader
 	if enchant.foreground_shader:
-		%Texture.material = card_res.enchant.foreground_shader.duplicate()
+		%Texture.material = card_res.enchant.foreground_shader

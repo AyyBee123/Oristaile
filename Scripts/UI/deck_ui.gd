@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func display_deck() -> void:
-	var sorted_deck: Array[CardResource] = RunData.deck.duplicate()
+	var sorted_deck: Array[CardResource] = RunData.deck.cards.duplicate()
 	
 	sorted_deck.sort_custom(func(a: CardResource, b: CardResource):
 		if a.suit != b.suit:

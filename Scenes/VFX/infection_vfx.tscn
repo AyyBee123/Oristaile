@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b56vd5rg6d8th"]
+
+[ext_resource type="Script" uid="uid://cj8r5ofybq1hk" path="res://Scripts/Enchants/Effects/infection_vfx.gd" id="1_v6g8s"]
+[ext_resource type="Shader" uid="uid://ileulwnubi1t" path="res://Shaders/VFX/infection_vfx.gdshader" id="2_6rejy"]
+[ext_resource type="Texture2D" uid="uid://da2c7evu4kmtt" path="res://Assets/Sprites/Cards/Blank Card.png" id="3_10jp4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_10jp4"]
+noise_type = 2
+seed = 106
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i7gkt"]
+noise = SubResource("FastNoiseLite_10jp4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdreh"]
+shader = ExtResource("2_6rejy")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_i7gkt")
+shader_parameter/start_color = Color(0.6105853, 0.8443449, 0.4134149, 1)
+shader_parameter/end_color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+
+[node name="InfectionVFX" type="Control" unique_id=237186145]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_v6g8s")
+
+[node name="InfectionOverlay" type="TextureRect" parent="." unique_id=842406821]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sdreh")
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 96.0
+texture = ExtResource("3_10jp4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1079782571]
+unique_name_in_owner = true

@@ -71,8 +71,8 @@ func _ready() -> void:
 	SignalBus.card_slot_changed.connect(_on_card_slot_changed)
 	SignalBus.draw_card.connect(draw_card)
 	
-	for card in RunData.deck:
-		current_deck.append(card.duplicate())
+	for card in RunData.deck.cards:
+		current_deck.append(card)
 	
 	for slot: Slot in slot_container.get_children():
 		set_card_slot(slot)

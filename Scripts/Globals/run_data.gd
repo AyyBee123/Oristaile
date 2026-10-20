@@ -2,8 +2,8 @@ extends Node
 
 signal money_value_changed(amount: int)
 
-var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
-var deck: Array[CardResource] # modified deck for the current run
+var starting_deck: DeckResource = preload("uid://caukc2nh1mcdy")
+var deck: DeckResource # modified deck for the current run
 var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
 var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
 var draws_per_round: int # number of times the deck panel can be clicked in one round
@@ -51,17 +51,23 @@ func reset() -> void:
 
 
 func create_deck() -> void:
-	deck.clear() # clear the deck to remove previous deck of cards
+	deck = DeckResource.new()
 	set_cards(starting_deck.cards)
+	deck.deck_script = starting_deck.deck_script
+	deck.initialize()
 
 
 func set_cards(card_deck: Array) -> void:
 	for card: CardResource in card_deck: # create a new deck with each of the cards in the selected deck
 		var new_card = card.duplicate()
 		if card.enchant:
-			new_card.enchant = card.enchant.duplicate()
-			new_card.enchant.initialize()
-		deck.append(new_card)
+			add_card_enchant(new_card, card.enchant)
+		deck.cards.append(new_card)
+
+
+func add_card_enchant(card: CardResource, enchant: EnchantResource) -> void:
+	card.enchant = enchant.duplicate()
+	card.enchant.initialize()
 
 
 func set_pins() -> void:
@@ -77,7 +83,7 @@ func set_gumballs() -> void:
 func add_card(card: CardResource) -> void:
 	if card.enchant:
 		card.enchant.initialize()
-	deck.append(card)
+	deck.cards.append(card)
 
 
 func add_pin(pin: PinResource, pos: Vector2 = Vector2.ZERO) -> void:
