@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://bkh3qjcce1bll"]
+
+[ext_resource type="Shader" uid="uid://cdkma7deg8ykm" path="res://Shaders/Enchants/faded.gdshader" id="1_wv3be"]
+[ext_resource type="Script" uid="uid://dlpnxymckf0yx" path="res://Scripts/Enchants/faded.gd" id="2_24sbu"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_e2acr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wv3be"]
+shader = ExtResource("1_wv3be")
+shader_parameter/opacity = 0.800000038
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24sbu"]
+shader = ExtResource("1_wv3be")
+shader_parameter/opacity = 0.150000007125
+
+[resource]
+script = ExtResource("3_e2acr")
+enchant_name = "Faded"
+description = "Counts as every number. Counts as no suit. Awarded points are halved."
+background_shader = SubResource("ShaderMaterial_wv3be")
+foreground_shader = SubResource("ShaderMaterial_24sbu")
+enchant_script = ExtResource("2_24sbu")
+metadata/_custom_type_script = "uid://bipskg07p00gf"
