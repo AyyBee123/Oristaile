@@ -5,6 +5,9 @@ uniform sampler2D noise_texture : repeat_enable, filter_nearest;
 uniform vec4 card_color : source_color = vec4(0.7, 0.85, 0.7, 1.0);
 uniform float card_color_strength : hint_range(0.0, 1.0) = 0.5;
 
+uniform vec4 original_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(0.15, 0.35, 0.1, 1.0);
+
 uniform vec4 infection_color : source_color = vec4(0.25, 0.55, 0.2, 1.0);
 uniform vec4 infection_color_2 : source_color = vec4(0.25, 0.55, 0.2, 1.0);
 uniform vec4 infection_color_3 : source_color = vec4(0.25, 0.55, 0.2, 1.0);
@@ -60,6 +63,10 @@ void fragment() {
 	}
 	
 	vec3 final_color = mix(base_color, infected_color, infected * mask * infection_strength);
+	
+	if (all(equal(round(tex.rgb * 255.0), round(original_color.rgb * 255.0)))) {
+		final_color = replacement_color.rgb;
+	}
 	
 	COLOR = vec4(final_color, tex.a);
 }
