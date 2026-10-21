@@ -7,10 +7,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wv3be"]
 shader = ExtResource("1_wv3be")
 shader_parameter/opacity = 0.800000038
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/fade_strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_24sbu"]
 shader = ExtResource("1_wv3be")
 shader_parameter/opacity = 0.150000007125
+shader_parameter/fade_color = Color(0, 0, 0, 1)
+shader_parameter/fade_strength = 0.50000002375
 
 [resource]
 script = ExtResource("3_e2acr")
