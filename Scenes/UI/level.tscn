@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://bd1p5gcxq8fig"]
+
+[ext_resource type="Texture2D" uid="uid://ctubme201mp7b" path="res://Assets/Sprites/UI/Encounter Select Background.png" id="1_x882q"]
+[ext_resource type="Script" uid="uid://dxjucj5c8a3fs" path="res://Scripts/UI/level.gd" id="2_0oq4p"]
+[ext_resource type="Texture2D" uid="uid://bum72jjh8u7u1" path="res://Assets/Sprites/UI/Encounter Select Block.png" id="2_7m6m1"]
+[ext_resource type="Shader" uid="uid://chjs5bvof5pet" path="res://Shaders/Misc/color_replace.gdshader" id="3_0oq4p"]
+[ext_resource type="Texture2D" uid="uid://b30xdnaedrfbq" path="res://Assets/Sprites/UI/Button Green.png" id="4_jpola"]
+[ext_resource type="Texture2D" uid="uid://um140kr3s406" path="res://Assets/Sprites/UI/Button Green Pressed.png" id="5_psckk"]
+[ext_resource type="Texture2D" uid="uid://ds8o422h5u6jb" path="res://Assets/Sprites/UI/Button Green Disabled.png" id="6_5l00r"]
+[ext_resource type="Script" uid="uid://omchbublas43" path="res://Scripts/Misc/button_highlight.gd" id="7_knfew"]
+[ext_resource type="FontFile" uid="uid://dlhwdeb2rowxt" path="res://Fonts/PixelFont.ttf" id="8_cmlt2"]
+[ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/UI/pressed_button_move_label.gd" id="9_rksd3"]
+[ext_resource type="Texture2D" uid="uid://d4mju7s877qfh" path="res://Assets/Sprites/UI/Reward Frame.png" id="10_8q2lw"]
+[ext_resource type="Script" uid="uid://dg54dbdhvcf63" path="res://Scripts/UI/reward_frame.gd" id="11_e6v5c"]
+[ext_resource type="Texture2D" uid="uid://ce8eox5oxljjh" path="res://Assets/Sprites/UI/Rare Pin Reward.png" id="12_kaxqa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h324r"]
+resource_local_to_scene = true
+shader = ExtResource("3_0oq4p")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edee6"]
+texture = ExtResource("4_jpola")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t7a15"]
+texture = ExtResource("5_psckk")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_06mms"]
+texture = ExtResource("4_jpola")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kj4no"]
+texture = ExtResource("6_5l00r")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wy8sk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_177oa"]
+resource_local_to_scene = true
+shader = ExtResource("3_0oq4p")
+shader_parameter/og_color = Color(0, 0, 0, 1)
+shader_parameter/new_color = Color(1, 0.94, 0.15, 1)
+shader_parameter/set_color = false
+
+[node name="Level" type="NinePatchRect" unique_id=358569576]
+offset_right = 194.0
+offset_bottom = 228.0
+size_flags_horizontal = 3
+texture = ExtResource("1_x882q")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource("2_0oq4p")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2139756596]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.093
+anchor_top = 0.044000003
+anchor_right = 0.90700006
+anchor_bottom = 0.71900004
+offset_left = -0.041999817
+offset_top = -0.03200054
+offset_right = 0.041992188
+offset_bottom = 0.067993164
+texture = ExtResource("2_7m6m1")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="SelectButton" type="Button" parent="." unique_id=1376382699]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_h324r")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17500001
+anchor_top = 0.74600005
+anchor_right = 0.82500005
+anchor_bottom = 0.88600004
+offset_left = 0.049999237
+offset_top = -0.088012695
+offset_right = -0.05000305
+offset_bottom = -0.008010864
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_edee6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t7a15")
+theme_override_styles/hover = SubResource("StyleBoxTexture_06mms")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_kj4no")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wy8sk")
+script = ExtResource("7_knfew")
+
+[node name="Label" type="Label" parent="SelectButton" unique_id=1577358987]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_cmlt2")
+theme_override_font_sizes/font_size = 24
+text = "Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_rksd3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1382582745]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 18.0
+offset_right = -1.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PointsToWinLabel" type="Label" parent="VBoxContainer" unique_id=21736408]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_cmlt2")
+theme_override_font_sizes/font_size = 16
+text = "Points to win"
+horizontal_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="VBoxContainer" unique_id=339199423]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24705882, 0.74509805, 0.9647059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_cmlt2")
+theme_override_font_sizes/font_size = 32
+text = "500"
+horizontal_alignment = 1
+
+[node name="EmptySpace" type="ColorRect" parent="VBoxContainer" unique_id=1334280101]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="RewardLabel" type="Label" parent="VBoxContainer" unique_id=440636034]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_cmlt2")
+theme_override_font_sizes/font_size = 16
+text = "Reward"
+horizontal_alignment = 1
+
+[node name="EmptySpace2" type="ColorRect" parent="VBoxContainer" unique_id=1520914577]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1435022571]
+layout_mode = 2
+theme_override_constants/margin_left = 63
+theme_override_constants/margin_right = 63
+
+[node name="RewardFrame" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=118786590]
+material = SubResource("ShaderMaterial_177oa")
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("10_8q2lw")
+stretch_mode = 3
+script = ExtResource("11_e6v5c")
+
+[node name="Reward" type="TextureRect" parent="VBoxContainer/MarginContainer/RewardFrame" unique_id=242343213]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_kaxqa")
+stretch_mode = 3
