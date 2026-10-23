@@ -1,12 +1,6 @@
 class_name EnchantResource
 extends Resource
 
-enum Rarity {
-	COMMON,
-	RARE,
-	LEGENDARY
-}
-
 enum EnchantType {
 	BACKGROUND,
 	FOREGROUND,
@@ -14,7 +8,7 @@ enum EnchantType {
 }
 
 @export var enchant_name: String
-@export var rarity: Rarity = Rarity.COMMON
+@export var rarity: ItemData.Rarities = ItemData.Rarities.COMMON
 @export_multiline var description: String
 @export var background_shader: ShaderMaterial
 @export var foreground_shader: ShaderMaterial

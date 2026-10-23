@@ -1,6 +1,27 @@
 extends Node
 
-enum suits { CLUBS, DIAMONDS, HEARTS, SPADES }
+enum Suits {
+	CLUBS,
+	DIAMONDS,
+	HEARTS,
+	SPADES
+}
+
+enum Numbers {
+	ACE = 1,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	TEN,
+	JACK,
+	QUEEN,
+	KING
+}
 
 var card_textures = {}
 

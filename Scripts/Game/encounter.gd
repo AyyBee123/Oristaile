@@ -130,8 +130,8 @@ func set_card_slot(slot: Slot) -> void:
 	var random_index: int = RunData.rng.randi_range(0, full_deck.size() - 1)
 	var random_card: CardResource = full_deck[random_index]
 	
-	var suit: int = random_card.suit
-	var number: int = (random_card.number % 13) + 1
+	var suit: CardData.Suits = random_card.suit
+	var number: CardData.Numbers = (random_card.number % 13) + 1 as CardData.Numbers
 	
 	var exists: bool = false
 	

@@ -19,8 +19,9 @@ func _ready() -> void:
 	
 	if not card_res:
 		card_res = CardResource.new()
-		card_res.suit = RunData.rng.randi_range(0, 3)
-		card_res.number = RunData.rng.randi_range(1, 13)
+	
+	card_res.suit = RunData.rng.randi_range(CardData.Suits.CLUBS, CardData.Suits.SPADES) as CardData.Suits
+	card_res.number = RunData.rng.randi_range(CardData.Numbers.ACE, CardData.Numbers.KING) as CardData.Numbers
 	
 	if RunData.rng.randf() < BASE_ENCHANT_CHANCE:
 		RunData.add_card_enchant(card_res, RunData.enchant_pool.get_random_enchant().duplicate())

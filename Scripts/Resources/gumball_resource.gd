@@ -1,14 +1,8 @@
 class_name GumballResource
 extends Resource
 
-enum Rarity {
-	COMMON,
-	RARE,
-	LEGENDARY
-}
-
 @export var gumball_name: String
-@export var rarity: Rarity = Rarity.COMMON
+@export var rarity: ItemData.Rarities = ItemData.Rarities.COMMON
 @export_multiline var description: String
 @export var texture: Texture2D
 @export var gumball_script: GDScript
