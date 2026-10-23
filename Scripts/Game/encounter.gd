@@ -46,6 +46,8 @@ var win_tween: Tween
 var can_skip_tween: bool = false
 var controller_slot_index: int = 0
 
+var reward: ItemData.EncounterRewards = ItemData.EncounterRewards.NOTHING
+
 
 func _ready() -> void:
 	UINavigation.last_focused = null

@@ -25,7 +25,6 @@ shader_parameter/infection_color_2 = Color(0.3372549, 0.53333336, 0.21960784, 1)
 shader_parameter/infection_color_3 = Color(0.5803922, 0.6862745, 0.43137255, 1)
 shader_parameter/infection_threshold = 0.55
 shader_parameter/infection_strength = 0.9
-shader_parameter/pixel_size = 1.0
 shader_parameter/movement_direction = Vector2(1, 1)
 shader_parameter/movement_speed = 0.04
 shader_parameter/wave_amplitude = 0.05

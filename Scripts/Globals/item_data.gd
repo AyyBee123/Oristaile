@@ -6,6 +6,13 @@ enum Rarities {
 	LEGENDARY
 }
 
+enum EncounterRewards {
+	NOTHING,
+	PIN,
+	GUMBALL,
+	MONEY
+}
+
 const PIN_PRICES: Dictionary = {
 	Rarities.COMMON: 5,
 	Rarities.RARE: 10,

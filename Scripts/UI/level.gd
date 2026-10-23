@@ -1,10 +1,15 @@
+class_name LevelSelect
 extends NinePatchRect
 
-@onready var reward: TextureRect = %Reward
+@onready var reward_texture: TextureRect = %Reward
+@onready var select_button: Button = %SelectButton
 
-enum Rewards {
-	PIN,
-	GUMBALLS,
-	ENCHANTED_CARD,
-	NOTHING
-}
+var reward: ItemData.EncounterRewards = ItemData.EncounterRewards.NOTHING
+
+
+func _ready() -> void:
+	select_button.pressed.connect(_on_select_button_pressed)
+
+
+func _on_select_button_pressed() -> void:
+	pass
