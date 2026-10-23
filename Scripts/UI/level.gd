@@ -5,6 +5,7 @@ extends NinePatchRect
 @onready var select_button: Button = %SelectButton
 
 var reward: ItemData.EncounterRewards = ItemData.EncounterRewards.NOTHING
+var reward_rarity: ItemData.Rarities
 
 
 func _ready() -> void:
