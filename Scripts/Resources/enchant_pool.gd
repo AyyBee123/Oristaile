@@ -20,7 +20,7 @@ func get_enchant_by_name(name: String) -> EnchantResource:
 
 
 func get_random_enchant() -> EnchantResource:
-	var rarity: EnchantResource.Rarity = get_random_enchant_rarity()
+	var rarity: ItemData.Rarities = get_random_enchant_rarity()
 	var available_enchants: Array[EnchantResource] = get_enchants_by_rarity(rarity)
 	
 	if available_enchants.is_empty(): # this will never be called later
@@ -35,22 +35,22 @@ func get_random_enchant() -> EnchantResource:
 	return selected_enchant
 
 
-func get_random_enchant_rarity() -> EnchantResource.Rarity:
+func get_random_enchant_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
 	var roll: float = RunData.rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
-		return EnchantResource.Rarity.COMMON
+		return ItemData.Rarities.COMMON
 	
 	roll -= common_weighting
 	
 	if roll < rare_weighting:
-		return EnchantResource.Rarity.RARE
+		return ItemData.Rarities.RARE
 	
-	return EnchantResource.Rarity.LEGENDARY
+	return ItemData.Rarities.LEGENDARY
 
 
-func get_enchants_by_rarity(rarity: EnchantResource.Rarity) -> Array[EnchantResource]:
+func get_enchants_by_rarity(rarity: ItemData.Rarities) -> Array[EnchantResource]:
 	var result: Array[EnchantResource] = []
 	
 	for enchant: EnchantResource in enchants:

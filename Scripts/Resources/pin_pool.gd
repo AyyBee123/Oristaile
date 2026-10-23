@@ -13,14 +13,14 @@ extends Resource
 @export var legendary_weighting: float = 2.0
 
 
-func refill_pin_pool(rarity: PinResource.Rarity) -> void:
+func refill_pin_pool(rarity: ItemData.Rarities) -> void:
 	for pin: PinResource in full_pool:
 		if pin.rarity == rarity:
 			pins.append(pin)
 
 
 func get_random_pin() -> PinResource:
-	var rarity: PinResource.Rarity = get_random_pin_rarity()
+	var rarity: ItemData.Rarities = get_random_pin_rarity()
 	var available_pins: Array[PinResource] = get_pins_by_rarity(rarity)
 	
 	if available_pins.is_empty():
@@ -40,22 +40,22 @@ func get_random_pin() -> PinResource:
 	return selected_pin
 
 
-func get_random_pin_rarity() -> PinResource.Rarity:
+func get_random_pin_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
 	var roll: float = RunData.rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
-		return PinResource.Rarity.COMMON
+		return ItemData.Rarities.COMMON
 	
 	roll -= common_weighting
 	
 	if roll < rare_weighting:
-		return PinResource.Rarity.RARE
+		return ItemData.Rarities.RARE
 	
-	return PinResource.Rarity.LEGENDARY
+	return ItemData.Rarities.LEGENDARY
 
 
-func get_pins_by_rarity(rarity: PinResource.Rarity) -> Array[PinResource]:
+func get_pins_by_rarity(rarity: ItemData.Rarities) -> Array[PinResource]:
 	var result: Array[PinResource] = []
 	
 	for pin: PinResource in pins:
