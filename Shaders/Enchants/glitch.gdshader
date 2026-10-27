@@ -8,6 +8,7 @@ uniform float displacement : hint_range(0.0, 16.0) = 6.0;
 uniform float rgb_split : hint_range(0.0, 8.0) = 1.5;
 
 uniform float band_height : hint_range(1.0, 16.0, 1.0) = 6.0;
+uniform float band_height_variance : hint_range(0.0, 8.0, 1.0) = 2.0;
 uniform float padding : hint_range(0.0, 32.0) = 8.0;
 
 // Animated glitch outline
@@ -78,9 +79,19 @@ void fragment() {
 	float glitch_active = enabled * fade_in * fade_out;
 
 	// Horizontal pixel bands
-	float band = floor(
-		base_uv.y / (TEXTURE_PIXEL_SIZE.y * band_height)
+	float pixel_y = floor(base_uv.y / TEXTURE_PIXEL_SIZE.y);
+
+	// Randomize the height for each glitch interval
+	float height_variation = (
+		random(vec2(interval, 53.0)) * 2.0 - 1.0
+	) * band_height_variance;
+
+	float current_band_height = max(
+		1.0,
+		round(band_height + height_variation)
 	);
+
+	float band = floor(pixel_y / current_band_height);
 
 	float band_active = step(
 		0.45,
