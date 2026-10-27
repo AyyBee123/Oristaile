@@ -42,7 +42,7 @@ shader_parameter/show_3d_outline = true
 shader_parameter/outline_3d_red = Color(1, 0.1, 0.2, 1)
 shader_parameter/outline_3d_cyan = Color(0.1, 0.8, 1, 1)
 shader_parameter/outline_3d_width = 2.0
-shader_parameter/outline_3d_strength = 0.30000001425
+shader_parameter/outline_3d_strength = 0.400000019
 
 [resource]
 script = ExtResource("3_vsc7w")
