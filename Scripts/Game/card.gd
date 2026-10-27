@@ -19,7 +19,7 @@ var is_dragged: bool = false
 var is_focused: bool = false:
 	set(v):
 		is_focused = v
-		card_node.focus_outline.visible = v and is_playing_card
+		card_node.set_highlight(v and is_playing_card)
 var deck_index: int = -1
 var preview: Card
 var is_playing_card: bool = false # checks if the card is a playing card in the player's hand

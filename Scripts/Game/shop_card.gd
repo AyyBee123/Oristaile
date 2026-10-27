@@ -44,11 +44,11 @@ func _on_mouse_exited() -> void:
 
 
 func _on_focus_entered() -> void:
-	card_node.focus_outline.visible = true
+	card_node.set_highlight(true)
 
 
 func _on_focus_exited() -> void:
-	card_node.focus_outline.visible = false
+	card_node.set_highlight(false)
 
 
 func _gui_input(event: InputEvent) -> void:

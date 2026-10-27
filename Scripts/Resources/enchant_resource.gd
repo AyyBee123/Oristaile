@@ -12,6 +12,7 @@ enum EnchantType {
 @export_multiline var description: String
 @export var background_shader: ShaderMaterial
 @export var foreground_shader: ShaderMaterial
+@export var highlight_shader: ShaderMaterial
 @export var enchant_script: GDScript
 
 var behaviour: EnchantScript

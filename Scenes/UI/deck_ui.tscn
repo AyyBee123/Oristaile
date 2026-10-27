@@ -28,11 +28,14 @@ theme_override_constants/margin_right = 72
 theme_override_constants/margin_bottom = 24
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1043598161]
+clip_contents = false
 layout_mode = 2
 
 [node name="CardGrid" type="GridContainer" parent="MarginContainer/ScrollContainer" unique_id=1975604047]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 6

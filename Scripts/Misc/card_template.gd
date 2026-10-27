@@ -29,9 +29,14 @@ func play_vfx(vfx_scene: PackedScene) -> void:
 	add_child(vfx)
 
 
+func set_highlight(is_highlight: bool) -> void:
+	focus_outline.visible = is_highlight
+
+
 func update_enchant() -> void:
 	%BlankCard.material = null
 	%Texture.material = null
+	%FocusOutline.material = null
 	
 	if not card_res.enchant:
 		return
@@ -43,3 +48,6 @@ func update_enchant() -> void:
 	
 	if enchant.foreground_shader:
 		%Texture.material = enchant.foreground_shader
+	
+	if enchant.highlight_shader:
+		%FocusOutline.material = enchant.highlight_shader
