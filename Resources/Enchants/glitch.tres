@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://4nlrg1xnramr"]
+
+[ext_resource type="Shader" uid="uid://b6wmma70d2twk" path="res://Shaders/Enchants/glitch.gdshader" id="1_wemxw"]
+[ext_resource type="Script" uid="uid://hybyg6hloefd" path="res://Scripts/Enchants/glitch.gd" id="2_v01sr"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_vsc7w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsc7w"]
+shader = ExtResource("1_wemxw")
+shader_parameter/glitch_strength = 0.7
+shader_parameter/glitch_frequency = 0.30000001425
+shader_parameter/glitch_speed = 8.00000037674012
+shader_parameter/displacement = 4.00000019
+shader_parameter/rgb_split = 1.5
+shader_parameter/band_height = 8.0
+shader_parameter/padding = 8.0
+shader_parameter/outline_red = Color(1, 0.1, 0.2, 1)
+shader_parameter/outline_blue = Color(0.1, 0.7, 1, 1)
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_strength = 0.8
+shader_parameter/show_3d_outline = false
+shader_parameter/outline_3d_red = Color(1, 0.1, 0.2, 1)
+shader_parameter/outline_3d_cyan = Color(0.1, 0.8, 1, 1)
+shader_parameter/outline_3d_width = 2.0
+shader_parameter/outline_3d_strength = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ii2n"]
+shader = ExtResource("1_wemxw")
+shader_parameter/glitch_strength = 0.7
+shader_parameter/glitch_frequency = 0.30000001425
+shader_parameter/glitch_speed = 8.00000037674012
+shader_parameter/displacement = 4.00000019
+shader_parameter/rgb_split = 1.5
+shader_parameter/band_height = 4.0
+shader_parameter/padding = 8.0
+shader_parameter/outline_red = Color(1, 0.1, 0.2, 1)
+shader_parameter/outline_blue = Color(0.1, 0.7, 1, 1)
+shader_parameter/outline_width = 2.0
+shader_parameter/outline_strength = 0.8
+shader_parameter/show_3d_outline = true
+shader_parameter/outline_3d_red = Color(1, 0.1, 0.2, 1)
+shader_parameter/outline_3d_cyan = Color(0.1, 0.8, 1, 1)
+shader_parameter/outline_3d_width = 2.0
+shader_parameter/outline_3d_strength = 0.30000001425
+
+[resource]
+script = ExtResource("3_vsc7w")
+enchant_name = "Glitch"
+rarity = 2
+description = "Matching with this card triggers 3 random enchants."
+background_shader = SubResource("ShaderMaterial_vsc7w")
+foreground_shader = SubResource("ShaderMaterial_4ii2n")
+enchant_script = ExtResource("2_v01sr")
+metadata/_custom_type_script = "uid://bipskg07p00gf"

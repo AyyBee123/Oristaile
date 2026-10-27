@@ -7,10 +7,11 @@
 [ext_resource type="Resource" uid="uid://m2mdl472t2a5" path="res://Resources/Enchants/heavy.tres" id="2_rtag4"]
 [ext_resource type="Resource" uid="uid://dc3mg3a06n1kw" path="res://Resources/Enchants/golden.tres" id="3_r0fvc"]
 [ext_resource type="Resource" uid="uid://bu8qf1x3lkcsw" path="res://Resources/Enchants/rainbow.tres" id="3_rtag4"]
+[ext_resource type="Resource" uid="uid://4nlrg1xnramr" path="res://Resources/Enchants/glitch.tres" id="4_54wqx"]
 [ext_resource type="Resource" uid="uid://cbf64ryvj2ll5" path="res://Resources/Enchants/infected.tres" id="5_r0fvc"]
 
 [resource]
 script = ExtResource("2_pohvb")
 enchant_folder = "res://Resources/Enchants"
-enchants = Array[ExtResource("1_vpw2o")]([ExtResource("2_p8hma"), ExtResource("2_57ipw"), ExtResource("3_r0fvc"), ExtResource("2_rtag4"), ExtResource("5_r0fvc"), ExtResource("3_rtag4")])
+enchants = Array[ExtResource("1_vpw2o")]([ExtResource("2_p8hma"), ExtResource("2_57ipw"), ExtResource("4_54wqx"), ExtResource("3_r0fvc"), ExtResource("2_rtag4"), ExtResource("5_r0fvc"), ExtResource("3_rtag4")])
 metadata/_custom_type_script = "uid://664c6xu1ebyw"

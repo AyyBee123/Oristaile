@@ -2,6 +2,10 @@ class_name EnchantScript
 extends RefCounted
 
 
+func initialize() -> void:
+	pass
+
+
 func get_save_data() -> Dictionary:
 	return {} # ex: return { "counter": counter }
 

@@ -20,3 +20,4 @@ var behaviour: EnchantScript
 func initialize() -> void:
 	if enchant_script:
 		behaviour = enchant_script.new()
+		behaviour.on_initialize(self)
