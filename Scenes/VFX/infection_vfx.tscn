@@ -20,6 +20,7 @@ shader_parameter/end_color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
 
 [node name="InfectionVFX" type="Control" unique_id=237186145]
+z_index = 4
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 3
