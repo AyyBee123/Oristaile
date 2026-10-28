@@ -2,7 +2,16 @@ class_name EnchantScript
 extends RefCounted
 
 
-func initialize() -> void:
+func on_initialize(_enchant: EnchantResource) -> void:
+	pass
+
+
+func initialize_instance_shader_parameters(card: CardTemplate) -> void:
+	if not card.card_res.enchant: return
+	set_shader_parameters(card)
+
+
+func set_shader_parameters(_card: CardTemplate) -> void:
 	pass
 
 

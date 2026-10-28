@@ -51,10 +51,12 @@ uniform float outline_3d_strength : hint_range(0.0, 1.0) = 0.25;
 // end grouping
 group_uniforms;
 
+instance uniform float glitch_seed = 0.0;
+
 
 // pseudo-random value
 float random(vec2 seed) {
-	return fract(sin(dot(seed, vec2(127.1, 311.7))) * 43758.5453);
+    return fract(sin(dot(seed + vec2(glitch_seed), vec2(127.1, 311.7))) * 43758.5453);
 }
 
 

@@ -20,20 +20,40 @@ uniform float wave_amplitude = 0.03;
 uniform float wave_frequency = 8.0;
 uniform float wave_speed = 2.0;
 
+instance uniform float infected_seed = 0.0;
+
+
+float random(vec2 seed) {
+	return fract(sin(dot(seed + vec2(infected_seed), vec2(127.1, 311.7))) * 43758.5453);
+}
+
+
+vec2 get_movement_direction() {
+	float angle = random(vec2(12.3, 45.6)) * TAU;
+	return vec2(cos(angle), sin(angle));
+}
+
+
+vec2 get_noise_offset() {
+	return vec2(random(vec2(78.1, 23.4)), random(vec2(56.7, 91.2))) * 100.0;
+}
+
+
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
 	vec2 pixel_uv = floor(UV / TEXTURE_PIXEL_SIZE) * TEXTURE_PIXEL_SIZE;
 	
-	vec2 dir = normalize(movement_direction);
+	vec2 dir = get_movement_direction();
 	vec2 perpendicular = vec2(-dir.y, dir.x);
 	
+	vec2 noise_offset = get_noise_offset();
 	vec2 offset = dir * TIME * movement_speed;
 	
 	float wave = sin(dot(pixel_uv, dir) * wave_frequency + TIME * wave_speed) * wave_amplitude;
 	
 	offset += perpendicular * wave;
 	
-	float noise_value = texture(noise_texture, pixel_uv + offset).r;
+	float noise_value = texture(noise_texture, pixel_uv + offset + noise_offset).r;
 	
 	float infected = step(infection_threshold, noise_value);
 	

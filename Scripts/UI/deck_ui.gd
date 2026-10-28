@@ -22,13 +22,13 @@ func display_deck() -> void:
 		
 		if a.enchant and b.enchant:
 			return a.enchant.enchant_name.naturalnocasecmp_to(b.enchant.enchant_name) < 0
-	
+		
 		return false
 	)
 	
 	for card_res: CardResource in sorted_deck:
 		var card: CardTemplate = Preloads.CARD_TEMPLATE.instantiate()
-		card.card_res = card_res.duplicate()
+		card.card_res = card_res
 		card.set_card_texture(card_res.suit, card_res.number)
 		card.update_enchant()
 		card_grid.add_child(card)

@@ -9,6 +9,12 @@ func on_initialize(enchant: EnchantResource) -> void:
 	select_enchants()
 
 
+func set_shader_parameters(card: CardTemplate) -> void:
+	card.get_node("%BlankCard").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
+	card.get_node("%Texture").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
+	card.get_node("%FocusOutline").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
+
+
 func select_enchants() -> void:
 	selected_enchants.clear()
 	

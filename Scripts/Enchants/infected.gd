@@ -2,6 +2,18 @@ extends EnchantScript
 
 const NUMBER_OF_INFECTIONS: int = 2
 
+var source_enchant: EnchantResource
+
+
+func on_initialize(enchant: EnchantResource) -> void:
+	source_enchant = enchant
+
+
+func set_shader_parameters(card: CardTemplate) -> void:
+	card.get_node("%BlankCard").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
+	card.get_node("%Texture").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
+	card.get_node("%FocusOutline").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
+
 
 func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) -> void:
 	var encounter: Node = Engine.get_main_loop().current_scene

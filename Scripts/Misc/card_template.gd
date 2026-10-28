@@ -51,3 +51,5 @@ func update_enchant() -> void:
 	
 	if enchant.highlight_shader:
 		%FocusOutline.material = enchant.highlight_shader
+	
+	enchant.behaviour.initialize_instance_shader_parameters(self)
