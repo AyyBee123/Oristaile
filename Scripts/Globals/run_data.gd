@@ -13,6 +13,9 @@ var money: int: # amount of money the player has (to buy pins, cards, and other 
 		money = v
 		money_value_changed.emit(v)
 
+var achievements_enabled: bool = true
+
+var run_seed: int = 0
 var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var drop_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var starting_deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -39,12 +42,26 @@ enum Scenes { ENCOUNTER, SHOP }
 
 
 func _ready() -> void:
+	start_random_seed() # for now
+
+
+func start_random_seed() -> void:
+	main_rng = RandomNumberGenerator.new()
+	main_rng.randomize()
+	run_seed = main_rng.seed
+	achievements_enabled = true
+	reset()
+
+
+func start_input_seed(input_seed: int) -> void:
+	main_rng = RandomNumberGenerator.new()
+	main_rng.seed = input_seed
+	run_seed = main_rng.seed
+	achievements_enabled = false
 	reset()
 
 
 func reset() -> void:
-	main_rng.randomize()
-	main_rng.seed = 12345
 	drop_rng.seed = main_rng.seed
 	starting_deck_rng.seed = main_rng.seed
 	deck_rng.seed = main_rng.seed
