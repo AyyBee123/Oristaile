@@ -62,15 +62,7 @@ func start_input_seed(input_seed: int) -> void:
 
 
 func reset() -> void:
-	drop_rng.seed = main_rng.seed
-	starting_deck_rng.seed = main_rng.seed
-	deck_rng.seed = main_rng.seed
-	encounter_rng.seed = main_rng.seed
-	gumball_rng.seed = main_rng.seed
-	pin_rng.seed = main_rng.seed
-	enchant_rng.seed = main_rng.seed
-	enchant_shader_rng.seed = main_rng.seed
-	misc_rng.seed = main_rng.seed
+	set_up_seed()
 	
 	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources inside the pools too early
 	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
@@ -86,6 +78,46 @@ func reset() -> void:
 	draws_per_round = 3
 	gumball_capacity = 2
 	money = 10
+
+
+func set_up_seed() -> void:
+	drop_rng.seed = hash(str(run_seed, "_drop"))
+	starting_deck_rng.seed = hash(str(run_seed, "_starting_deck"))
+	deck_rng.seed = hash(str(run_seed, "_deck"))
+	encounter_rng.seed = hash(str(run_seed, "_encounter"))
+	gumball_rng.seed = hash(str(run_seed, "_gumball"))
+	pin_rng.seed = hash(str(run_seed, "_pin"))
+	enchant_rng.seed = hash(str(run_seed, "_enchant"))
+	enchant_shader_rng.seed = hash(str(run_seed, "_enchant_shader"))
+	misc_rng.seed = hash(str(run_seed, "_misc"))
+
+
+func load_rng_states(data: Dictionary) -> void:
+	main_rng.state = int(data["main_rng_state"])
+	drop_rng.state = int(data["drop_rng_state"])
+	starting_deck_rng.state = int(data["starting_deck_rng_state"])
+	deck_rng.state = int(data["deck_rng_state"])
+	encounter_rng.state = int(data["encounter_rng_state"])
+	gumball_rng.state = int(data["gumball_rng_state"])
+	pin_rng.state = int(data["pin_rng_state"])
+	enchant_rng.state = int(data["enchant_rng_state"])
+	enchant_shader_rng.state = int(data["enchant_shader_rng_state"])
+	misc_rng.state = int(data["misc_rng_state"])
+
+
+func get_rng_save_data() -> Dictionary:
+	return {
+		"main_rng_state": main_rng.state,
+		"drop_rng_state": drop_rng.state,
+		"starting_deck_rng_state": starting_deck_rng.state,
+		"deck_rng_state": deck_rng.state,
+		"encounter_rng_state": encounter_rng.state,
+		"gumball_rng_state": gumball_rng.state,
+		"pin_rng_state": pin_rng.state,
+		"enchant_rng_state": enchant_rng.state,
+		"enchant_shader_rng_state": enchant_shader_rng.state,
+		"misc_rng_state": misc_rng.state
+	}
 
 
 func create_deck() -> void:
