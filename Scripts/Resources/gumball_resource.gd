@@ -5,7 +5,7 @@ extends Resource
 @export var rarity: ItemData.Rarities = ItemData.Rarities.COMMON
 @export_multiline var description: String
 @export var texture: Texture2D
-@export var gumball_script: GDScript
+@export var gumball_script: GDScript = preload("uid://d0q5t8ikur0d8")
 
 var behaviour: GumballScript
 

@@ -11,8 +11,8 @@ const REWARD_WEIGHTS: Dictionary = {
 
 const RARITY_WEIGHTS: Dictionary = {
 	ItemData.Rarities.COMMON: 70.0,
-	ItemData.Rarities.RARE: 25.0,
-	ItemData.Rarities.LEGENDARY: 5.0
+	ItemData.Rarities.RARE: 28.0,
+	ItemData.Rarities.LEGENDARY: 2.0
 }
 
 var reward_list: Array
@@ -46,7 +46,7 @@ func _ready() -> void:
 		for reward: Dictionary in available_rewards:
 			total_weight += reward["weight"]
 		
-		var roll: float = RunData.rng.randf() * total_weight
+		var roll: float = RunData.drop_rng.randf() * total_weight
 		var selected_index: int = -1
 		
 		for i in available_rewards.size():
@@ -65,3 +65,5 @@ func _ready() -> void:
 		
 		if selected["rarity"] != -1:
 			level.reward_rarity = selected["rarity"] as ItemData.Rarities
+		
+		level.generate_reward()

@@ -30,7 +30,7 @@ func get_random_gumball() -> GumballResource:
 	if available_gumballs.is_empty():
 		return get_random_gumball()
 	
-	var random_index: int = RunData.rng.randi_range(0, available_gumballs.size() - 1)
+	var random_index: int = RunData.drop_rng.randi_range(0, available_gumballs.size() - 1)
 	var selected_gumball: GumballResource = available_gumballs[random_index]
 	gumballs.erase(selected_gumball)
 	
@@ -42,7 +42,7 @@ func get_random_gumball() -> GumballResource:
 
 func get_random_gumball_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-	var roll: float = RunData.rng.randf_range(0.0, total_weight)
+	var roll: float = RunData.drop_rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
 		return ItemData.Rarities.COMMON

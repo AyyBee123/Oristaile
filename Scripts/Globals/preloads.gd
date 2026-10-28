@@ -23,3 +23,8 @@ const DECK_UI = preload("uid://bc0yni1aokr0r")
 
 ## VFX Nodes
 const INFECTION_VFX = preload("uid://b56vd5rg6d8th")
+
+## Textures
+const COMMON_PIN_REWARD = preload("uid://oay8p3cbddqg")
+const RARE_PIN_REWARD = preload("uid://ce8eox5oxljjh")
+const LEGENDARY_PIN_REWARD = preload("uid://dynejsutig8e8")

@@ -10,7 +10,7 @@ extends Resource
 
 
 func get_random_gumball() -> GumballResource:
-	var rarity: GumballResource.Rarity = get_random_gumball_rarity()
+	var rarity: ItemData.Rarities = get_random_gumball_rarity()
 	var available_gumballs: Array[GumballResource] = get_gumballs_by_rarity(rarity)
 	
 	if available_gumballs.is_empty():
@@ -19,7 +19,7 @@ func get_random_gumball() -> GumballResource:
 	if available_gumballs.is_empty():
 		return get_random_gumball()
 	
-	var random_index: int = RunData.rng.randi_range(0, available_gumballs.size() - 1)
+	var random_index: int = RunData.drop_rng.randi_range(0, available_gumballs.size() - 1)
 	var selected_gumball: GumballResource = available_gumballs[random_index]
 	gumballs.erase(selected_gumball)
 	
@@ -29,22 +29,22 @@ func get_random_gumball() -> GumballResource:
 	return selected_gumball
 
 
-func get_random_gumball_rarity() -> GumballResource.Rarity:
+func get_random_gumball_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-	var roll: float = RunData.rng.randf_range(0.0, total_weight)
+	var roll: float = RunData.drop_rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
-		return GumballResource.Rarity.COMMON
+		return ItemData.Rarities.COMMON
 	
 	roll -= common_weighting
 	
 	if roll < rare_weighting:
-		return GumballResource.Rarity.RARE
+		return ItemData.Rarities.RARE
 	
-	return GumballResource.Rarity.LEGENDARY
+	return ItemData.Rarities.LEGENDARY
 
 
-func get_gumballs_by_rarity(rarity: GumballResource.Rarity) -> Array[GumballResource]:
+func get_gumballs_by_rarity(rarity: ItemData.Rarities) -> Array[GumballResource]:
 	var result: Array[GumballResource] = []
 	
 	for gumball: GumballResource in gumballs:

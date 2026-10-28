@@ -2,7 +2,7 @@ extends Node
 
 signal money_value_changed(amount: int)
 
-var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
+var starting_deck: DeckResource = preload("uid://caukc2nh1mcdy")
 var deck: DeckResource # modified deck for the current run
 var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
 var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
@@ -13,7 +13,16 @@ var money: int: # amount of money the player has (to buy pins, cards, and other 
 		money = v
 		money_value_changed.emit(v)
 
-var rng: RandomNumberGenerator
+var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var drop_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var starting_deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var encounter_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var gumball_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var pin_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var enchant_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var enchant_shader_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var misc_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var base_points_per_card: float = 100.0
 var matching_suit_points_multiplier: float = 3.0
@@ -34,14 +43,26 @@ func _ready() -> void:
 
 
 func reset() -> void:
-	rng = RandomNumberGenerator.new()
-	rng.randomize()
+	main_rng.randomize()
+	main_rng.seed = 12345
+	drop_rng.seed = main_rng.seed
+	starting_deck_rng.seed = main_rng.seed
+	deck_rng.seed = main_rng.seed
+	encounter_rng.seed = main_rng.seed
+	gumball_rng.seed = main_rng.seed
+	pin_rng.seed = main_rng.seed
+	enchant_rng.seed = main_rng.seed
+	enchant_shader_rng.seed = main_rng.seed
+	misc_rng.seed = main_rng.seed
+	
 	# pool resources are preloaded here, instead of preloads.gd, to avoid preloading pin and gumball resources inside the pools too early
 	pin_pool = preload("uid://nwqplsk0sh64").duplicate()
 	gumball_pool = preload("uid://paqq2cfryjt4").duplicate()
 	enchant_pool = preload("uid://x42gage5qrdb").duplicate()
+	
 	pins.clear()
 	gumballs.clear()
+	
 	create_deck()
 	cards_to_draw_at_start = 7
 	cards_to_draw = 2

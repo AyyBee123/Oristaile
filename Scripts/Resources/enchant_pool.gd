@@ -26,7 +26,7 @@ func get_random_enchant() -> EnchantResource:
 	if available_enchants.is_empty(): # this will never be called later
 		return get_random_enchant()
 	
-	var random_index: int = RunData.rng.randi_range(0, available_enchants.size() - 1)
+	var random_index: int = RunData.drop_rng.randi_range(0, available_enchants.size() - 1)
 	var selected_enchant: EnchantResource = available_enchants[random_index]
 	
 	if selected_enchant == null: # this will never be called later
@@ -37,7 +37,7 @@ func get_random_enchant() -> EnchantResource:
 
 func get_random_enchant_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-	var roll: float = RunData.rng.randf_range(0.0, total_weight)
+	var roll: float = RunData.drop_rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
 		return ItemData.Rarities.COMMON

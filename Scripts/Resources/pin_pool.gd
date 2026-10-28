@@ -30,7 +30,7 @@ func get_random_pin() -> PinResource:
 	if available_pins.is_empty(): # this will never be called later
 		return get_random_pin()
 	
-	var random_index: int = RunData.rng.randi_range(0, available_pins.size() - 1)
+	var random_index: int = RunData.drop_rng.randi_range(0, available_pins.size() - 1)
 	var selected_pin: PinResource = available_pins[random_index]
 	pins.erase(selected_pin)
 	
@@ -42,7 +42,7 @@ func get_random_pin() -> PinResource:
 
 func get_random_pin_rarity() -> ItemData.Rarities:
 	var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-	var roll: float = RunData.rng.randf_range(0.0, total_weight)
+	var roll: float = RunData.drop_rng.randf_range(0.0, total_weight)
 	
 	if roll < common_weighting:
 		return ItemData.Rarities.COMMON

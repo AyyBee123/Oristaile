@@ -169,8 +169,15 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="RewardLabel" type="Label" parent="VBoxContainer" unique_id=440636034]
+[node name="RewardControl" type="Control" parent="VBoxContainer" unique_id=980131500]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RewardLabel" type="Label" parent="VBoxContainer/RewardControl" unique_id=440636034]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 14.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
@@ -180,17 +187,23 @@ theme_override_font_sizes/font_size = 16
 text = "Reward"
 horizontal_alignment = 1
 
-[node name="EmptySpace2" type="ColorRect" parent="VBoxContainer" unique_id=1520914577]
+[node name="EmptySpace2" type="ColorRect" parent="VBoxContainer/RewardControl" unique_id=1520914577]
 custom_minimum_size = Vector2(0, 4)
-layout_mode = 2
+layout_mode = 0
+offset_top = 14.0
+offset_right = 190.0
+offset_bottom = 18.0
 color = Color(1, 1, 1, 0)
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1435022571]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/RewardControl" unique_id=1435022571]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 190.0
+offset_bottom = 82.0
 theme_override_constants/margin_left = 63
 theme_override_constants/margin_right = 63
 
-[node name="RewardFrame" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=118786590]
+[node name="RewardFrame" type="TextureRect" parent="VBoxContainer/RewardControl/MarginContainer" unique_id=118786590]
 material = SubResource("ShaderMaterial_177oa")
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -200,7 +213,7 @@ texture = ExtResource("10_8q2lw")
 stretch_mode = 3
 script = ExtResource("11_e6v5c")
 
-[node name="Reward" type="TextureRect" parent="VBoxContainer/MarginContainer/RewardFrame" unique_id=242343213]
+[node name="Reward" type="TextureRect" parent="VBoxContainer/RewardControl/MarginContainer/RewardFrame" unique_id=242343213]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

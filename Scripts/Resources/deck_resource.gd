@@ -2,7 +2,7 @@ class_name DeckResource
 extends Resource
 
 @export var cards: Array[CardResource]
-@export var deck_script: GDScript
+@export var deck_script: GDScript = preload("uid://be8qc7ttoeubk")
 
 var behaviour: DeckScript
 

@@ -30,7 +30,7 @@ func select_enchants() -> void:
 		available.append(enchant)
 	
 	for i in mini(3, available.size()):
-		var index: int = RunData.rng.randi_range(0, available.size() - 1)
+		var index: int = RunData.enchant_rng.randi_range(0, available.size() - 1)
 		var enchant: EnchantResource = available.pop_at(index)
 		selected_enchants.append(enchant.enchant_script.new())
 
