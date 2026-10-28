@@ -2,7 +2,7 @@ extends Node
 
 signal money_value_changed(amount: int)
 
-var starting_deck: DeckResource = preload("uid://caukc2nh1mcdy")
+var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
 var deck: DeckResource # modified deck for the current run
 var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
 var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
