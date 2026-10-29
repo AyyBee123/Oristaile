@@ -12,5 +12,6 @@ script = ExtResource("2_hl8ok")
 enchant_name = "Foil"
 description = "Points earned from this card are increased by +50."
 background_shader = SubResource("ShaderMaterial_glp82")
+foreground_shader = SubResource("ShaderMaterial_glp82")
 enchant_script = ExtResource("1_4vidu")
 metadata/_custom_type_script = "uid://bipskg07p00gf"

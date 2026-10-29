@@ -13,5 +13,6 @@ enchant_name = "Heavy"
 rarity = 1
 description = "Points earned from this card are doubled."
 background_shader = SubResource("ShaderMaterial_7p06y")
+foreground_shader = SubResource("ShaderMaterial_7p06y")
 enchant_script = ExtResource("1_05qva")
 metadata/_custom_type_script = "uid://bipskg07p00gf"

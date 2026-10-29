@@ -13,5 +13,6 @@ enchant_name = "Golden"
 rarity = 1
 description = "Matching with this card grants $3."
 background_shader = SubResource("ShaderMaterial_7okck")
+foreground_shader = SubResource("ShaderMaterial_7okck")
 enchant_script = ExtResource("1_brbmc")
 metadata/_custom_type_script = "uid://bipskg07p00gf"
