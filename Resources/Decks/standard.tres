@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="DeckResource" format=3 uid="uid://bytne242bwqw5"]
 
 [ext_resource type="Script" uid="uid://bhluoiad1y3m2" path="res://Scripts/Resources/card_resource.gd" id="1_g6gk0"]
+[ext_resource type="Script" uid="uid://be8qc7ttoeubk" path="res://Scripts/Decks/Base/deck_script.gd" id="2_iudpo"]
 [ext_resource type="Script" uid="uid://bopuk3vg842au" path="res://Scripts/Resources/deck_resource.gd" id="2_rls0h"]
 
 [sub_resource type="Resource" id="Resource_g6gk0"]

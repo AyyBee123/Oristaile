@@ -2,17 +2,12 @@ extends EnchantScript
 
 const NUMBER_OF_INFECTIONS: int = 2
 
-var source_enchant: EnchantResource
-
-
-func on_initialize(enchant: EnchantResource) -> void:
-	source_enchant = enchant
-
 
 func set_shader_parameters(card: CardTemplate) -> void:
-	card.get_node("%BlankCard").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
-	card.get_node("%Texture").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
-	card.get_node("%FocusOutline").set_instance_shader_parameter("infected_seed", source_enchant.shader_seed)
+	var infected_seed: float = RunData.enchant_shader_rng.randf_range(0.0, 10000.0)
+	card.get_node("%BlankCard").set_instance_shader_parameter("infected_seed", infected_seed)
+	card.get_node("%Texture").set_instance_shader_parameter("infected_seed", infected_seed)
+	card.get_node("%FocusOutline").set_instance_shader_parameter("infected_seed", infected_seed)
 
 
 func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) -> void:
@@ -30,7 +25,7 @@ func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) ->
 		available_cards.append(target)
 	
 	for i in mini(NUMBER_OF_INFECTIONS, available_cards.size()):
-		var index: int = RunData.enchant_rng.randi_range(0, available_cards.size() - 1)
+		var index: int = RunData.encounter_rng.randi_range(0, available_cards.size() - 1)
 		var target: CardResource = available_cards.pop_at(index)
 		
 		target.suit = card.suit

@@ -23,7 +23,6 @@ var deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var encounter_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var gumball_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var pin_rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var enchant_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var enchant_shader_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var misc_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -87,7 +86,6 @@ func set_up_seed() -> void:
 	encounter_rng.seed = hash(str(run_seed, "_encounter"))
 	gumball_rng.seed = hash(str(run_seed, "_gumball"))
 	pin_rng.seed = hash(str(run_seed, "_pin"))
-	enchant_rng.seed = hash(str(run_seed, "_enchant"))
 	enchant_shader_rng.seed = hash(str(run_seed, "_enchant_shader"))
 	misc_rng.seed = hash(str(run_seed, "_misc"))
 
@@ -100,7 +98,6 @@ func load_rng_states(data: Dictionary) -> void:
 	encounter_rng.state = int(data["encounter_rng_state"])
 	gumball_rng.state = int(data["gumball_rng_state"])
 	pin_rng.state = int(data["pin_rng_state"])
-	enchant_rng.state = int(data["enchant_rng_state"])
 	enchant_shader_rng.state = int(data["enchant_shader_rng_state"])
 	misc_rng.state = int(data["misc_rng_state"])
 
@@ -114,7 +111,6 @@ func get_rng_save_data() -> Dictionary:
 		"encounter_rng_state": encounter_rng.state,
 		"gumball_rng_state": gumball_rng.state,
 		"pin_rng_state": pin_rng.state,
-		"enchant_rng_state": enchant_rng.state,
 		"enchant_shader_rng_state": enchant_shader_rng.state,
 		"misc_rng_state": misc_rng.state
 	}
@@ -130,6 +126,7 @@ func create_deck() -> void:
 func set_cards(card_deck: Array) -> void:
 	for card: CardResource in card_deck: # create a new deck with each of the cards in the selected deck
 		var new_card = card.duplicate()
+		card.enchant = preload("uid://4nlrg1xnramr").duplicate()
 		if card.enchant:
 			add_card_enchant(new_card, card.enchant)
 		deck.cards.append(new_card)

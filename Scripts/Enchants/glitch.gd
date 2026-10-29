@@ -10,9 +10,10 @@ func on_initialize(enchant: EnchantResource) -> void:
 
 
 func set_shader_parameters(card: CardTemplate) -> void:
-	card.get_node("%BlankCard").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
-	card.get_node("%Texture").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
-	card.get_node("%FocusOutline").set_instance_shader_parameter("glitch_seed", source_enchant.shader_seed)
+	var glitch_seed: float = RunData.enchant_shader_rng.randf_range(0.0, 10000.0)
+	card.get_node("%BlankCard").set_instance_shader_parameter("glitch_seed", glitch_seed)
+	card.get_node("%Texture").set_instance_shader_parameter("glitch_seed", glitch_seed)
+	card.get_node("%FocusOutline").set_instance_shader_parameter("glitch_seed", glitch_seed)
 
 
 func select_enchants() -> void:
@@ -30,7 +31,7 @@ func select_enchants() -> void:
 		available.append(enchant)
 	
 	for i in mini(3, available.size()):
-		var index: int = RunData.enchant_rng.randi_range(0, available.size() - 1)
+		var index: int = RunData.encounter_rng.randi_range(0, available.size() - 1)
 		var enchant: EnchantResource = available.pop_at(index)
 		selected_enchants.append(enchant.enchant_script.new())
 
