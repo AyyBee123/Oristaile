@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://ct87vmoeeovg2"]
+
+[ext_resource type="Shader" uid="uid://cqeokq7lwhp8x" path="res://Shaders/Enchants/fiery.gdshader" id="1_njkne"]
+[ext_resource type="Script" uid="uid://bp1fyiua007m6" path="res://Scripts/Enchants/Base/enchant_script.gd" id="2_i18ki"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_jxtgc"]
+
+[sub_resource type="Gradient" id="Gradient_lu2rh"]
+offsets = PackedFloat32Array(0, 0.77931035)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hkjdf"]
+gradient = SubResource("Gradient_lu2rh")
+fill_to = Vector2(0, 0.8755981)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6qdke"]
+noise_type = 2
+frequency = 0.008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htkfm"]
+noise = SubResource("FastNoiseLite_6qdke")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ogtqc"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dd2wu"]
+noise = SubResource("FastNoiseLite_ogtqc")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7q3y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eqivm"]
+noise = SubResource("FastNoiseLite_e7q3y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kilss"]
+shader = ExtResource("1_njkne")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_htkfm")
+shader_parameter/grad_tex = SubResource("GradientTexture2D_hkjdf")
+shader_parameter/wave_noise = SubResource("NoiseTexture2D_eqivm")
+shader_parameter/smoke_noise = SubResource("NoiseTexture2D_dd2wu")
+shader_parameter/flame_0 = Color(1, 1, 0.6, 1)
+shader_parameter/flame_1 = Color(1, 0.85, 0.1, 1)
+shader_parameter/flame_2 = Color(1, 0.35, 0, 1)
+shader_parameter/flame_3 = Color(0.55, 0, 0, 1)
+shader_parameter/scroll_speed = 60.0
+shader_parameter/thresh_0 = 0.66
+shader_parameter/thresh_1 = 0.48
+shader_parameter/thresh_2 = 0.36
+shader_parameter/thresh_3 = 0.18
+shader_parameter/black_cutoff = 0.05
+shader_parameter/wave_amplitude = 0.0800000038
+shader_parameter/wave_frequency = 12.00000057
+shader_parameter/wave_speed = 1.6000000760000002
+shader_parameter/wave_turbulence = 0.6
+shader_parameter/jitter_amount = 0.20000000298023
+shader_parameter/base_anchor = 0.0
+shader_parameter/seed = 0.0
+shader_parameter/smoke_color = Color(0.35, 0.33, 0.32, 1)
+shader_parameter/smoke_opacity = 0.55
+shader_parameter/smoke_start = 0.0
+shader_parameter/smoke_end = 1.0
+shader_parameter/smoke_scroll = 2.000000095
+shader_parameter/smoke_sway = 0.02000000095
+shader_parameter/smoke_sway_speed = 0.2000000095
+shader_parameter/smoke_density = 1.200000057
+shader_parameter/smoke_taper = 0.6
+
+[resource]
+script = ExtResource("3_jxtgc")
+enchant_name = "Fiery"
+rarity = 1
+background_shader = SubResource("ShaderMaterial_kilss")
+metadata/_custom_type_script = "uid://bipskg07p00gf"

@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://bbg3c5yt550ap"]
+
+[ext_resource type="Shader" uid="uid://dkvjy4n2nwkod" path="res://Shaders/Enchants/static.gdshader" id="1_70hol"]
+[ext_resource type="Script" uid="uid://bp1fyiua007m6" path="res://Scripts/Enchants/Base/enchant_script.gd" id="2_tsinx"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_3cwle"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3cwle"]
+shader = ExtResource("1_70hol")
+shader_parameter/padding = 0
+shader_parameter/spawn_on_edges = true
+shader_parameter/arcs_inward = false
+shader_parameter/arcs_inside_object = false
+shader_parameter/stay_inside = false
+shader_parameter/reach_padding = true
+shader_parameter/padding_margin_px = 1.0
+shader_parameter/crack_min_length = 0.10000000312006
+shader_parameter/crack_max_length = 0.50000002212006
+shader_parameter/crack_jaggedness = 0.1
+shader_parameter/crack_width_px = 0.55
+shader_parameter/crack_color = Color(0.55, 0.88, 0.95, 1)
+shader_parameter/edge_search = 32
+shader_parameter/edge_normal_bias = 0.6
+shader_parameter/spawn_on_object = false
+shader_parameter/spawn_min = Vector2(0, 0)
+shader_parameter/spawn_max = Vector2(1, 1)
+shader_parameter/outward_bias = 1.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/arc_count = 0
+shader_parameter/arc_life_min = 0.32000001194012
+shader_parameter/arc_life_max = 0.50000002049012
+shader_parameter/min_length = 0.10000000312006
+shader_parameter/max_length = 0.50000002212006
+shader_parameter/jaggedness = 0.18
+shader_parameter/crackle_px = 1.0
+shader_parameter/core_width_px = 0.2000000095
+shader_parameter/inner_glow_px = 2.000000095
+shader_parameter/outer_glow_px = 0.0
+shader_parameter/arcs_only_on_object = false
+shader_parameter/fit_to_quad = false
+shader_parameter/contain_in_texture = false
+shader_parameter/end_style = 1
+shader_parameter/end_time = 0.24000000814012
+shader_parameter/dissipate_segments = 8
+shader_parameter/dissipate_flicker = 0.45
+shader_parameter/dissipate_erosion = 0.6
+shader_parameter/center_glow_radius = 0.0
+shader_parameter/rim_glow_px = 0.0
+shader_parameter/charge_tint = 0.50000002375
+shader_parameter/pulse_speed = 6.000000285
+shader_parameter/core_color = Color(0.83235586, 0.99930185, 0.9999998, 1)
+shader_parameter/inner_glow_color = Color(0.7357336, 0.9893351, 1, 1)
+shader_parameter/outer_glow_color = Color(0.7372549, 0.9882353, 1, 1)
+shader_parameter/anim_fps = 20.00000076
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n4bty"]
+shader = ExtResource("1_70hol")
+shader_parameter/padding = 0
+shader_parameter/spawn_on_edges = true
+shader_parameter/arcs_inward = false
+shader_parameter/arcs_inside_object = false
+shader_parameter/stay_inside = false
+shader_parameter/reach_padding = true
+shader_parameter/padding_margin_px = 1.0
+shader_parameter/crack_min_length = 0.10000000312006
+shader_parameter/crack_max_length = 0.50000002212006
+shader_parameter/crack_jaggedness = 0.1
+shader_parameter/crack_width_px = 0.55
+shader_parameter/crack_color = Color(0.55, 0.88, 0.95, 1)
+shader_parameter/edge_search = 32
+shader_parameter/edge_normal_bias = 0.6
+shader_parameter/spawn_on_object = false
+shader_parameter/spawn_min = Vector2(0, 0)
+shader_parameter/spawn_max = Vector2(1, 1)
+shader_parameter/outward_bias = 1.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/arc_count = 2
+shader_parameter/arc_life_min = 0.32000001194012
+shader_parameter/arc_life_max = 0.50000002049012
+shader_parameter/min_length = 0.10000000312006
+shader_parameter/max_length = 0.50000002212006
+shader_parameter/jaggedness = 0.18
+shader_parameter/crackle_px = 1.0
+shader_parameter/core_width_px = 0.2000000095
+shader_parameter/inner_glow_px = 2.000000095
+shader_parameter/outer_glow_px = 0.0
+shader_parameter/arcs_only_on_object = false
+shader_parameter/fit_to_quad = false
+shader_parameter/contain_in_texture = false
+shader_parameter/end_style = 1
+shader_parameter/end_time = 0.24000000814012
+shader_parameter/dissipate_segments = 8
+shader_parameter/dissipate_flicker = 0.45
+shader_parameter/dissipate_erosion = 0.6
+shader_parameter/center_glow_radius = 0.0
+shader_parameter/rim_glow_px = 1.0000000475
+shader_parameter/charge_tint = 0.10000000475
+shader_parameter/pulse_speed = 6.000000285
+shader_parameter/core_color = Color(0.83235586, 0.99930185, 0.9999998, 1)
+shader_parameter/inner_glow_color = Color(0.7357336, 0.9893351, 1, 1)
+shader_parameter/outer_glow_color = Color(0.7372549, 0.9882353, 1, 1)
+shader_parameter/anim_fps = 20.00000076
+
+[resource]
+script = ExtResource("3_3cwle")
+enchant_name = "Static"
+rarity = 1
+background_shader = SubResource("ShaderMaterial_3cwle")
+foreground_shader = SubResource("ShaderMaterial_n4bty")
+metadata/_custom_type_script = "uid://bipskg07p00gf"
