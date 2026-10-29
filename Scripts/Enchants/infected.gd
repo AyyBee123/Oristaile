@@ -25,7 +25,7 @@ func on_card_accepted(_points_earned: float, card: CardResource, _slot: Slot) ->
 		available_cards.append(target)
 	
 	for i in mini(NUMBER_OF_INFECTIONS, available_cards.size()):
-		var index: int = RunData.encounter_rng.randi_range(0, available_cards.size() - 1)
+		var index: int = RunData.enchant_rng.randi_range(0, available_cards.size() - 1)
 		var target: CardResource = available_cards.pop_at(index)
 		
 		target.suit = card.suit

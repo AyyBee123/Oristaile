@@ -16,7 +16,7 @@ func apply_random_enchants(deck: Array[CardResource]) -> void:
 	for card in deck:
 		var enchants: Array[EnchantResource]
 		var total_weight: float = common_weighting + rare_weighting + legendary_weighting
-		var roll: float = RunData.deck_rng.randf_range(0.0, total_weight)
+		var roll: float = RunData.starting_deck_rng.randf_range(0.0, total_weight)
 		
 		if roll < common_weighting:
 			enchants = RunData.enchant_pool.get_enchants_by_rarity(ItemData.Rarities.COMMON)

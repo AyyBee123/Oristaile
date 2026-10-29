@@ -127,7 +127,7 @@ func _on_deck_panel_pressed() -> void:
 func set_card_slot(slot: Slot) -> void:
 	var full_deck = current_deck.duplicate()
 	full_deck.append_array(current_hand)
-	var random_index: int = RunData.encounter_rng.randi_range(0, full_deck.size() - 1)
+	var random_index: int = RunData.slot_rng.randi_range(0, full_deck.size() - 1)
 	var random_card: CardResource = full_deck[random_index]
 	
 	var suit: CardData.Suits = random_card.suit
@@ -170,7 +170,7 @@ func draw_card() -> void:
 		
 		if current_deck.is_empty(): return
 		
-		var index = RunData.encounter_rng.randi_range(0, current_deck.size() - 1)
+		var index = RunData.draw_rng.randi_range(0, current_deck.size() - 1)
 		var card_res: CardResource = current_deck.pop_at(index)
 		var card: Card = Preloads.CARD.instantiate()
 		

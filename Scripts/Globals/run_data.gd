@@ -2,7 +2,7 @@ extends Node
 
 signal money_value_changed(amount: int)
 
-var starting_deck: DeckResource = preload("uid://bytne242bwqw5")
+var starting_deck: DeckResource = preload("uid://cg7w1hm6jxkuv")
 var deck: DeckResource # modified deck for the current run
 var cards_to_draw_at_start: int # number of cards that get drawn at the start of a round
 var cards_to_draw: int # number of cards that are drawn when clicking the deck panel
@@ -19,10 +19,12 @@ var run_seed: int = 0
 var main_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var drop_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var starting_deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var deck_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var draw_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var slot_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var encounter_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var gumball_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var pin_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var enchant_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var enchant_shader_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var misc_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -82,10 +84,12 @@ func reset() -> void:
 func set_up_seed() -> void:
 	drop_rng.seed = hash(str(run_seed, "_drop"))
 	starting_deck_rng.seed = hash(str(run_seed, "_starting_deck"))
-	deck_rng.seed = hash(str(run_seed, "_deck"))
+	draw_rng.seed = hash(str(run_seed, "_deck"))
+	slot_rng.seed = hash(str(run_seed, "_slot"))
 	encounter_rng.seed = hash(str(run_seed, "_encounter"))
 	gumball_rng.seed = hash(str(run_seed, "_gumball"))
 	pin_rng.seed = hash(str(run_seed, "_pin"))
+	enchant_rng.seed = hash(str(run_seed, "_enchant"))
 	enchant_shader_rng.seed = hash(str(run_seed, "_enchant_shader"))
 	misc_rng.seed = hash(str(run_seed, "_misc"))
 
@@ -94,10 +98,12 @@ func load_rng_states(data: Dictionary) -> void:
 	main_rng.state = int(data["main_rng_state"])
 	drop_rng.state = int(data["drop_rng_state"])
 	starting_deck_rng.state = int(data["starting_deck_rng_state"])
-	deck_rng.state = int(data["deck_rng_state"])
+	draw_rng.state = int(data["draw_rng_state"])
+	slot_rng.state = int(data["slot_rng_state"])
 	encounter_rng.state = int(data["encounter_rng_state"])
 	gumball_rng.state = int(data["gumball_rng_state"])
 	pin_rng.state = int(data["pin_rng_state"])
+	enchant_rng.state = int(data["enchant_rng_state"])
 	enchant_shader_rng.state = int(data["enchant_shader_rng_state"])
 	misc_rng.state = int(data["misc_rng_state"])
 
@@ -107,10 +113,12 @@ func get_rng_save_data() -> Dictionary:
 		"main_rng_state": main_rng.state,
 		"drop_rng_state": drop_rng.state,
 		"starting_deck_rng_state": starting_deck_rng.state,
-		"deck_rng_state": deck_rng.state,
+		"draw_rng_state": draw_rng.state,
+		"slot_rng_state": slot_rng.state,
 		"encounter_rng_state": encounter_rng.state,
 		"gumball_rng_state": gumball_rng.state,
 		"pin_rng_state": pin_rng.state,
+		"enchant_rng_state": enchant_rng.state,
 		"enchant_shader_rng_state": enchant_shader_rng.state,
 		"misc_rng_state": misc_rng.state
 	}
