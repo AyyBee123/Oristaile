@@ -2,13 +2,14 @@ shader_type canvas_item;
 
 uniform sampler2D heat_noise : filter_nearest, repeat_enable;
 
-uniform float heat_seed : hint_range(0.0, 1000.0) = 0.0;
+uniform float heat_seed : hint_range(0.0, 10000.0) = 0.0;
 uniform float blur_strength : hint_range(0.0, 0.2) = 0.04;
 uniform float blur_scroll : hint_range(0.0, 10.0) = 2.0;
 uniform float blur_sway_speed : hint_range(0.0, 10.0) = 1.5;
 uniform float blur_reach : hint_range(0.0, 1.0) = 0.45;
 uniform float blur_falloff : hint_range(0.1, 4.0) = 1.5;
 uniform float blur_pixelation : hint_range(1.0, 256.0) = 64.0;
+uniform float black_tint : hint_range(0.0, 1.0);
 
 void fragment() {
 	// pixelated UVs
@@ -37,6 +38,8 @@ void fragment() {
 	vec2 distorted_uv = UV + offset;
 	vec4 tex = texture(TEXTURE, distorted_uv);
 	vec3 out_rgb = tex.rgb;
+	
+	out_rgb = mix(out_rgb, vec3(0.0), black_tint);
 	
 	COLOR = vec4(out_rgb, tex.a);
 }

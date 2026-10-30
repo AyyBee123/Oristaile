@@ -36,6 +36,7 @@ noise = SubResource("FastNoiseLite_e7q3y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2f4o3"]
 shader = ExtResource("1_uaf8c")
+shader_parameter/burning_seed = 0.0
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_htkfm")
 shader_parameter/grad_tex = SubResource("GradientTexture2D_hkjdf")
 shader_parameter/wave_noise = SubResource("NoiseTexture2D_eqivm")
@@ -56,12 +57,11 @@ shader_parameter/wave_speed = 1.6000000760000002
 shader_parameter/wave_turbulence = 0.6
 shader_parameter/jitter_amount = 0.20000000298023
 shader_parameter/base_anchor = 0.0
-shader_parameter/seed = 0.0
 shader_parameter/smoke_color = Color(0.35, 0.33, 0.32, 1)
 shader_parameter/smoke_opacity = 0.55
 shader_parameter/smoke_start = 0.0
 shader_parameter/smoke_end = 1.0
-shader_parameter/smoke_scroll = 2.000000095
+shader_parameter/smoke_scroll = 3.0000001425
 shader_parameter/smoke_sway = 0.02000000095
 shader_parameter/smoke_sway_speed = 0.2000000095
 shader_parameter/smoke_density = 1.200000057
@@ -83,6 +83,7 @@ shader_parameter/blur_sway_speed = 1.5
 shader_parameter/blur_reach = 1.0
 shader_parameter/blur_falloff = 0.10000000149012
 shader_parameter/blur_pixelation = 256.0
+shader_parameter/black_tint = 0.50000002375
 
 [resource]
 script = ExtResource("3_4aqst")
