@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="EnchantResource" format=3 uid="uid://ct87vmoeeovg2"]
 
-[ext_resource type="Shader" uid="uid://cqeokq7lwhp8x" path="res://Shaders/Enchants/fiery.gdshader" id="1_njkne"]
-[ext_resource type="Script" uid="uid://bp1fyiua007m6" path="res://Scripts/Enchants/Base/enchant_script.gd" id="2_i18ki"]
-[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_jxtgc"]
+[ext_resource type="Shader" uid="uid://cqeokq7lwhp8x" path="res://Shaders/Enchants/burning.gdshader" id="1_uaf8c"]
+[ext_resource type="Script" uid="uid://bp1fyiua007m6" path="res://Scripts/Enchants/Base/enchant_script.gd" id="2_uaf8c"]
+[ext_resource type="Script" uid="uid://bipskg07p00gf" path="res://Scripts/Resources/enchant_resource.gd" id="3_4aqst"]
+[ext_resource type="Shader" uid="uid://c0at8rjh4r4b8" path="res://Shaders/Misc/heat_haze.gdshader" id="3_kmlx6"]
 
 [sub_resource type="Gradient" id="Gradient_lu2rh"]
 offsets = PackedFloat32Array(0, 0.77931035)
@@ -33,8 +34,8 @@ seamless_blend_skirt = 1.0
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eqivm"]
 noise = SubResource("FastNoiseLite_e7q3y")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kilss"]
-shader = ExtResource("1_njkne")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2f4o3"]
+shader = ExtResource("1_uaf8c")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_htkfm")
 shader_parameter/grad_tex = SubResource("GradientTexture2D_hkjdf")
 shader_parameter/wave_noise = SubResource("NoiseTexture2D_eqivm")
@@ -66,9 +67,27 @@ shader_parameter/smoke_sway_speed = 0.2000000095
 shader_parameter/smoke_density = 1.200000057
 shader_parameter/smoke_taper = 0.6
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2k4rt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qse4h"]
+noise = SubResource("FastNoiseLite_2k4rt")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkjdf"]
+shader = ExtResource("3_kmlx6")
+shader_parameter/heat_noise = SubResource("NoiseTexture2D_qse4h")
+shader_parameter/heat_seed = 0.0
+shader_parameter/blur_strength = 0.018000000855
+shader_parameter/blur_scroll = 4.00000019
+shader_parameter/blur_sway_speed = 1.5
+shader_parameter/blur_reach = 1.0
+shader_parameter/blur_falloff = 0.10000000149012
+shader_parameter/blur_pixelation = 256.0
+
 [resource]
-script = ExtResource("3_jxtgc")
-enchant_name = "Fiery"
+script = ExtResource("3_4aqst")
+enchant_name = "Burning"
 rarity = 1
-background_shader = SubResource("ShaderMaterial_kilss")
+background_shader = SubResource("ShaderMaterial_2f4o3")
+foreground_shader = SubResource("ShaderMaterial_hkjdf")
 metadata/_custom_type_script = "uid://bipskg07p00gf"
