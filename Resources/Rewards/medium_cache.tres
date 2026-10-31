@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MoneyResource" format=3 uid="uid://c1elgyhxuhwlo"]
+
+[ext_resource type="Script" uid="uid://bsn4ns4apklsb" path="res://Scripts/Resources/money_resource.gd" id="1_0vyw5"]
+
+[resource]
+script = ExtResource("1_0vyw5")
+cache_name = "Meduim Cache"
+amount = 20
+description = "A sizeable sum of money."
+metadata/_custom_type_script = "uid://bsn4ns4apklsb"

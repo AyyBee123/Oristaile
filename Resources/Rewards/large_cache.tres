@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MoneyResource" format=3 uid="uid://dhrulg0lnggim"]
+
+[ext_resource type="Script" uid="uid://bsn4ns4apklsb" path="res://Scripts/Resources/money_resource.gd" id="1_4oisc"]
+
+[resource]
+script = ExtResource("1_4oisc")
+cache_name = "Large Cache"
+amount = 50
+description = "WOW!"
+metadata/_custom_type_script = "uid://bsn4ns4apklsb"

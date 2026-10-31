@@ -35,7 +35,14 @@ func generate_reward() -> void:
 			item_reward = get_reward(GumballResource, reward_rarity)
 			set_properties(item_reward.texture, item_reward.gumball_name, item_reward.description)
 		ItemData.EncounterRewards.MONEY:
-			print(reward_rarity)
+			item_reward = get_reward(MoneyResource, reward_rarity)
+			match reward_rarity:
+				ItemData.Rarities.COMMON:
+					pass
+				ItemData.Rarities.RARE:
+					pass
+				ItemData.Rarities.LEGENDARY:
+					pass
 
 
 func get_reward(type: Script, rarity: ItemData.Rarities) -> Variant:
@@ -44,6 +51,14 @@ func get_reward(type: Script, rarity: ItemData.Rarities) -> Variant:
 			return RunData.pin_pool.get_random_pin(rarity)
 		GumballResource:
 			return RunData.gumball_pool.get_random_gumball(rarity)
+		MoneyResource:
+			match rarity:
+				ItemData.Rarities.COMMON:
+					return Preloads.SMALL_CACHE
+				ItemData.Rarities.RARE:
+					return Preloads.MEDIUM_CACHE
+				ItemData.Rarities.LEGENDARY:
+					return Preloads.LARGE_CACHE
 	return
 
 

@@ -2,25 +2,6 @@ extends CanvasLayer
 
 @onready var level_container: HBoxContainer = %LevelContainer
 
-const REWARD_WEIGHTS: Dictionary = {
-	ItemData.EncounterRewards.NOTHING: 10.0,
-	ItemData.EncounterRewards.PIN: 25.0,
-	ItemData.EncounterRewards.GUMBALL: 25.0,
-	ItemData.EncounterRewards.MONEY: 40.0
-}
-
-const RARITY_WEIGHTS: Dictionary = {
-	ItemData.Rarities.COMMON: 70.0,
-	ItemData.Rarities.RARE: 28.0,
-	ItemData.Rarities.LEGENDARY: 2.0
-}
-
-const MONEY_RARITY_WEIGHTS: Dictionary = {
-	ItemData.Rarities.COMMON: 60.0,
-	ItemData.Rarities.RARE: 30.0,
-	ItemData.Rarities.LEGENDARY: 10.0
-}
-
 var reward_list: Array
 
 
@@ -32,7 +13,7 @@ func _ready() -> void:
 			available_rewards.append({
 				"type": type,
 				"rarity": -1,
-				"weight": REWARD_WEIGHTS[type]
+				"weight": ItemData.REWARD_WEIGHTS[type]
 			})
 			continue
 		
@@ -41,7 +22,7 @@ func _ready() -> void:
 			available_rewards.append({
 				"type": type,
 				"rarity": rarity,
-				"weight": REWARD_WEIGHTS[type] * MONEY_RARITY_WEIGHTS[rarity] / 100.0
+				"weight": ItemData.REWARD_WEIGHTS[type] * ItemData.REWARD_MONEY_WEIGHTS[rarity] / 100.0
 			})
 			continue
 		
@@ -49,7 +30,7 @@ func _ready() -> void:
 			available_rewards.append({
 				"type": type,
 				"rarity": rarity,
-				"weight": REWARD_WEIGHTS[type] * RARITY_WEIGHTS[rarity] / 100.0
+				"weight": ItemData.REWARD_WEIGHTS[type] * ItemData.RARITY_WEIGHTS[rarity] / 100.0
 			})
 	
 	for level: LevelSelect in level_container.get_children():
@@ -87,13 +68,13 @@ func _ready() -> void:
 func get_random_money_rarity() -> ItemData.Rarities:
 	var total_weight: float = 0.0
 	
-	for weight: float in MONEY_RARITY_WEIGHTS.values():
+	for weight: float in ItemData.REWARD_MONEY_WEIGHTS.values():
 		total_weight += weight
 	
 	var roll: float = RunData.drop_rng.randf() * total_weight
 	
-	for rarity: ItemData.Rarities in MONEY_RARITY_WEIGHTS:
-		roll -= MONEY_RARITY_WEIGHTS[rarity]
+	for rarity: ItemData.Rarities in ItemData.REWARD_MONEY_WEIGHTS:
+		roll -= ItemData.REWARD_MONEY_WEIGHTS[rarity]
 		
 		if roll < 0.0:
 			return rarity

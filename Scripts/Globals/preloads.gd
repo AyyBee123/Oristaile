@@ -28,3 +28,8 @@ const INFECTION_VFX = preload("uid://b56vd5rg6d8th")
 const COMMON_PIN_REWARD = preload("uid://oay8p3cbddqg")
 const RARE_PIN_REWARD = preload("uid://ce8eox5oxljjh")
 const LEGENDARY_PIN_REWARD = preload("uid://dynejsutig8e8")
+
+## Money Cache Resources
+const SMALL_CACHE = preload("uid://cv02url6v413j")
+const MEDIUM_CACHE = preload("uid://c1elgyhxuhwlo")
+const LARGE_CACHE = preload("uid://dhrulg0lnggim")

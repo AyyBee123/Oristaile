@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MoneyResource" format=3 uid="uid://cv02url6v413j"]
+
+[ext_resource type="Script" uid="uid://bsn4ns4apklsb" path="res://Scripts/Resources/money_resource.gd" id="1_hgoyb"]
+
+[resource]
+script = ExtResource("1_hgoyb")
+cache_name = "Small Cache"
+amount = 10
+description = "Some spare change."
+metadata/_custom_type_script = "uid://bsn4ns4apklsb"
