@@ -8,7 +8,7 @@ var tween: Tween
 
 func _ready() -> void:
 	if not pin:
-		pin = RunData.pin_pool.get_random_pin()
+		pin = RunData.pin_pool.get_random_pin().duplicate()
 	texture = pin.texture
 
 

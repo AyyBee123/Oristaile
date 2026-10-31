@@ -19,23 +19,24 @@ func refill_gumball_pool(rarity: ItemData.Rarities) -> void:
 			gumballs.append(gumball)
 
 
-func get_random_gumball() -> GumballResource:
-	var rarity: ItemData.Rarities = get_random_gumball_rarity()
-	var available_gumballs: Array[GumballResource] = get_gumballs_by_rarity(rarity)
+@warning_ignore("int_as_enum_without_match", "int_as_enum_without_cast")
+func get_random_gumball(rarity: ItemData.Rarities = -1) -> GumballResource:
+	var selected_rarity: ItemData.Rarities
+	
+	if rarity == -1:
+		selected_rarity = get_random_gumball_rarity()
+	else:
+		selected_rarity = rarity
+	
+	var available_gumballs: Array[GumballResource] = get_gumballs_by_rarity(selected_rarity)
 	
 	if available_gumballs.is_empty():
-		refill_gumball_pool(rarity)
-		available_gumballs = get_gumballs_by_rarity(rarity)
-	
-	if available_gumballs.is_empty():
-		return get_random_gumball()
+		refill_gumball_pool(selected_rarity)
+		available_gumballs = get_gumballs_by_rarity(selected_rarity)
 	
 	var random_index: int = RunData.drop_rng.randi_range(0, available_gumballs.size() - 1)
 	var selected_gumball: GumballResource = available_gumballs[random_index]
 	gumballs.erase(selected_gumball)
-	
-	if selected_gumball == null:
-		return get_random_gumball()
 	
 	return selected_gumball
 

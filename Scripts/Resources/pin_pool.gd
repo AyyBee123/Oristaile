@@ -19,13 +19,20 @@ func refill_pin_pool(rarity: ItemData.Rarities) -> void:
 			pins.append(pin)
 
 
-func get_random_pin() -> PinResource:
-	var rarity: ItemData.Rarities = get_random_pin_rarity()
-	var available_pins: Array[PinResource] = get_pins_by_rarity(rarity)
+@warning_ignore("int_as_enum_without_match", "int_as_enum_without_cast")
+func get_random_pin(rarity: ItemData.Rarities = -1) -> PinResource:
+	var selected_rarity: ItemData.Rarities
+	
+	if rarity == -1:
+		selected_rarity = get_random_pin_rarity()
+	else:
+		selected_rarity = rarity
+	
+	var available_pins: Array[PinResource] = get_pins_by_rarity(selected_rarity)
 	
 	if available_pins.is_empty():
-		refill_pin_pool(rarity)
-		available_pins = get_pins_by_rarity(rarity)
+		refill_pin_pool(selected_rarity)
+		available_pins = get_pins_by_rarity(selected_rarity)
 	
 	if available_pins.is_empty(): # this will never be called later
 		return get_random_pin()
@@ -33,9 +40,6 @@ func get_random_pin() -> PinResource:
 	var random_index: int = RunData.drop_rng.randi_range(0, available_pins.size() - 1)
 	var selected_pin: PinResource = available_pins[random_index]
 	pins.erase(selected_pin)
-	
-	if selected_pin == null: # this will never be called later
-		return get_random_pin()
 	
 	return selected_pin
 

@@ -15,6 +15,12 @@ const RARITY_WEIGHTS: Dictionary = {
 	ItemData.Rarities.LEGENDARY: 2.0
 }
 
+const MONEY_RARITY_WEIGHTS: Dictionary = {
+	ItemData.Rarities.COMMON: 60.0,
+	ItemData.Rarities.RARE: 30.0,
+	ItemData.Rarities.LEGENDARY: 10.0
+}
+
 var reward_list: Array
 
 
@@ -27,6 +33,15 @@ func _ready() -> void:
 				"type": type,
 				"rarity": -1,
 				"weight": REWARD_WEIGHTS[type]
+			})
+			continue
+		
+		if type == ItemData.EncounterRewards.MONEY:
+			var rarity: ItemData.Rarities = get_random_money_rarity()
+			available_rewards.append({
+				"type": type,
+				"rarity": rarity,
+				"weight": REWARD_WEIGHTS[type] * MONEY_RARITY_WEIGHTS[rarity] / 100.0
 			})
 			continue
 		
@@ -67,3 +82,20 @@ func _ready() -> void:
 			level.reward_rarity = selected["rarity"] as ItemData.Rarities
 		
 		level.generate_reward()
+
+
+func get_random_money_rarity() -> ItemData.Rarities:
+	var total_weight: float = 0.0
+	
+	for weight: float in MONEY_RARITY_WEIGHTS.values():
+		total_weight += weight
+	
+	var roll: float = RunData.drop_rng.randf() * total_weight
+	
+	for rarity: ItemData.Rarities in MONEY_RARITY_WEIGHTS:
+		roll -= MONEY_RARITY_WEIGHTS[rarity]
+		
+		if roll < 0.0:
+			return rarity
+	
+	return ItemData.Rarities.COMMON

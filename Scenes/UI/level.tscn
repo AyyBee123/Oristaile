@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://byyll0mxrmhd8" path="res://Scripts/UI/pressed_button_move_label.gd" id="9_rksd3"]
 [ext_resource type="Texture2D" uid="uid://d4mju7s877qfh" path="res://Assets/Sprites/UI/Reward Frame.png" id="10_8q2lw"]
 [ext_resource type="Script" uid="uid://dg54dbdhvcf63" path="res://Scripts/UI/reward_frame.gd" id="11_e6v5c"]
-[ext_resource type="Texture2D" uid="uid://ce8eox5oxljjh" path="res://Assets/Sprites/UI/Rare Pin Reward.png" id="12_kaxqa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h324r"]
 resource_local_to_scene = true
@@ -221,5 +220,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("12_kaxqa")
 stretch_mode = 3

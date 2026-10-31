@@ -12,7 +12,7 @@ var tween: Tween
 
 func _ready() -> void:
 	if not gumball:
-		gumball = RunData.gumball_pool.get_random_gumball()
+		gumball = RunData.gumball_pool.get_random_gumball().duplicate()
 	texture = gumball.texture
 	use_popup.visibility_changed.connect(func():
 		if use_popup.visible and gumball.behaviour:

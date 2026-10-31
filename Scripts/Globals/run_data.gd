@@ -134,7 +134,6 @@ func create_deck() -> void:
 func set_cards(card_deck: Array) -> void:
 	for card: CardResource in card_deck: # create a new deck with each of the cards in the selected deck
 		var new_card = card.duplicate()
-		card.enchant = preload("uid://4nlrg1xnramr").duplicate()
 		if card.enchant:
 			add_card_enchant(new_card, card.enchant)
 		deck.cards.append(new_card)

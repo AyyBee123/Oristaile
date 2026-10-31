@@ -4,7 +4,6 @@ const NUMBER_OF_INFECTED_CARDS: int = 3
 
 
 func on_initialize(deck: DeckResource) -> void:
-	
 	var available_cards: Array[CardResource] = deck.cards.duplicate()
 	var infected: EnchantResource = RunData.enchant_pool.get_enchant_by_name("Infected")
 	

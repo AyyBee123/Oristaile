@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GumballResource" format=3 uid="uid://cc7kr8rf33r2q"]
+
+[ext_resource type="Script" uid="uid://d0q5t8ikur0d8" path="res://Scripts/Gumballs/Base/gumball_script.gd" id="1_4qyre"]
+[ext_resource type="Script" uid="uid://dxr16ylm8asdj" path="res://Scripts/Resources/gumball_resource.gd" id="2_51aqi"]
+[ext_resource type="Texture2D" uid="uid://sdwv11tmak2j" path="res://Assets/Sprites/Gumballs/Basket Gumball.png" id="3_51aqi"]
+
+[resource]
+script = ExtResource("2_51aqi")
+gumball_name = "Basket Gumball"
+rarity = 2
+description = "PH"
+texture = ExtResource("3_51aqi")
+metadata/_custom_type_script = "uid://dxr16ylm8asdj"
