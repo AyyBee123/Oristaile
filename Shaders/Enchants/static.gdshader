@@ -343,7 +343,7 @@ void fragment() {
 	bool need_opaque = arcs_only_on_object;
 	bool arcs_ok = (!need_opaque || tex.a > 0.5) && (!contain_in_texture || inside);
 	if (arcs_ok) {
-		// Optional dithered glow around `center` (off by default)
+		// optional dithered glow around `center` (off by default)
 		float rn = length((uv - center) * grid) / max(0.5 * minres, 0.001);
 		float cg = clamp(1.0 - rn / max(center_glow_radius, 0.001), 0.0, 1.0);
 		if (center_glow_radius > 0.0 && cg * (0.5 + 0.5 * pulse) > bayer(cell)) {
