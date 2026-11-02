@@ -115,7 +115,7 @@ float alpha_at(sampler2D tex, vec2 uvp, vec2 grid) {
 
 void vertex() {
 	v_modulate = COLOR; // keep the node's modulate
-
+	
 	// grow the quad outward and extend UV past 0..1 by the same amount
 	vec2 tex_size = 1.0 / TEXTURE_PIXEL_SIZE;
 	float p = float(padding);
@@ -131,19 +131,19 @@ void fragment() {
 	
 	float time = floor(TIME * anim_fps) / anim_fps;
 	float frame = floor(TIME * anim_fps);
-
+	
 	// original texture with modulate applied (transparent in the padded area)
 	bool inside = uv.x >= 0.0 && uv.y >= 0.0 && uv.x < 1.0 && uv.y < 1.0;
 	vec4 tex = inside ? texture(TEXTURE, uv) * v_modulate : vec4(0.0);
 	vec4 outc = tex;
-
+	
 	// stepped pulse used by the charge tint and rim glow
 	float pulse = 0.5 + 0.5 * noise1(time * pulse_speed + lightning_seed);
 	pulse = floor(pulse * 4.0 + 0.5) / 4.0;
-
+	
 	// charged tint on the object itself
 	outc.rgb += outer_glow_color.rgb * charge_tint * pulse * 0.5 * tex.a;
-
+	
 	// rim glow around the silhouette
 	if (rim_glow_px > 0.0) {
 		vec2 px = 1.0 / grid;
@@ -168,16 +168,16 @@ void fragment() {
 			outc.rgb = mix(outc.rgb, inner_glow_color.rgb, 0.5 * (0.4 + 0.6 * pulse));
 		}
 	}
-
+	
 	// arcs: each spawns on an edge pixel and crawls away in a random direction
 	vec2 pp = uv * grid; // this pixel, in pixel units
 	float best_d = 1000.0;
 	float best_fade = 0.0; // dissipation progress (0..1) of the arc that is closest to this pixel
-
+	
 	for (int i = 0; i < 12; i++) {
 		if (i >= arc_count) break;
 		float fi = float(i);
-
+		
 		// arc lifetime: every cycle re-rolls position, direction, length AND lifetime (arc_life_min..arc_life_max).
 		// Each arc has a time slot of arc_life_max seconds; inside it the arc lives for a random
 		// duration starting at a random delay, then stays dark until the next slot.
@@ -189,13 +189,13 @@ void fragment() {
 		float delay = hash11(cs + 8.0) * (slot_len - life);
 		float lf = (fract(tt) * slot_len - delay) / life; // 0..1 over the arc's own life
 		if (lf < 0.0 || lf >= 1.0) continue;
-
+		
 		float end_len = max(end_time, 0.01);
 		float dis = clamp((lf - (1.0 - end_len)) / end_len, 0.0, 1.0); // 0 = alive, 1 = gone
 		float grow = clamp(lf / 0.25, 0.0, 1.0); // sprouts over first quarter
 		float strength = 1.0 - dis;
 		if (grow <= 0.0 || strength <= 0.0) continue;
-
+		
 		// origin
 		vec2 span = spawn_max - spawn_min;
 		vec2 o_uv = spawn_min + span * vec2(hash11(cs + 11.0), hash11(cs + 12.0));
@@ -243,7 +243,7 @@ void fragment() {
 		if (length(edge_n) < 0.01) edge_n = md;
 		edge_n = normalize(edge_n);
 		if (arcs_inward) edge_n = -edge_n; // flip so the normal points into the object
-
+		
 		// ---- Direction ----
 		float rang = hash11(cs + 3.0) * TAU;
 		vec2 rdir = vec2(cos(rang), sin(rang));
@@ -256,9 +256,9 @@ void fragment() {
 			if (arcs_inward) odir = -odir; // toward `center` instead of away
 			u = normalize(mix(rdir, odir, outward_bias) + rdir * 0.001);
 		}
-
+		
 		float L = mix(min_length, max_length, hash11(cs + 1.0)) * minres;
-
+		
 		// distance from the origin to the edge of the padded quad (or the texture rect) along the arc
 		if (reach_padding || fit_to_quad || contain_in_texture) {
 			vec2 o = o_uv * grid;
@@ -282,10 +282,10 @@ void fragment() {
 		float t = dot(q, u) / L;
 		float perp = dot(q, vec2(-u.y, u.x));
 		if (t < -0.02 || t > grow) continue;
-
+		
 		// ending: "Retract" pulls the arc back toward its origin
 		if (end_style == 0 && t < dis) continue;
-
+		
 		// ending: "Dissipate" keeps the full arc and breaks it up
 		if (end_style == 1 && dis > 0.0) {
 			// 1. the whole arc blinks out on random frames
@@ -296,7 +296,7 @@ void fragment() {
 			// 3. what's left erodes pixel by pixel
 			if (hash11(cell.x * 7.13 + cell.y * 17.31 + cs * 5.0 + frame * 0.37) < dis * dis * dissipate_erosion) continue;
 		}
-
+		
 		// Jagged path: pinned at the origin, free toward the tip
 		float tc = clamp(t, 0.0, 1.0);
 		float taper = clamp(tc * 5.0, 0.0, 1.0);
@@ -330,7 +330,7 @@ void fragment() {
 			}
 		}
 		float offset = (arc_wiggle(tc, cs, jag, wf, wo) * L * off_scale + jitter) * taper;
-
+		
 		float d = abs(perp - offset);
 		if (t < 0.0) d += -t * L; // round cap at the origin
 		if (end_style == 1) d += dis * (outer_glow_px + 1.0); // glow collapses toward the core, then the core thins out
@@ -339,7 +339,7 @@ void fragment() {
 			best_fade = end_style == 1 ? dis : 0.0;
 		}
 	}
-
+	
 	bool need_opaque = arcs_only_on_object;
 	bool arcs_ok = (!need_opaque || tex.a > 0.5) && (!contain_in_texture || inside);
 	if (arcs_ok) {
@@ -350,12 +350,12 @@ void fragment() {
 			outc.rgb = mix(outc.rgb, inner_glow_color.rgb, 0.6);
 			outc.a = max(outc.a, 0.8);
 		}
-
+		
 		// colors cool down as the arc dissipates: white -> pale blue -> violet, and the glow fades
 		float fade = best_fade;
 		vec3 core_c = mix(core_color.rgb, inner_glow_color.rgb, fade);
 		vec3 inner_c = mix(inner_glow_color.rgb, outer_glow_color.rgb, fade);
-
+		
 		float outer_t = clamp(1.0 - (best_d - inner_glow_px) / max(outer_glow_px - inner_glow_px, 0.001), 0.0, 1.0);
 		if (best_d < outer_glow_px && outer_t > bayer(cell)) {
 			outc.rgb = mix(outc.rgb, outer_glow_color.rgb, 0.65);
@@ -369,6 +369,6 @@ void fragment() {
 			outc = vec4(core_c, 1.0 - 0.3 * fade);
 		}
 	}
-
+	
 	COLOR = outc;
 }
