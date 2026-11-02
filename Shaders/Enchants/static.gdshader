@@ -297,7 +297,7 @@ void fragment() {
 			if (hash11(cell.x * 7.13 + cell.y * 17.31 + cs * 5.0 + frame * 0.37) < dis * dis * dissipate_erosion) continue;
 		}
 		
-		// Jagged path: pinned at the origin, free toward the tip
+		// jagged path: pinned at the origin, free toward the tip
 		float tc = clamp(t, 0.0, 1.0);
 		float taper = clamp(tc * 5.0, 0.0, 1.0);
 		if (reach_padding) taper *= clamp((1.0 - tc) * 5.0, 0.0, 1.0); // pinned at both ends
