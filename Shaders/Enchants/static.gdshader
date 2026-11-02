@@ -305,7 +305,7 @@ void fragment() {
 		float wf = 3.0;
 		int wo = 4;
 		float jitter = noise1(tc * 20.0 + frame * 4.7 + fi * 9.0) * crackle_px;
-		// Stay-inside: shrink the sideways wiggle (same factor along the whole arc, so it stays smooth)
+		// shrink the sideways wiggle (same factor along the whole arc, so it stays smooth)
 		// until 16 sample points along the arc all land on opaque pixels.
 		float off_scale = 1.0;
 		if (stay_inside) {
