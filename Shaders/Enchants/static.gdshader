@@ -244,7 +244,7 @@ void fragment() {
 		edge_n = normalize(edge_n);
 		if (arcs_inward) edge_n = -edge_n; // flip so the normal points into the object
 		
-		// ---- Direction ----
+		// direction
 		float rang = hash11(cs + 3.0) * TAU;
 		vec2 rdir = vec2(cos(rang), sin(rang));
 		vec2 u;
