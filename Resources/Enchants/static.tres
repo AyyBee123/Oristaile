@@ -54,7 +54,7 @@ shader_parameter/anim_fps = 20.00000076
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n4bty"]
 shader = ExtResource("1_70hol")
-shader_parameter/padding = 0
+shader_parameter/padding = 1
 shader_parameter/spawn_on_edges = true
 shader_parameter/arcs_inward = false
 shader_parameter/arcs_inside_object = false

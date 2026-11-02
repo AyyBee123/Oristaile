@@ -1,67 +1,26 @@
 shader_type canvas_item;
 
-// Pixelated "charged object" / plasma effect for Godot 4.x.
-// Works on Sprite2D, AnimatedSprite2D, TextureRect, etc. The original texture is
-// preserved (pixel-snapped) and electric arcs spark up ONLY from the edge pixels of
-// the object (opaque pixels that border transparency, or the texture border), leave
-// the surface, crawl a random distance, then die and respawn somewhere else along
-// the edge. A pulsing rim glow outlines the silhouette.
-//
-// CHANGES FROM THE ORIGINAL
-//  - spawn_on_edges: arcs start on silhouette edge pixels. A random opaque point is picked,
-//    then a random ray is marched until it leaves the silhouette; the last opaque pixel is
-//    the arc's origin. (edge_search = max march distance in texels.)
-//  - edge_normal_bias: arcs leave along the local outward normal. 0 = any outward direction,
-//    1 = exactly along the normal. Directions pointing into the object are mirrored outward.
-//  - arcs_inward: flip the direction so arcs crawl into the object instead of away from it. Pair with
-//    arcs_only_on_object if you don't want long arcs to poke out the far side.
-//  - contain_in_texture: arcs are shortened to fit and everything they draw is clipped to the texture rect,
-//    so nothing appears in the padded area.
-//  - arcs_inside_object: arcs start at the origin (edge pixel if spawn_on_edges) and jump to another
-//    point on the object min_length..max_length away, pinned at both ends and drawn only on opaque pixels,
-//    so lightning crackles across the inside of the texture.
-//  - stay_inside (default ON): lightning stays within the texture. Arcs connect two points on the object,
-//    the sideways wiggle is reduced wherever it would leave the opaque pixels, and everything they draw
-//    (core and glow) is clipped to opaque pixels. Turn it off for arcs that leave the object (spawn_on_edges
-//    + arcs_inward etc. then apply).
-//  - reach_padding (default ON): every arc runs from its edge pixel straight out to the edge of the
-//    padding, and its tip lands there (padding_margin_px short of the quad edge). The arc is pinned at
-//    both ends, so it wiggles in between but always ends at the padding. This overrides stay_inside /
-//    arcs_inside_object and min_length / max_length. Turn it off to go back to those modes.
-//  - end_style / end_time: how an arc ends. "Retract" pulls it back toward its origin (the old behavior).
-//    "Dissipate" (default) keeps the arc at full length and breaks it up over the last `end_time` of its
-//    life: it flickers out on random frames, splits into segments that vanish one by one, erodes pixel by
-//    pixel, the glow collapses toward the core and the colors cool down (white -> pale blue -> violet).
-//  - arc_life_min / arc_life_max: each arc's lifetime is a random value in this range, re-rolled every cycle
-//    (with a random start delay inside its slot, so arcs don't pulse in sync).
-//  - padding: vertex() grows the quad by this many texture pixels per side so arcs and glow can
-//    draw outside the texture without editing it. Use it on a Sprite2D showing the whole texture
-//    (no hframes/vframes, region or atlas).
-//
-// Tips:
-//  - Raise `padding` for longer arcs (with reach_padding the arc length is set by the padding).
-//  - Each arc does a handful of texture lookups per pixel, so keep arc_count modest on big sprites.
 
 group_uniforms layout;
-uniform int padding : hint_range(0, 64) = 16;  // extra pixels around the texture for arcs/glow
+uniform int padding : hint_range(0, 64) = 16; // extra pixels around the texture for arcs/glow
 instance uniform float lightning_seed = 1.0;
 
 group_uniforms spawning;
-uniform bool spawn_on_edges = true;           // arcs start on silhouette edge pixels
-uniform bool arcs_inward = false;             // true = arcs crawl into the object instead of away from it
-uniform bool arcs_inside_object = false;      // arcs jump from the origin to another point ON the object, drawn only on its pixels
-uniform bool stay_inside = true;               // route arcs so they stay ON the object: bends toward the object where needed, nothing drawn outside it
-uniform bool reach_padding = true;            // arcs run from the edge out to the padding edge (overrides stay_inside / arcs_inside_object)
+uniform bool spawn_on_edges = true; // arcs start on silhouette edge pixels
+uniform bool arcs_inward = false; // true = arcs crawl into the object instead of away from it
+uniform bool arcs_inside_object = false; // arcs jump from the origin to another point ON the object, drawn only on its pixels
+uniform bool stay_inside = true; // route arcs so they stay ON the object: bends toward the object where needed, nothing drawn outside it
+uniform bool reach_padding = true; // arcs run from the edge out to the padding edge (overrides stay_inside / arcs_inside_object)
 uniform float padding_margin_px : hint_range(0.0, 8.0) = 1.0; // how many px before the quad edge the tip stops (raise to ~outer_glow_px so the glow isn't cut)
-uniform float crack_min_length : hint_range(0.05, 1.5) = 0.5;  // (crack_lines) fraction of sprite size
+uniform float crack_min_length : hint_range(0.05, 1.5) = 0.5; // (crack_lines) fraction of sprite size
 uniform float crack_max_length : hint_range(0.05, 1.5) = 1.0;
-uniform float crack_jaggedness : hint_range(0.0, 0.6) = 0.1;   // lower = smoother meander
-uniform float crack_width_px : hint_range(0.1, 2.0) = 0.55;    // ~0.5 = a single pixel wide
+uniform float crack_jaggedness : hint_range(0.0, 0.6) = 0.1; // lower = smoother meander
+uniform float crack_width_px : hint_range(0.1, 2.0) = 0.55; // ~0.5 = a single pixel wide
 uniform vec4 crack_color : source_color = vec4(0.55, 0.88, 0.95, 1.0);
-uniform int edge_search : hint_range(4, 64) = 32;           // max ray length (texels) when looking for an edge
+uniform int edge_search : hint_range(4, 64) = 32; // max ray length (texels) when looking for an edge
 uniform float edge_normal_bias : hint_range(0.0, 1.0) = 0.6; // 1 = leave exactly along the outward normal
-uniform bool spawn_on_object = true;          // (when edges are off) only spawn on opaque pixels
-uniform vec2 spawn_min = vec2(0.0, 0.0);      // UV rectangle arcs may spawn in
+uniform bool spawn_on_object = true; // (when edges are off) only spawn on opaque pixels
+uniform vec2 spawn_min = vec2(0.0, 0.0); // UV rectangle arcs may spawn in
 uniform vec2 spawn_max = vec2(1.0, 1.0);
 uniform float outward_bias : hint_range(0.0, 1.0) = 0.0; // (edges off) 0 = any direction, 1 = away from `center`
 uniform vec2 center = vec2(0.5, 0.5); // only used for outward_bias / center glow
